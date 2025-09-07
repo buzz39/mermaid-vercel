@@ -7,15 +7,32 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
+// Type declarations for dynamically loaded mermaid
+declare global {
+  interface Window {
+    mermaid?: {
+      initialize: (config: { startOnLoad: boolean; theme: string; securityLevel: string }) => void;
+      render: (id: string, text: string) => Promise<{ svg: string }>;
+    };
+  }
+}
+
+interface RenderedDiagram {
+  svg: string;
+  src: string;
+}
+
 // Note: This component is fully client-side only. If using Next.js App Router place it in app/page.jsx
 // and ensure `"use client";` is at the top of the file. For this single-file example we include the directive.
 
 export default function MermaidReaderApp() {
   const [text, setText] = useState(`graph TD\nA[Start] --> B{Is it ok?}\nB -- Yes --> C[Do work]\nB -- No --> D[Fix it]\nC --> E[Done]\nD --> B`);
   const [theme, setTheme] = useState('default');
-  const [rendered, setRendered] = useState([]); // [{svg, src}]
-  const mermaidRef = useRef(null);
-  const mountedRef = useRef(false);
+  const [rendered, setRendered] = useState<RenderedDiagram[]>([]);
+  const mermaidRef = useRef<{
+    initialize: (config: { startOnLoad: boolean; theme: string; securityLevel: string }) => void;
+    render: (id: string, text: string) => Promise<{ svg: string }>;
+  } | null>(null);
 
   // load mermaid dynamically on client
   useEffect(() => {
@@ -30,7 +47,7 @@ export default function MermaidReaderApp() {
         await new Promise((res) => { script.onload = res; script.onerror = res; });
       }
       if (!cancelled && window.mermaid) {
-        window.mermaid.initialize({ startOnLoad: false, theme, securityLevel: 'loose' });
+        window.mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
         mermaidRef.current = window.mermaid;
       }
     })();
@@ -45,8 +62,8 @@ export default function MermaidReaderApp() {
   }, [theme]);
 
   // helpers
-  function extractMermaidBlocks(raw) {
-    const blocks = [];
+  function extractMermaidBlocks(raw: string): string[] {
+    const blocks: string[] = [];
     if (!raw) return blocks;
     const reMermaidFence = /```mermaid\s*([\s\S]*?)```/gi;
     let m;
@@ -70,9 +87,11 @@ export default function MermaidReaderApp() {
   }
 
   async function renderAll() {
+    if (!mermaidRef.current) return;
+    
     const raw = text || '';
     const diagrams = extractMermaidBlocks(raw);
-    const results = [];
+    const results: RenderedDiagram[] = [];
     if (diagrams.length === 0) {
       // try raw
       const candidate = raw.trim();
@@ -101,8 +120,8 @@ export default function MermaidReaderApp() {
   }
 
   // convert svg string to png blob URL (client-side)
-  async function svgToPngBlob(svgStr, width = 1200, height = 800) {
-    return new Promise((resolve, reject) => {
+  async function svgToPngBlob(svgStr: string, width = 1200, height = 800) {
+    return new Promise<Blob>((resolve, reject) => {
       try {
         const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
         const url = URL.createObjectURL(svgBlob);
@@ -114,22 +133,39 @@ export default function MermaidReaderApp() {
             canvas.width = width || img.naturalWidth || 1200;
             canvas.height = height || img.naturalHeight || 800;
             const ctx = canvas.getContext('2d');
+            if (!ctx) {
+              URL.revokeObjectURL(url);
+              reject(new Error('Failed to get canvas context'));
+              return;
+            }
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             canvas.toBlob((blob) => {
               URL.revokeObjectURL(url);
-              resolve(blob);
+              if (blob) {
+                resolve(blob);
+              } else {
+                reject(new Error('Failed to create blob'));
+              }
             }, 'image/png');
-          } catch (e) { URL.revokeObjectURL(url); reject(e); }
+          } catch (e) {
+            URL.revokeObjectURL(url);
+            reject(e);
+          }
         };
-        img.onerror = (e) => { URL.revokeObjectURL(url); reject(new Error('Image load error')); };
+        img.onerror = () => {
+          URL.revokeObjectURL(url);
+          reject(new Error('Image load error'));
+        };
         img.src = url;
-      } catch (err) { reject(err); }
+      } catch (err) {
+        reject(err);
+      }
     });
   }
 
-  function downloadBlob(blob, filename) {
+  function downloadBlob(blob: Blob, filename: string) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -140,7 +176,7 @@ export default function MermaidReaderApp() {
     URL.revokeObjectURL(url);
   }
 
-  function downloadTextFile(textContent, filename, mime = 'image/svg+xml') {
+  function downloadTextFile(textContent: string, filename: string, mime = 'image/svg+xml') {
     const blob = new Blob([textContent], { type: `${mime};charset=utf-8` });
     downloadBlob(blob, filename);
   }
@@ -296,7 +332,7 @@ export default function MermaidReaderApp() {
                             try {
                               const blob = await svgToPngBlob(item.svg);
                               downloadBlob(blob, `diagram-${idx+1}.png`);
-                            } catch (e) { alert('PNG export failed'); }
+                            } catch { alert('PNG export failed'); }
                           }}
                         >
                           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
