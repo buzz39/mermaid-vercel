@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mermaid Live Editor
+
+A production-ready, Next.js-based live editor for Mermaid diagrams. Render Flowcharts, Sequence diagrams, Gantt charts, and more directly in your browser. Export your diagrams as SVG or PNG images.
+
+## Features
+
+- **Live Rendering**: Type Mermaid code and see the diagram update instantly.
+- **Multiple Diagrams**: Support for multiple diagrams in a single text block.
+- **Themes**: Switch between Default, Forest, Dark, and Neutral themes.
+- **Export Options**:
+  - Download as **SVG** (vector graphics).
+  - Download as **PNG** (high-quality raster image).
+  - Copy SVG code to clipboard.
+- **File Support**: Load `.mmd`, `.md`, or `.txt` files containing Mermaid code.
+- **Error Handling**: Graceful error reporting with syntax highlighting for troubleshooting.
+- **Responsive Design**: Works on desktop and mobile.
+
+## Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **UI Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Diagramming**: [Mermaid.js](https://mermaid.js.org/)
+- **Testing**: [Vitest](https://vitest.dev/) & [React Testing Library](https://testing-library.com/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/mermaid-vercel.git
+   cd mermaid-vercel
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Usage
+
+1. **Enter Code**: Paste your Mermaid diagram code into the editor on the left.
+   Example:
+   ```mermaid
+   graph TD
+     A[Start] --> B{Is it working?}
+     B -- Yes --> C[Great!]
+     B -- No --> D[Debug]
+   ```
+2. **Render**: Click the **Render** button to generate the diagram.
+3. **Customize**: Use the theme dropdown to change the visual style.
+4. **Export**: Use the buttons above the rendered diagram to Download SVG, Download PNG, or Copy the SVG code.
+
+## Running Tests
+
+To run the test suite:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Deploy on Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-## Learn More
+1. Push your code to a GitHub repository.
+2. Import the project in Vercel.
+3. Vercel will automatically detect Next.js and build the application.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! Please open an issue or submit a pull request for any improvements.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
