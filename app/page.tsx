@@ -14,15 +14,22 @@ if (typeof window !== 'undefined') {
 }
 
 export default function MermaidReaderApp() {
+  const [mounted, setMounted] = useState(false);
   const [text, setText] = useState(`graph TD\nA[Start] --> B{Is it ok?}\nB -- Yes --> C[Do work]\nB -- No --> D[Fix it]\nC --> E[Done]\nD --> B`);
   const [theme, setTheme] = useState('default');
   const [diagrams, setDiagrams] = useState<string[]>([]);
   const [hasRendered, setHasRendered] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Re-initialize mermaid when theme changes
   useEffect(() => {
-    mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
-  }, [theme]);
+    if (mounted) {
+      mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+    }
+  }, [theme, mounted]);
 
   const handleRender = () => {
     const blocks = extractMermaidBlocks(text);
@@ -34,6 +41,8 @@ export default function MermaidReaderApp() {
     }
     setHasRendered(true);
   };
+
+  if (!mounted) return null;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4 md:p-8 font-sans">

@@ -14,3 +14,14 @@
  ✓ Compiled in 776ms (2005 modules)
  GET / 200 in 114ms
  ✓ Compiled in 387ms (2005 modules)
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.5.2
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 10.5s (4114 modules)
+ GET / 200 in 12960ms
+ ✓ Compiled in 845ms (2005 modules)
