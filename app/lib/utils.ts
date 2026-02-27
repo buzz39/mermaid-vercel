@@ -86,3 +86,23 @@ export function downloadTextFile(textContent: string, filename: string, mime = '
   const blob = new Blob([textContent], { type: `${mime};charset=utf-8` });
   downloadBlob(blob, filename);
 }
+
+// Encode state for URL sharing
+export const encodeState = (code: string): string => {
+  try {
+    return btoa(unescape(encodeURIComponent(code)));
+  } catch (e) {
+    console.error("Encoding failed", e);
+    return "";
+  }
+};
+
+// Decode state from URL
+export const decodeState = (encoded: string): string => {
+  try {
+    return decodeURIComponent(escape(atob(encoded)));
+  } catch (e) {
+    console.error("Decoding failed", e);
+    return "";
+  }
+};

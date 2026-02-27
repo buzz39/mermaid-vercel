@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import type { MermaidConfig } from 'mermaid';
-import { extractMermaidBlocks } from './lib/utils';
+import { extractMermaidBlocks, decodeState } from './lib/utils';
 import Editor from './components/Editor';
 import Toolbar from './components/Toolbar';
 import MermaidRenderer from './components/MermaidRenderer';
 import ErrorBoundary from './components/ErrorBoundary';
+import AdUnit from './components/AdUnit';
+import Footer from './components/Footer';
 
 // Initialize mermaid once
 if (typeof window !== 'undefined') {
@@ -26,6 +28,25 @@ export default function MermaidReaderApp() {
 
   useEffect(() => {
     setMounted(true);
+    // Decode URL state
+    if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        if (code) {
+            const decoded = decodeState(code);
+            if (decoded) {
+                setText(decoded);
+                // Auto-render if loaded from share
+                const blocks = extractMermaidBlocks(decoded);
+                if (blocks.length === 0 && decoded.trim()) {
+                    setDiagrams([decoded.trim()]);
+                } else {
+                    setDiagrams(blocks);
+                }
+                setHasRendered(true);
+            }
+        }
+    }
   }, []);
 
   // Re-initialize mermaid when theme changes
@@ -75,6 +96,7 @@ export default function MermaidReaderApp() {
                 setTheme={setTheme}
                 onTextChange={setText}
                 onRender={handleRender}
+                text={text}
               />
             </div>
 
@@ -89,6 +111,11 @@ export default function MermaidReaderApp() {
               </div>
               <div className="text-xs text-gray-500 mt-4">
                 Supported diagrams: Flowchart, Sequence, Gantt, Class, State, Pie, and more.
+              </div>
+
+              {/* Ad Unit in Sidebar */}
+              <div className="mt-8">
+                  <AdUnit slotId="sidebar-ad-1" />
               </div>
             </div>
           </div>
@@ -122,20 +149,14 @@ export default function MermaidReaderApp() {
                   />
                 </ErrorBoundary>
               ))}
+
+              {/* Ad Unit after diagrams */}
+              {hasRendered && <AdUnit slotId="post-render-ad" responsive={true} />}
             </div>
           </section>
 
           {/* Footer */}
-          <footer className="mt-12 pt-8 border-t border-gray-200">
-            <div className="text-center">
-              <p className="text-sm text-gray-500 mb-2">
-                💡 <strong>Tip:</strong> For best results, paste only Mermaid blocks or wrap diagrams in <code className="bg-gray-100 px-2 py-1 rounded text-xs">```mermaid```</code> fences.
-              </p>
-              <p className="text-xs text-gray-400">
-                Built with Next.js and Mermaid.js • Ready for Vercel deployment
-              </p>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </div>
     </main>
