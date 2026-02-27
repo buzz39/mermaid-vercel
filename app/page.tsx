@@ -13,7 +13,13 @@ if (typeof window !== 'undefined') {
   // We use require inside a check to avoid any possible bundler hoisting issues that might trigger before 'window' check
   // However, dynamic import is cleaner.
   import('mermaid').then(m => {
-    m.default.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
+    m.default.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose',
+      htmlLabels: false,
+      flowchart: { htmlLabels: false }
+    });
   }).catch(e => console.error("Failed to load mermaid", e));
 }
 
@@ -33,7 +39,13 @@ export default function MermaidReaderApp() {
     if (mounted) {
       (async () => {
         const mermaid = (await import('mermaid')).default;
-        mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: theme as MermaidConfig['theme'],
+          securityLevel: 'loose',
+          htmlLabels: false,
+          flowchart: { htmlLabels: false }
+        });
       })();
     }
   }, [theme, mounted]);
