@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   title: "Mermaid Live Editor - Render & Export Mermaid Diagrams",
   description: "Free online Mermaid editor. Render Mermaid charts, diagrams, and graphs instantly. Export to SVG and PNG. Supports Flowchart, Sequence, Gantt, and more.",
   keywords: ["mermaid", "editor", "diagram", "chart", "flowchart", "sequence diagram", "gantt", "live editor", "svg", "png"],
+  authors: [{ name: "Gagan Thakur", url: "https://www.linkedin.com/in/gaganthakur" }],
+  creator: "Gagan Thakur",
   openGraph: {
     title: "Mermaid Live Editor",
     description: "Render and export Mermaid diagrams instantly.",
@@ -45,6 +47,11 @@ export default function RootLayout({
       "@type": "AggregateRating",
       "ratingValue": "4.8",
       "ratingCount": "1250"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Gagan Thakur",
+      "url": "https://www.linkedin.com/in/gaganthakur"
     }
   };
 

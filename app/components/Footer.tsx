@@ -18,6 +18,15 @@ export default function Footer() {
                 <Link href="/about" className="hover:text-blue-600 transition-colors">About</Link>
                 <Link href="/privacy" className="hover:text-blue-600 transition-colors">Privacy</Link>
                 <Link href="/terms" className="hover:text-blue-600 transition-colors">Terms</Link>
+                <a
+                  href="https://www.linkedin.com/in/gaganthakur"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-600 transition-colors flex items-center gap-1"
+                  aria-label="Connect on LinkedIn"
+                >
+                  LinkedIn
+                </a>
             </div>
         </div>
     </footer>
