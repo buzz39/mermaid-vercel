@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import mermaid, { type MermaidConfig } from 'mermaid';
+import type { MermaidConfig } from 'mermaid';
 import { downloadBlob, downloadTextFile, svgToPngBlob } from '../lib/utils';
 
 interface MermaidRendererProps {
@@ -16,7 +16,10 @@ export default function MermaidRenderer({ code, theme, index }: MermaidRendererP
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+    (async () => {
+      const mermaid = (await import('mermaid')).default;
+      mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+    })();
   }, [theme]);
 
   useEffect(() => {
@@ -30,6 +33,7 @@ export default function MermaidRenderer({ code, theme, index }: MermaidRendererP
         // Unique ID for each render to avoid conflicts
         const id = `mermaid-${index}-${Math.random().toString(36).slice(2, 9)}`;
 
+        const mermaid = (await import('mermaid')).default;
         // mermaid.render returns { svg }
         const { svg: svgContent } = await mermaid.render(id, code);
 

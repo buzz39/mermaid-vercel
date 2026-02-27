@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import mermaid, { type MermaidConfig } from 'mermaid';
+import type { MermaidConfig } from 'mermaid';
 import { extractMermaidBlocks } from './lib/utils';
 import Editor from './components/Editor';
 import Toolbar from './components/Toolbar';
@@ -10,7 +10,11 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 // Initialize mermaid once
 if (typeof window !== 'undefined') {
-  mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
+  // We use require inside a check to avoid any possible bundler hoisting issues that might trigger before 'window' check
+  // However, dynamic import is cleaner.
+  import('mermaid').then(m => {
+    m.default.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
+  }).catch(e => console.error("Failed to load mermaid", e));
 }
 
 export default function MermaidReaderApp() {
@@ -27,7 +31,10 @@ export default function MermaidReaderApp() {
   // Re-initialize mermaid when theme changes
   useEffect(() => {
     if (mounted) {
-      mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+      (async () => {
+        const mermaid = (await import('mermaid')).default;
+        mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+      })();
     }
   }, [theme, mounted]);
 
