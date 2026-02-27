@@ -18,7 +18,13 @@ export default function MermaidRenderer({ code, theme, index }: MermaidRendererP
   useEffect(() => {
     (async () => {
       const mermaid = (await import('mermaid')).default;
-      mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: theme as MermaidConfig['theme'],
+        securityLevel: 'loose',
+        htmlLabels: false,
+        flowchart: { htmlLabels: false }
+      });
     })();
   }, [theme]);
 
@@ -34,6 +40,16 @@ export default function MermaidRenderer({ code, theme, index }: MermaidRendererP
         const id = `mermaid-${index}-${Math.random().toString(36).slice(2, 9)}`;
 
         const mermaid = (await import('mermaid')).default;
+
+        // Ensure configuration is applied immediately before render
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: theme as MermaidConfig['theme'],
+          securityLevel: 'loose',
+          htmlLabels: false,
+          flowchart: { htmlLabels: false }
+        });
+
         // mermaid.render returns { svg }
         const { svg: svgContent } = await mermaid.render(id, code);
 
