@@ -16,13 +16,6 @@ export default function MermaidRenderer({ code, theme, index }: MermaidRendererP
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    (async () => {
-      const mermaid = (await import('mermaid')).default;
-      mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose' });
-    })();
-  }, [theme]);
-
-  useEffect(() => {
     let isMounted = true;
 
     const renderDiagram = async () => {
@@ -34,6 +27,7 @@ export default function MermaidRenderer({ code, theme, index }: MermaidRendererP
         const id = `mermaid-${index}-${Math.random().toString(36).slice(2, 9)}`;
 
         const mermaid = (await import('mermaid')).default;
+        mermaid.initialize({ startOnLoad: false, theme: theme as MermaidConfig['theme'], securityLevel: 'loose', htmlLabels: false, flowchart: { htmlLabels: false } } as MermaidConfig);
         // mermaid.render returns { svg }
         const { svg: svgContent } = await mermaid.render(id, code);
 
