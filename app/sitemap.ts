@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { posts } from './blog/posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mermaid-live-editor.vercel.app';
+  const baseUrl = 'https://mermaideditor.lol';
 
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
