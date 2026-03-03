@@ -40,14 +40,14 @@ export default function FeedbackWidget() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all text-sm font-medium"
+        className="fixed bottom-6 right-6 z-50 bg-white text-gray-600 border border-gray-200 px-4 py-2 rounded-lg shadow-md hover:shadow-lg hover:border-blue-300 hover:text-blue-600 transition-all text-sm font-medium"
       >
-        💡 Request a Feature
+        💡 Suggest a Feature
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => setIsOpen(false)}>
-          <div className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 shadow-xl border border-gray-100" onClick={e => e.stopPropagation()}>
             {submitted ? (
               <div className="text-center py-8">
                 <p className="text-2xl mb-2">🎉</p>
@@ -56,8 +56,8 @@ export default function FeedbackWidget() {
               </div>
             ) : (
               <>
-                <h3 className="text-lg font-bold text-gray-800 mb-4">Request a Feature</h3>
-                <p className="text-sm text-gray-500 mb-4">What would you like to see in Mermaid Editor?</p>
+                <h3 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Suggest a Feature</h3>
+                <p className="text-sm text-gray-500 mb-4">What would make Mermaid Editor better for you?</p>
 
                 <div className="space-y-2 mb-4">
                   {FEATURE_OPTIONS.map(opt => (
@@ -83,13 +83,13 @@ export default function FeedbackWidget() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="flex-1 px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50"
+                    className="flex-1 px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSubmit}
-                    className="flex-1 px-4 py-2 text-sm text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:opacity-90"
+                    className="flex-1 px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition font-medium"
                   >
                     Submit
                   </button>
