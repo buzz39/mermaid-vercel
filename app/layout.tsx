@@ -78,7 +78,7 @@ gtag('config', 'G-4PTPSJ13E0');`}
              async
              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2892900713777311"
              crossOrigin="anonymous"
-             strategy="lazyOnload"
+             strategy="afterInteractive"
           />
       </head>
       <body
