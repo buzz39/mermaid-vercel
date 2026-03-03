@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://mermaid-live-editor.vercel.app'; // Replace with actual domain
+  const baseUrl = 'https://mermaideditor.lol'; // Replace with actual domain
 
   return {
     rules: [

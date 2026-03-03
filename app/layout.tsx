@@ -43,11 +43,6 @@ export default function RootLayout({
       "priceCurrency": "USD"
     },
     "description": "A free online editor to generate diagrams and charts from text using Mermaid.js syntax.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1250"
-    },
     "author": {
       "@type": "Person",
       "name": "Gagan Thakur",
