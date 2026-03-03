@@ -23,8 +23,34 @@ export function extractMermaidBlocks(raw: string): string[] {
   return blocks;
 }
 
+// Parse intrinsic dimensions from an SVG string
+export function parseSvgDimensions(svgStr: string): { width: number; height: number } | null {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(svgStr, 'image/svg+xml');
+  const svgEl = doc.querySelector('svg');
+  if (!svgEl) return null;
+
+  const w = parseFloat(svgEl.getAttribute('width') || '');
+  const h = parseFloat(svgEl.getAttribute('height') || '');
+  if (w > 0 && h > 0) return { width: w, height: h };
+
+  const viewBox = svgEl.getAttribute('viewBox');
+  if (viewBox) {
+    const parts = viewBox.split(/[\s,]+/);
+    if (parts.length === 4) {
+      const vw = parseFloat(parts[2]);
+      const vh = parseFloat(parts[3]);
+      if (vw > 0 && vh > 0) return { width: vw, height: vh };
+    }
+  }
+
+  return null;
+}
+
 // Convert SVG string to PNG blob
-export async function svgToPngBlob(svgStr: string, width = 1200, height = 800): Promise<Blob> {
+export async function svgToPngBlob(svgStr: string, scale = 2): Promise<Blob> {
+  const dims = parseSvgDimensions(svgStr);
+
   return new Promise<Blob>((resolve, reject) => {
     try {
       const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
@@ -32,9 +58,11 @@ export async function svgToPngBlob(svgStr: string, width = 1200, height = 800): 
       const img = new Image();
       img.onload = () => {
         try {
+          const w = dims?.width || img.naturalWidth || 800;
+          const h = dims?.height || img.naturalHeight || 600;
           const canvas = document.createElement('canvas');
-          canvas.width = width || img.naturalWidth || 1200;
-          canvas.height = height || img.naturalHeight || 800;
+          canvas.width = w * scale;
+          canvas.height = h * scale;
           const ctx = canvas.getContext('2d');
           if (!ctx) {
             URL.revokeObjectURL(url);
