@@ -10,7 +10,7 @@ export default function Footer() {
                 💡 <strong>Tip:</strong> For best results, paste only Mermaid blocks or wrap diagrams in <code className="bg-gray-100 px-2 py-1 rounded text-xs">```mermaid```</code> fences.
               </p>
               <p className="text-xs text-gray-400">
-                Built with Next.js and Mermaid.js • Ready for Vercel deployment
+                © {new Date().getFullYear()} Mermaid Editor • Free online diagram editor
               </p>
             </div>
 
