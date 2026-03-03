@@ -67,6 +67,13 @@ export default function RootLayout({
           />
           {/* Replace with Bing Webmaster Tools verification code */}
           <meta name="msvalidate.01" content="E8526A596FF6783F9177B38EF141F88C" />
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-4PTPSJ13E0" />
+          <Script id="gtag-init" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4PTPSJ13E0');`}
+          </Script>
           <Script
              async
              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2892900713777311"
