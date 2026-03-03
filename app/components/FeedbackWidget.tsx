@@ -16,16 +16,16 @@ export default function FeedbackWidget() {
   const [text, setText] = useState("");
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
-  const handleSubmit = () => {
-    const entry = {
-      text,
-      features: Object.keys(checked).filter(k => checked[k]),
-      timestamp: new Date().toISOString(),
-    };
+  const handleSubmit = async () => {
     try {
-      const existing = JSON.parse(localStorage.getItem("feedback") || "[]");
-      existing.push(entry);
-      localStorage.setItem("feedback", JSON.stringify(existing));
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text,
+          features: Object.keys(checked).filter(k => checked[k]),
+        }),
+      });
     } catch {}
     setSubmitted(true);
     setTimeout(() => {
