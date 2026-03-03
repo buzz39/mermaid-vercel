@@ -16,24 +16,15 @@ export default function AdUnit({ slotId = "1234567890", format = "auto", respons
   }, []);
 
   return (
-    <div className="w-full my-4 flex justify-center bg-gray-50 border border-gray-100 rounded-lg overflow-hidden min-h-[100px] items-center text-gray-400 text-xs uppercase tracking-widest relative group">
-       <span className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 group-hover:opacity-10 transition-opacity">
-         Advertisement
-       </span>
-      {/* Placeholder for real AdSense unit */}
-      {/*
+    <div className="w-full my-4 flex justify-center overflow-hidden min-h-[100px] items-center">
       <ins className="adsbygoogle"
            style={{ display: 'block', ...style }}
-           data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+           data-ad-client="ca-pub-2892900713777311"
            data-ad-slot={slotId}
            data-ad-format={format}
            data-full-width-responsive={responsive ? "true" : "false"}
            ref={adRef}>
       </ins>
-      */}
-      <div className="text-center p-4 w-full">
-         <div className="w-full h-24 bg-gray-200 animate-pulse rounded"></div>
-      </div>
     </div>
   );
 }

@@ -1,0 +1,104 @@
+"use client";
+
+import React, { useState } from 'react';
+
+const FEATURE_OPTIONS = [
+  "AI Diagram Generator",
+  "More Templates",
+  "Team Collaboration",
+  "API Access",
+  "VS Code Extension",
+];
+
+export default function FeedbackWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [text, setText] = useState("");
+  const [checked, setChecked] = useState<Record<string, boolean>>({});
+
+  const handleSubmit = () => {
+    const entry = {
+      text,
+      features: Object.keys(checked).filter(k => checked[k]),
+      timestamp: new Date().toISOString(),
+    };
+    try {
+      const existing = JSON.parse(localStorage.getItem("feedback") || "[]");
+      existing.push(entry);
+      localStorage.setItem("feedback", JSON.stringify(existing));
+    } catch {}
+    setSubmitted(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setSubmitted(false);
+      setText("");
+      setChecked({});
+    }, 2000);
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all text-sm font-medium"
+      >
+        💡 Request a Feature
+      </button>
+
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => setIsOpen(false)}>
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl" onClick={e => e.stopPropagation()}>
+            {submitted ? (
+              <div className="text-center py-8">
+                <p className="text-2xl mb-2">🎉</p>
+                <p className="text-lg font-semibold text-gray-800">Thank you!</p>
+                <p className="text-gray-500 text-sm">Your feedback has been recorded.</p>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-lg font-bold text-gray-800 mb-4">Request a Feature</h3>
+                <p className="text-sm text-gray-500 mb-4">What would you like to see in Mermaid Editor?</p>
+
+                <div className="space-y-2 mb-4">
+                  {FEATURE_OPTIONS.map(opt => (
+                    <label key={opt} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={!!checked[opt]}
+                        onChange={() => setChecked(p => ({ ...p, [opt]: !p[opt] }))}
+                        className="rounded border-gray-300"
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+
+                <textarea
+                  value={text}
+                  onChange={e => setText(e.target.value)}
+                  placeholder="Other ideas or suggestions..."
+                  className="w-full border border-gray-200 rounded-lg p-3 text-sm mb-4 resize-none h-20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="flex-1 px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    className="flex-1 px-4 py-2 text-sm text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:opacity-90"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

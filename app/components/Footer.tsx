@@ -16,7 +16,8 @@ export default function Footer() {
 
             <div className="flex gap-4 text-sm text-gray-500">
                 <Link href="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
-                <Link href="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
+                <Link href="/templates" className="hover:text-blue-600 transition-colors">Templates</Link>
+                <Link href="/cheat-sheet" className="hover:text-blue-600 transition-colors">Cheat Sheet</Link>
                 <Link href="/about" className="hover:text-blue-600 transition-colors">About</Link>
                 <Link href="/privacy" className="hover:text-blue-600 transition-colors">Privacy</Link>
                 <Link href="/terms" className="hover:text-blue-600 transition-colors">Terms</Link>

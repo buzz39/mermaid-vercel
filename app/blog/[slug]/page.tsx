@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { posts } from "../posts";
+import { encodeState } from "../../lib/utils";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -19,11 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.description,
     keywords: post.keywords,
+    alternates: {
+      canonical: `https://mermaideditor.lol/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
       publishedTime: post.date,
+      url: `https://mermaideditor.lol/blog/${slug}`,
     },
   };
 }
@@ -35,6 +40,7 @@ function renderContent(content: string) {
   let i = 0;
   let inCodeBlock = false;
   let codeLines: string[] = [];
+  let codeLang = "";
   let codeKey = 0;
 
   while (i < lines.length) {
@@ -42,6 +48,7 @@ function renderContent(content: string) {
 
     if (line.startsWith("\`\`\`") && !inCodeBlock) {
       inCodeBlock = true;
+      codeLang = line.slice(3).trim();
       codeLines = [];
       i++;
       continue;
@@ -49,14 +56,24 @@ function renderContent(content: string) {
 
     if (line.startsWith("\`\`\`") && inCodeBlock) {
       inCodeBlock = false;
+      const codeContent = codeLines.join("\n");
+      const isMermaid = codeLang === "mermaid" || (!codeLang && /^(graph|flowchart|sequenceDiagram|classDiagram|gantt|stateDiagram|pie|erDiagram|mindmap|gitGraph|timeline|quadrantChart|journey)\b/m.test(codeContent));
       elements.push(
-        <pre
-          key={`code-${codeKey++}`}
-          className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm my-4"
-        >
-          <code>{codeLines.join("\n")}</code>
-        </pre>
+        <div key={`code-${codeKey}`}>
+          <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm my-4">
+            <code>{codeContent}</code>
+          </pre>
+          {isMermaid && (
+            <a
+              href={`/?code=${encodeState(codeContent)}`}
+              className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium mb-4 -mt-2"
+            >
+              Try in Editor →
+            </a>
+          )}
+        </div>
       );
+      codeKey++;
       i++;
       continue;
     }

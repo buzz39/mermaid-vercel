@@ -3530,4 +3530,1595 @@ Mermaid mind maps let you create visual hierarchies with nothing but indented te
 [Try it now in our free Mermaid Live Editor →](/)
 `
   },
+  {
+    slug: "mermaid-in-obsidian",
+    title: "How to Use Mermaid Diagrams in Obsidian",
+    description: "Complete guide to creating and using Mermaid diagrams in Obsidian. Learn how to enable Mermaid, create diagrams, customize rendering, and publish compatibility.",
+    date: "2025-12-30",
+    keywords: ["mermaid obsidian", "obsidian diagrams", "mermaid in obsidian", "obsidian mermaid plugin", "obsidian flowchart"],
+    content: `
+## Introduction
+
+Obsidian is one of the most popular knowledge management tools, and one of its best features is **native Mermaid.js support**. You don't need any plugins — Mermaid diagrams render directly in your notes out of the box.
+
+This makes Obsidian an incredibly powerful tool for developers and knowledge workers who want to combine written notes with visual diagrams. In this guide, you'll learn everything about using Mermaid in Obsidian, from basic setup to advanced tips.
+
+## Enabling Mermaid in Obsidian
+
+Great news: **there's nothing to enable**. Obsidian supports Mermaid natively since version 0.15. Simply create a code block with the \`mermaid\` language identifier, and Obsidian will render it automatically in Reading View and Live Preview.
+
+If you're on an older version of Obsidian, update to the latest version to get Mermaid support. The latest versions of Obsidian typically ship with a recent version of Mermaid.js, giving you access to most diagram types.
+
+## Creating Your First Diagram
+
+In any Obsidian note, type:
+
+\`\`\`mermaid
+graph TD
+    A[Idea] --> B[Research]
+    B --> C[Draft]
+    C --> D[Review]
+    D --> E[Publish]
+\`\`\`
+
+Switch to **Reading View** (or use **Live Preview**) and you'll see the diagram rendered inline with your notes. It's that simple.
+
+## Supported Diagram Types
+
+Obsidian supports all major Mermaid diagram types:
+
+- **Flowcharts** — Process flows, decision trees
+- **Sequence Diagrams** — API calls, interactions
+- **Gantt Charts** — Project timelines
+- **Class Diagrams** — UML modeling
+- **State Diagrams** — State machines, workflows
+- **ER Diagrams** — Database schemas
+- **Pie Charts** — Data distribution
+- **Mind Maps** — Brainstorming, topic hierarchies
+- **Git Graphs** — Branch visualization
+- **Timeline** — Historical events, roadmaps
+
+The exact feature support depends on which version of Mermaid is bundled with your Obsidian version.
+
+## Practical Examples for Obsidian Notes
+
+### Project Planning Note
+
+Combine text and diagrams in a single note:
+
+\`\`\`markdown
+# Project Alpha — Planning
+
+## Overview
+Project Alpha aims to rebuild our authentication system with OAuth 2.0 support.
+
+## Architecture
+\`\`\`mermaid
+graph TB
+    subgraph Frontend
+        React[React App] --> AuthSDK[Auth SDK]
+    end
+    subgraph Backend
+        API[API Server] --> AuthService[Auth Service]
+        AuthService --> UserDB[(User DB)]
+        AuthService --> Redis[(Session Store)]
+    end
+    AuthSDK --> API
+\`\`\`
+
+## Timeline
+\`\`\`mermaid
+gantt
+    title Project Alpha Timeline
+    dateFormat YYYY-MM-DD
+    section Phase 1
+    Research & Design :a1, 2025-01-06, 10d
+    section Phase 2
+    Implementation :a2, after a1, 20d
+    section Phase 3
+    Testing & Launch :a3, after a2, 10d
+\`\`\`
+\`\`\`
+
+### Daily Notes with Diagrams
+
+Add quick process diagrams to your daily notes:
+
+\`\`\`mermaid
+sequenceDiagram
+    participant Me
+    participant PM
+    participant Design
+
+    Me->>PM: Proposed API changes
+    PM->>Design: Request UI review
+    Design-->>PM: Approved with changes
+    PM-->>Me: Go ahead with modifications
+\`\`\`
+
+### Knowledge Base Entries
+
+Document systems with ER diagrams:
+
+\`\`\`mermaid
+erDiagram
+    NOTE ||--o{ TAG : has
+    NOTE ||--o{ LINK : links_to
+    NOTE {
+        string title
+        text content
+        date created
+        date modified
+    }
+    TAG {
+        string name
+    }
+    LINK {
+        string source_id
+        string target_id
+    }
+\`\`\`
+
+## Tips for Mermaid in Obsidian
+
+### 1. Use Live Preview
+
+Obsidian's Live Preview mode renders Mermaid diagrams inline as you type. This gives you instant feedback without switching between edit and reading modes.
+
+### 2. Keep Diagrams Small
+
+Large Mermaid diagrams can slow down Obsidian's rendering, especially with many notes open. Aim for diagrams with fewer than 20-30 nodes. If you need a complex diagram, consider putting it in its own note and linking to it.
+
+### 3. Use Obsidian Linking with Diagrams
+
+While you can't make diagram nodes clickable links in Obsidian, you can place diagrams alongside \`[[wiki links]]\` to create a powerful combination of visual and textual navigation.
+
+### 4. Theming
+
+Obsidian applies its own CSS theme to Mermaid diagrams. If you're using a dark theme, diagrams will automatically adjust. However, if you use explicit colors in your Mermaid code (via \`classDef\` or \`style\`), make sure they work with both light and dark themes.
+
+You can also use Mermaid's built-in theming:
+
+\`\`\`mermaid
+%%{init: {'theme': 'dark'}}%%
+graph TD
+    A --> B --> C
+\`\`\`
+
+### 5. CSS Snippets for Custom Styling
+
+Obsidian allows CSS snippets that can style Mermaid diagrams. Create a CSS file in your vault's \`.obsidian/snippets/\` folder:
+
+\`\`\`css
+.mermaid svg {
+    max-width: 100%;
+    font-family: var(--font-text);
+}
+.mermaid .node rect {
+    rx: 8px;
+    ry: 8px;
+}
+\`\`\`
+
+### 6. Templates
+
+Create Obsidian templates with pre-built Mermaid diagrams. For example, a "Meeting Notes" template could include:
+
+\`\`\`markdown
+# Meeting: {{title}}
+Date: {{date}}
+
+## Action Items
+\`\`\`mermaid
+graph LR
+    A[Action 1] --> B[Owner: TBD]
+    C[Action 2] --> D[Owner: TBD]
+\`\`\`
+\`\`\`
+
+## Obsidian Publish Compatibility
+
+If you use **Obsidian Publish** to share your notes as a website, Mermaid diagrams **are fully supported**. They render on published pages just as they do in the app.
+
+This makes it easy to create documentation sites with embedded diagrams — no extra build steps or plugins needed. Your readers see the same rendered diagrams you see in your vault.
+
+### Tips for Published Diagrams
+
+- Test your diagrams in Reading View before publishing — what you see is what your readers get.
+- Keep diagram complexity reasonable for mobile readers.
+- Use descriptive text alongside diagrams since some readers may have rendering issues on older browsers.
+
+## Community Plugins
+
+While native Mermaid support is sufficient for most use cases, there are community plugins that extend the experience:
+
+- **Mermaid Tools** — Adds a toolbar for inserting Mermaid templates.
+- **Obsidian Enhancing Export** — Exports notes with rendered Mermaid diagrams to PDF.
+- **Diagrams** — Provides an alternative rendering engine with additional options.
+
+Search for these in Obsidian's community plugin browser (Settings → Community Plugins → Browse).
+
+## Common Issues
+
+### Diagram Not Rendering
+
+- Make sure you're using \`\`\`mermaid\`\`\` (lowercase) as the code fence language.
+- Switch to Reading View or Live Preview — Source mode shows raw code.
+- Check for syntax errors in your Mermaid code.
+
+### Diagram Looks Different Than Expected
+
+- Obsidian may use a slightly different version of Mermaid than the latest release. Some newer features might not work.
+- Your theme's CSS might affect colors and fonts. Try switching to a default theme to test.
+
+### Performance Issues
+
+- Large diagrams (30+ nodes) can slow down rendering.
+- Many diagrams on a single page can cause lag. Consider splitting into linked notes.
+
+## Best Practices
+
+1. **One diagram per concept.** Don't try to show everything in one diagram.
+2. **Label your diagrams.** Add a heading above each diagram explaining what it shows.
+3. **Use consistent notation.** Pick a direction (TD or LR) and stick with it in your vault.
+4. **Keep the source readable.** Even in code blocks, format your Mermaid code neatly with proper indentation.
+5. **Version your vault.** Since Mermaid diagrams are plain text, they work perfectly with Git for version control.
+
+## Conclusion
+
+Obsidian's native Mermaid support makes it one of the best environments for combining structured notes with visual diagrams. Whether you're documenting architectures, planning projects, or building a knowledge base, Mermaid diagrams add a powerful visual dimension to your notes — all without leaving your text editor.
+
+[Try creating Mermaid diagrams in our free online editor →](/)
+`
+  },
+  {
+    slug: "mermaid-in-notion",
+    title: "Creating Mermaid Diagrams in Notion",
+    description: "How to create and use Mermaid diagrams in Notion. Learn the code block method, understand limitations, and discover workarounds for the best diagramming experience.",
+    date: "2026-01-10",
+    keywords: ["mermaid notion", "notion diagrams", "mermaid in notion", "notion flowchart", "notion sequence diagram"],
+    content: `
+## Introduction
+
+Notion has become one of the most popular workspace tools for teams and individuals. While it doesn't have native Mermaid rendering like GitHub or Obsidian, there are effective ways to create and display Mermaid diagrams in Notion. This guide covers the available methods, their limitations, and the best workarounds.
+
+## Does Notion Support Mermaid Natively?
+
+As of early 2026, Notion has **added native Mermaid support** through its code block feature. You can create a code block, select "Mermaid" as the language, and Notion will render the diagram inline.
+
+Here's how to add a Mermaid diagram in Notion:
+
+1. Type \`/code\` in any Notion page to insert a code block.
+2. Click the language selector in the top-right of the code block.
+3. Search for and select **"Mermaid"**.
+4. Paste or type your Mermaid code.
+5. The diagram renders automatically below the code.
+
+### Example
+
+Paste this into a Mermaid code block in Notion:
+
+\`\`\`mermaid
+graph TD
+    A[Task Created] --> B{Assigned?}
+    B -->|Yes| C[In Progress]
+    B -->|No| D[Backlog]
+    C --> E{Done?}
+    E -->|Yes| F[Complete]
+    E -->|No| C
+\`\`\`
+
+You should see a rendered flowchart directly in your Notion page.
+
+## Supported Diagram Types in Notion
+
+Notion's Mermaid integration supports the most common diagram types:
+
+- **Flowcharts** (\`graph\` / \`flowchart\`)
+- **Sequence Diagrams** (\`sequenceDiagram\`)
+- **Gantt Charts** (\`gantt\`)
+- **Class Diagrams** (\`classDiagram\`)
+- **State Diagrams** (\`stateDiagram-v2\`)
+- **ER Diagrams** (\`erDiagram\`)
+- **Pie Charts** (\`pie\`)
+
+Mind maps, git graphs, and some newer diagram types may have limited support depending on the Mermaid version Notion uses.
+
+## Practical Use Cases in Notion
+
+### Team Wiki — Architecture Docs
+
+Create a page in your team wiki with architecture diagrams:
+
+\`\`\`mermaid
+graph TB
+    subgraph "Client Layer"
+        Web[Web App]
+        Mobile[Mobile App]
+    end
+    subgraph "API Layer"
+        Gateway[API Gateway]
+        Auth[Auth Service]
+    end
+    subgraph "Data Layer"
+        DB[(PostgreSQL)]
+        Cache[(Redis)]
+    end
+    Web & Mobile --> Gateway
+    Gateway --> Auth
+    Gateway --> DB
+    Gateway --> Cache
+\`\`\`
+
+### Sprint Planning
+
+Add a Gantt chart to your sprint page:
+
+\`\`\`mermaid
+gantt
+    title Sprint 16 — March 3-14
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    section Frontend
+    Search feature     :f1, 2026-03-03, 3d
+    Filter UI          :f2, after f1, 2d
+
+    section Backend
+    Search API         :b1, 2026-03-03, 4d
+    Indexing           :b2, after b1, 2d
+
+    section QA
+    Testing            :q1, after f2 b2, 2d
+    Release            :milestone, m1, after q1, 0d
+\`\`\`
+
+### Meeting Notes
+
+Document decisions with sequence diagrams:
+
+\`\`\`mermaid
+sequenceDiagram
+    participant PM as Product Manager
+    participant Dev as Dev Lead
+    participant Design as Designer
+
+    PM->>Dev: Propose feature X
+    Dev->>PM: Estimate: 2 sprints
+    PM->>Design: Request mockups
+    Design-->>PM: Mockups ready
+    PM->>Dev: Approved — start Sprint 17
+\`\`\`
+
+### Database Documentation
+
+Use ER diagrams to document your data model:
+
+\`\`\`mermaid
+erDiagram
+    WORKSPACE ||--o{ PROJECT : contains
+    PROJECT ||--o{ PAGE : has
+    PAGE ||--o{ BLOCK : contains
+    WORKSPACE ||--o{ MEMBER : has
+    MEMBER {
+        string id PK
+        string name
+        string email
+        string role
+    }
+    PAGE {
+        string id PK
+        string title
+        string content
+        datetime updated
+    }
+\`\`\`
+
+## Limitations of Mermaid in Notion
+
+### 1. Version Lag
+
+Notion may not run the latest version of Mermaid.js. This means some newer features or diagram types might not be available. If a diagram works in an online editor but not in Notion, this is likely the reason.
+
+### 2. Limited Styling
+
+Custom CSS styling through \`classDef\` and \`style\` directives may not render exactly as expected. Notion applies its own styling layer, which can affect colors, fonts, and spacing.
+
+### 3. No Click Interaction
+
+Mermaid diagrams in Notion are static images — you can't click on nodes or add links within the diagram. For interactive diagrams, you'll need a dedicated tool.
+
+### 4. Dark Mode Compatibility
+
+If you or your team uses Notion in dark mode, some Mermaid color schemes may not look great. Test your diagrams in both modes if your team uses both. Using Mermaid's built-in theme configuration can help:
+
+\`\`\`mermaid
+%%{init: {'theme': 'neutral'}}%%
+graph TD
+    A --> B --> C
+\`\`\`
+
+The \`neutral\` theme tends to work well in both light and dark modes.
+
+### 5. Export Limitations
+
+When exporting Notion pages to PDF or Markdown, Mermaid diagrams may export as code blocks rather than rendered images. Keep this in mind if you need to share pages outside of Notion.
+
+## Workarounds for Better Diagrams
+
+### Method 1: External Editor + Image Embed
+
+For complex diagrams or when you need precise control:
+
+1. Create your diagram in an online Mermaid editor.
+2. Export as SVG or PNG.
+3. Upload the image to your Notion page.
+4. Keep the Mermaid source code in a collapsed toggle block for future editing.
+
+This gives you the best visual quality and full Mermaid feature support.
+
+### Method 2: Embed with URL
+
+Use an embeddable Mermaid viewer:
+
+1. Encode your diagram.
+2. Create a URL with the encoded diagram.
+3. Use Notion's /embed block to embed the URL.
+
+This approach keeps the diagram live and editable through the URL.
+
+### Method 3: Use Notion API + Mermaid
+
+For teams that want automated diagrams, you can use the Notion API to programmatically insert and update Mermaid code blocks. This is useful for:
+
+- Auto-generating architecture diagrams from code
+- Updating project timelines from your PM tool
+- Syncing database schemas with documentation
+
+## Tips for Mermaid in Notion
+
+1. **Keep diagrams simple.** Notion's rendering area is narrower than a full browser window. Stick to 10-15 nodes max.
+
+2. **Use \`graph LR\`** (left-to-right) for wider diagrams that fit Notion's column layout better than top-to-bottom.
+
+3. **Add context with text.** Always include a text description above or below the diagram explaining what it shows.
+
+4. **Use toggle blocks.** Put complex diagrams inside Notion toggle blocks (callouts) so they don't dominate the page.
+
+5. **Test in both themes.** If your team uses both light and dark mode, check that your diagrams look acceptable in both.
+
+6. **Use the \`neutral\` theme.** It provides the best compatibility across Notion's light and dark modes.
+
+7. **Keep source code accessible.** If you embed an image instead of using a code block, store the source Mermaid code in a toggle block nearby so anyone can update it.
+
+## Notion vs. Other Platforms for Mermaid
+
+| Platform | Native Support | Quality | Collaboration |
+|---|---|---|---|
+| **Notion** | Yes (code block) | Good | Excellent |
+| **GitHub** | Yes (Markdown) | Excellent | Good (via PRs) |
+| **Obsidian** | Yes (native) | Excellent | Limited |
+| **Confluence** | Plugin required | Good | Excellent |
+| **Google Docs** | No (image only) | N/A | Excellent |
+
+Notion strikes a good balance between diagram support and collaboration features. While its Mermaid rendering may not be as polished as GitHub's, the collaborative editing and rich surrounding content make it a strong choice for team documentation.
+
+## Conclusion
+
+Mermaid diagrams in Notion are a practical way to add visual documentation to your workspace. While there are some limitations compared to dedicated diagramming tools, the convenience of having diagrams alongside your team's notes, wikis, and project management makes it worthwhile. Start with simple flowcharts and sequence diagrams, and use the workarounds for more complex visualization needs.
+
+[Create and test your Mermaid diagrams in our free online editor →](/)
+`
+  },
+  {
+    slug: "mermaid-in-docusaurus",
+    title: "Adding Mermaid Diagrams to Docusaurus Documentation",
+    description: "Complete guide to integrating Mermaid.js diagrams in Docusaurus. Learn plugin setup, MDX usage, theming, configuration, and practical examples for documentation sites.",
+    date: "2026-01-18",
+    keywords: ["mermaid docusaurus", "docusaurus diagrams", "mermaid plugin docusaurus", "docusaurus mermaid setup", "documentation diagrams"],
+    content: `
+## Introduction
+
+Docusaurus is a popular documentation framework built by Meta, used by many open-source projects and companies. Adding Mermaid diagrams to your Docusaurus site enhances documentation with visual architecture overviews, API flows, and system diagrams — all maintained as code.
+
+This guide covers the complete setup process, from installing the plugin to advanced theming and practical examples.
+
+## Setting Up the Mermaid Plugin
+
+Docusaurus has an official Mermaid theme package that integrates seamlessly with its MDX-based content system.
+
+### Step 1: Install the Package
+
+\`\`\`bash
+npm install @docusaurus/theme-mermaid
+\`\`\`
+
+Or if you're using yarn:
+
+\`\`\`bash
+yarn add @docusaurus/theme-mermaid
+\`\`\`
+
+### Step 2: Configure docusaurus.config.js
+
+Add the Mermaid theme to your configuration:
+
+\`\`\`javascript
+// docusaurus.config.js
+module.exports = {
+  // Enable Mermaid markdown support
+  markdown: {
+    mermaid: true,
+  },
+  // Add the Mermaid theme
+  themes: ['@docusaurus/theme-mermaid'],
+  // Optional: configure Mermaid
+  themeConfig: {
+    mermaid: {
+      theme: {
+        light: 'neutral',
+        dark: 'dark',
+      },
+      options: {
+        maxTextSize: 50000,
+      },
+    },
+  },
+};
+\`\`\`
+
+### Step 3: Restart Your Dev Server
+
+\`\`\`bash
+npm run start
+\`\`\`
+
+That's it! Mermaid diagrams will now render in your documentation.
+
+## Using Mermaid in MDX Files
+
+Once configured, use Mermaid in any \`.md\` or \`.mdx\` file with standard code fences:
+
+\`\`\`markdown
+## System Architecture
+
+\`\`\`mermaid
+graph TB
+    Client --> API
+    API --> Database
+    API --> Cache
+\`\`\`
+\`\`\`
+
+The diagram renders automatically in both development and production builds.
+
+### In MDX Components
+
+You can also use Mermaid inside MDX components:
+
+\`\`\`jsx
+import Mermaid from '@theme/Mermaid';
+
+export const ArchitectureDiagram = () => (
+  <Mermaid
+    value={\`
+      graph TD
+        A[Frontend] --> B[API Gateway]
+        B --> C[Service A]
+        B --> D[Service B]
+    \`}
+  />
+);
+\`\`\`
+
+## Practical Examples for Documentation
+
+### API Reference with Sequence Diagrams
+
+In your API documentation, show request flows:
+
+\`\`\`mermaid
+sequenceDiagram
+    participant Client
+    participant Gateway as API Gateway
+    participant Auth as Auth Service
+    participant API as Core API
+    participant DB as Database
+
+    Client->>Gateway: POST /api/v1/users
+    Gateway->>Auth: Validate API key
+    Auth-->>Gateway: Valid
+    Gateway->>API: Forward request
+    API->>DB: INSERT user
+    DB-->>API: Created
+    API-->>Gateway: 201 Created
+    Gateway-->>Client: 201 + User object
+\`\`\`
+
+### Architecture Overview
+
+For your project's landing documentation page:
+
+\`\`\`mermaid
+graph TB
+    subgraph "Client Applications"
+        Web[Web Dashboard]
+        CLI[CLI Tool]
+        SDK[SDKs]
+    end
+    subgraph "API Layer"
+        Gateway[API Gateway]
+        RateLimit[Rate Limiter]
+    end
+    subgraph "Services"
+        UserSvc[User Service]
+        DataSvc[Data Service]
+        NotifSvc[Notification Service]
+    end
+    subgraph "Data Stores"
+        PG[(PostgreSQL)]
+        Redis[(Redis)]
+        S3[(S3 Storage)]
+    end
+
+    Web & CLI & SDK --> Gateway
+    Gateway --> RateLimit
+    RateLimit --> UserSvc & DataSvc & NotifSvc
+    UserSvc --> PG
+    DataSvc --> PG & S3
+    NotifSvc --> Redis
+\`\`\`
+
+### Database Schema Documentation
+
+Document your data model in the schema reference section:
+
+\`\`\`mermaid
+erDiagram
+    ORGANIZATION ||--o{ TEAM : has
+    TEAM ||--o{ USER : contains
+    USER ||--o{ API_KEY : owns
+    USER ||--o{ PROJECT : creates
+    PROJECT ||--o{ RESOURCE : manages
+
+    ORGANIZATION {
+        uuid id PK
+        string name
+        string plan
+        datetime created_at
+    }
+    USER {
+        uuid id PK
+        string email UK
+        string role
+        uuid org_id FK
+    }
+    API_KEY {
+        uuid id PK
+        string key_hash UK
+        string name
+        datetime expires_at
+        uuid user_id FK
+    }
+\`\`\`
+
+### Plugin Architecture
+
+Document your plugin or extension system:
+
+\`\`\`mermaid
+classDiagram
+    class PluginManager {
+        +register(plugin) void
+        +unregister(name) void
+        +getPlugin(name) Plugin
+        +executeHook(hook, data) any
+    }
+    class Plugin {
+        <<interface>>
+        +name: string
+        +version: string
+        +initialize() void
+        +destroy() void
+    }
+    class AuthPlugin {
+        +name: "auth"
+        +initialize() void
+        +validateToken(token) bool
+    }
+    class LoggingPlugin {
+        +name: "logging"
+        +initialize() void
+        +log(level, message) void
+    }
+
+    PluginManager "1" --> "*" Plugin : manages
+    Plugin <|.. AuthPlugin
+    Plugin <|.. LoggingPlugin
+\`\`\`
+
+## Theming Mermaid Diagrams
+
+### Matching Docusaurus Themes
+
+Docusaurus supports light and dark modes, and the Mermaid plugin can automatically switch themes:
+
+\`\`\`javascript
+themeConfig: {
+  mermaid: {
+    theme: {
+      light: 'neutral',
+      dark: 'dark',
+    },
+  },
+},
+\`\`\`
+
+Available Mermaid themes:
+- **default** — Blue and gray palette
+- **neutral** — Monochrome, professional (recommended for docs)
+- **dark** — Dark background (for dark mode)
+- **forest** — Green palette
+- **base** — Minimal, customizable with CSS variables
+
+### Custom Theme Variables
+
+For brand-aligned diagrams:
+
+\`\`\`javascript
+themeConfig: {
+  mermaid: {
+    theme: {
+      light: 'base',
+      dark: 'dark',
+    },
+    options: {
+      themeVariables: {
+        primaryColor: '#4f46e5',
+        primaryTextColor: '#ffffff',
+        primaryBorderColor: '#3730a3',
+        lineColor: '#6366f1',
+        secondaryColor: '#e0e7ff',
+        tertiaryColor: '#f5f3ff',
+      },
+    },
+  },
+},
+\`\`\`
+
+### Per-Diagram Themes
+
+Override the global theme for specific diagrams:
+
+\`\`\`mermaid
+%%{init: {'theme': 'forest'}}%%
+graph TD
+    A[This diagram] --> B[uses forest theme]
+    B --> C[regardless of global config]
+\`\`\`
+
+## Advanced Configuration
+
+### Custom Fonts
+
+Match your documentation's font:
+
+\`\`\`javascript
+mermaid: {
+  options: {
+    fontFamily: 'Inter, system-ui, sans-serif',
+    fontSize: 14,
+  },
+},
+\`\`\`
+
+### Security Configuration
+
+For documentation sites that accept user-contributed content:
+
+\`\`\`javascript
+mermaid: {
+  options: {
+    securityLevel: 'strict',
+    maxTextSize: 10000,
+  },
+},
+\`\`\`
+
+Security levels:
+- **strict** — HTML tags are encoded (recommended for public docs)
+- **loose** — HTML tags are allowed in labels
+- **antiscript** — HTML tags allowed but script tags removed
+- **sandbox** — Maximum security, renders in iframe
+
+### Handling Large Diagrams
+
+For documentation with complex architecture diagrams:
+
+\`\`\`javascript
+mermaid: {
+  options: {
+    maxTextSize: 100000,
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true,
+      curve: 'basis',
+    },
+    sequence: {
+      useMaxWidth: true,
+      wrap: true,
+    },
+  },
+},
+\`\`\`
+
+## Versioned Documentation
+
+Docusaurus supports documentation versioning, which works perfectly with Mermaid diagrams. Since diagrams are text-based, they're automatically included in version snapshots.
+
+When your architecture changes between versions, the corresponding diagrams in each version remain accurate:
+
+- \`docs/v1.0/architecture.md\` → Old architecture diagram
+- \`docs/v2.0/architecture.md\` → Updated architecture diagram
+
+Each version maintains its own diagrams without any extra configuration.
+
+## Performance Considerations
+
+### Build Time
+
+Mermaid diagrams are rendered client-side (in the browser), not during the build process. This means:
+- Build times aren't affected by the number of diagrams.
+- Diagrams render after page load, which may cause a brief flash.
+- Complex diagrams may take a moment to render on slower devices.
+
+### Lazy Loading
+
+For pages with many diagrams, consider using Docusaurus's tab components to lazy-load diagram sections:
+
+\`\`\`jsx
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="overview" label="Overview">
+    Overview diagram here
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    Detailed diagram here
+  </TabItem>
+</Tabs>
+\`\`\`
+
+## Common Issues
+
+### Diagram Not Rendering
+
+1. Ensure \`markdown.mermaid: true\` is set in your config.
+2. Verify \`@docusaurus/theme-mermaid\` is in the themes array.
+3. Check that the code fence language is exactly \`mermaid\`.
+4. Restart the dev server after configuration changes.
+
+### Theme Mismatch
+
+If diagrams look wrong in dark mode, make sure you've configured both light and dark themes in your config. The \`neutral\` and \`dark\` combination works well for most documentation sites.
+
+### Syntax Errors
+
+Mermaid will show an error message if the syntax is invalid. Test your diagrams in an online Mermaid editor before adding them to your docs.
+
+## Best Practices for Docusaurus Documentation
+
+1. **Use the \`neutral\` theme** for light mode — it's the most professional-looking for documentation.
+
+2. **Place architecture diagrams early** in your docs. The "Overview" or "Getting Started" page should include a high-level system diagram.
+
+3. **Add diagrams to API references.** Sequence diagrams showing request/response flows are invaluable for API consumers.
+
+4. **Document your database schema** with ER diagrams. Keep them in a dedicated "Data Model" page.
+
+5. **Use consistent styling.** Pick a Mermaid theme and stick with it across all your documentation pages.
+
+6. **Add text descriptions.** Don't rely solely on diagrams. Include text explaining what the diagram shows for accessibility and SEO.
+
+7. **Keep diagrams up to date.** Since they're text-based and live in your docs repo, update them in the same PR that changes the code.
+
+## Conclusion
+
+Mermaid diagrams in Docusaurus transform technical documentation from walls of text into visual, scannable references. The setup is straightforward, theming is flexible, and because diagrams are code, they version and review just like any other documentation change. Start with an architecture overview diagram and expand to API flows, data models, and state machines as your documentation grows.
+
+[Test your Mermaid diagrams in our free online editor →](/)
+`
+  },
+  {
+    slug: "mermaid-git-graph-tutorial",
+    title: "Mermaid Git Graph Tutorial — Visualize Branch Strategies",
+    description: "Learn to create git graph diagrams with Mermaid.js. Visualize branching strategies, merge workflows, cherry-picks, and popular models like GitFlow and trunk-based development.",
+    date: "2026-02-05",
+    keywords: ["mermaid git graph", "git graph tutorial", "mermaid.js git", "git branching diagram", "gitflow diagram", "trunk-based development diagram"],
+    content: `
+## Introduction
+
+Understanding Git branching strategies is crucial for development teams, and visualizing them makes the concepts much clearer. Mermaid's git graph diagram type lets you create visual representations of commits, branches, merges, and cherry-picks with simple text commands.
+
+Whether you're documenting your team's workflow, teaching Git concepts, or planning a migration between branching strategies, Mermaid git graphs are the perfect tool.
+
+## Basic Syntax
+
+\`\`\`mermaid
+gitGraph
+    commit
+    commit
+    commit
+\`\`\`
+
+This creates a simple linear history with three commits on the default \`main\` branch. Each \`commit\` command adds a new commit node to the graph.
+
+### Commit Options
+
+You can customize each commit:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "init"
+    commit id: "feat-1" type: HIGHLIGHT
+    commit id: "fix-1" tag: "v1.0"
+\`\`\`
+
+Commit properties:
+- **\`id\`** — Custom label (displayed on the commit node)
+- **\`tag\`** — Version tag (shown above the commit)
+- **\`type\`** — Visual type: \`NORMAL\` (default), \`HIGHLIGHT\`, \`REVERSE\`
+
+## Branching and Merging
+
+The core of any git graph is branching:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "initial"
+    commit id: "add readme"
+    branch feature
+    checkout feature
+    commit id: "add login"
+    commit id: "add tests"
+    checkout main
+    commit id: "hotfix"
+    merge feature id: "merge feature"
+    commit id: "release" tag: "v1.0"
+\`\`\`
+
+Key commands:
+- **\`branch <name>\`** — Create a new branch
+- **\`checkout <name>\`** — Switch to a branch
+- **\`merge <name>\`** — Merge a branch into the current branch
+- **\`cherry-pick id: "<commit-id>"\`** — Cherry-pick a specific commit
+
+## Cherry-Pick
+
+Demonstrate cherry-picking:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch feature
+    checkout feature
+    commit id: "C"
+    commit id: "D" type: HIGHLIGHT
+    commit id: "E"
+    checkout main
+    commit id: "F"
+    cherry-pick id: "D"
+    commit id: "G"
+\`\`\`
+
+This shows commit \`D\` being cherry-picked from the \`feature\` branch to \`main\`.
+
+## GitFlow Strategy
+
+GitFlow is one of the most popular branching models. Here's how to visualize it:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "init" tag: "v0.1"
+    branch develop
+    checkout develop
+    commit id: "dev setup"
+
+    branch feature/auth
+    checkout feature/auth
+    commit id: "login page"
+    commit id: "auth API"
+    commit id: "auth tests"
+    checkout develop
+    merge feature/auth id: "merge auth"
+
+    branch feature/dashboard
+    checkout feature/dashboard
+    commit id: "dashboard UI"
+    commit id: "widgets"
+    checkout develop
+    merge feature/dashboard id: "merge dashboard"
+
+    branch release/v1.0
+    checkout release/v1.0
+    commit id: "bump version"
+    commit id: "fix typos"
+    checkout main
+    merge release/v1.0 id: "release" tag: "v1.0"
+    checkout develop
+    merge release/v1.0 id: "back-merge"
+
+    checkout main
+    branch hotfix/security
+    commit id: "patch CVE"
+    checkout main
+    merge hotfix/security id: "hotfix" tag: "v1.0.1"
+    checkout develop
+    merge hotfix/security id: "hotfix to dev"
+\`\`\`
+
+### GitFlow Branch Purposes
+
+- **main** — Production-ready code. Every commit is a release.
+- **develop** — Integration branch for features. Always ahead of main.
+- **feature/*** — Individual features. Branch from develop, merge back to develop.
+- **release/*** — Release preparation. Branch from develop, merge to both main and develop.
+- **hotfix/*** — Emergency fixes. Branch from main, merge to both main and develop.
+
+## Trunk-Based Development
+
+A simpler strategy where everyone works on short-lived branches off main:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "init"
+    commit id: "CI setup"
+
+    branch feat-1
+    checkout feat-1
+    commit id: "small change"
+    checkout main
+    merge feat-1
+
+    commit id: "direct fix"
+
+    branch feat-2
+    checkout feat-2
+    commit id: "refactor"
+    commit id: "tests"
+    checkout main
+    merge feat-2
+
+    branch feat-3
+    checkout feat-3
+    commit id: "update API"
+    checkout main
+    merge feat-3
+
+    commit id: "deploy" tag: "v1.1"
+\`\`\`
+
+### Key Principles of Trunk-Based
+
+- **Short-lived branches** — 1-2 days maximum
+- **Small, frequent merges** — Reduce merge conflicts
+- **Feature flags** — Instead of long-lived feature branches
+- **Continuous integration** — Every merge triggers CI/CD
+
+## GitHub Flow
+
+A simplified model used by many teams:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "v1.0" tag: "v1.0"
+    branch feature/search
+    checkout feature/search
+    commit id: "search UI"
+    commit id: "search API"
+    commit id: "search tests"
+    checkout main
+    merge feature/search id: "PR #42 merged"
+    commit id: "deploy" tag: "v1.1"
+
+    branch fix/bug-123
+    checkout fix/bug-123
+    commit id: "fix null check"
+    checkout main
+    merge fix/bug-123 id: "PR #43 merged"
+    commit id: "deploy" tag: "v1.1.1"
+\`\`\`
+
+GitHub Flow rules:
+1. \`main\` is always deployable
+2. Create feature branches from main
+3. Open a pull request for discussion
+4. Merge to main after review
+5. Deploy immediately after merge
+
+## Release Branch Strategy
+
+For teams that maintain multiple release versions:
+
+\`\`\`mermaid
+gitGraph
+    commit id: "init"
+    commit id: "feature A"
+    commit id: "feature B" tag: "v1.0"
+    branch release/v1
+    checkout release/v1
+    commit id: "v1 patch 1"
+    commit id: "v1 patch 2" tag: "v1.0.2"
+
+    checkout main
+    commit id: "feature C"
+    commit id: "feature D" tag: "v2.0"
+    branch release/v2
+    checkout release/v2
+    commit id: "v2 patch 1" tag: "v2.0.1"
+
+    checkout main
+    commit id: "feature E"
+    commit id: "feature F"
+\`\`\`
+
+This shows how teams can maintain v1.x patches while continuing v2.x development.
+
+## Comparing Strategies Side by Side
+
+Here's when to use each strategy:
+
+### GitFlow — Best For:
+- Teams with scheduled releases
+- Products with multiple supported versions
+- When you need a staging/integration branch
+
+### Trunk-Based — Best For:
+- Teams practicing continuous deployment
+- Mature CI/CD pipelines
+- Small, experienced teams
+- Microservice architectures
+
+### GitHub Flow — Best For:
+- Open-source projects
+- Small to medium teams
+- Web applications with continuous deployment
+- Teams that want simplicity
+
+## Styling Git Graphs
+
+### Custom Branch Colors
+
+You can customize how branches appear using Mermaid themes:
+
+\`\`\`mermaid
+%%{init: { 'theme': 'base', 'themeVariables': {
+    'git0': '#4f46e5',
+    'git1': '#10b981',
+    'git2': '#f59e0b',
+    'git3': '#ef4444',
+    'gitBranchLabel0': '#ffffff',
+    'gitBranchLabel1': '#ffffff',
+    'gitBranchLabel2': '#000000',
+    'gitBranchLabel3': '#ffffff'
+}}}%%
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    branch feature
+    commit
+    checkout develop
+    merge feature
+    checkout main
+    merge develop tag: "v1.0"
+\`\`\`
+
+### Branch Ordering
+
+Mermaid renders branches in the order they're created. Plan your branch creation order to get a clean layout:
+
+1. Create the main branch first (automatic)
+2. Create long-lived branches (develop, release) early
+3. Create feature branches when needed
+
+## Documenting Your Team's Workflow
+
+Use git graphs in your team's CONTRIBUTING.md or development guide:
+
+\`\`\`markdown
+## Our Branching Strategy
+
+We use a simplified GitFlow model:
+
+\`\`\`mermaid
+gitGraph
+    commit tag: "latest release"
+    branch develop
+    checkout develop
+    commit id: "feature work"
+    branch feature/your-feature
+    commit id: "your changes"
+    checkout develop
+    merge feature/your-feature id: "PR merged"
+    checkout main
+    merge develop tag: "next release"
+\`\`\`
+
+### Steps to Contribute:
+1. Branch from \`develop\`
+2. Name your branch \`feature/description\`
+3. Open a PR to \`develop\`
+4. After review, it'll be merged
+5. Releases are cut from \`develop\` to \`main\`
+\`\`\`
+
+## Best Practices
+
+1. **Keep git graphs focused.** Show one strategy or workflow per diagram. Don't try to illustrate every possible scenario.
+
+2. **Use meaningful commit IDs.** Instead of auto-generated IDs, use descriptive labels like \`"add auth"\`, \`"fix bug"\`, \`"deploy"\`.
+
+3. **Add version tags.** Use \`tag: "v1.0"\` on release commits to clearly mark version milestones.
+
+4. **Highlight important commits.** Use \`type: HIGHLIGHT\` for commits you want to draw attention to.
+
+5. **Document the strategy, not the history.** Git graphs in documentation should show the ideal workflow, not your actual messy commit history.
+
+6. **Combine with text explanations.** Not everyone reads diagrams intuitively. Add bullet points explaining each step.
+
+## Limitations
+
+- **No detached HEAD** — You can't show detached HEAD states
+- **No rebasing** — Mermaid git graphs don't support rebase visualization
+- **No squash merges** — All merges are shown as merge commits
+- **Limited branch count** — More than 4-5 branches makes the diagram hard to read
+- **No stashing** — Stash operations can't be visualized
+
+For these advanced scenarios, consider using a whiteboard or specialized Git visualization tools alongside your Mermaid documentation.
+
+## Conclusion
+
+Mermaid git graphs are invaluable for documenting branching strategies, teaching Git workflows, and communicating development processes. Whether your team uses GitFlow, trunk-based development, or GitHub Flow, visualizing the strategy makes it accessible to everyone — from junior developers to stakeholders who need to understand the release process.
+
+[Create git graph diagrams in our free Mermaid Live Editor →](/)
+`
+  },
+  {
+    slug: "mermaid-user-journey-map",
+    title: "Creating User Journey Maps with Mermaid.js",
+    description: "Learn how to create user journey maps with Mermaid.js. Understand the syntax, add sections and scoring, and apply journey mapping to UX research and product design.",
+    date: "2026-02-20",
+    keywords: ["mermaid user journey", "user journey map", "mermaid.js journey", "UX journey map", "customer journey diagram", "user experience mapping"],
+    content: `
+## What Are User Journey Maps?
+
+User journey maps are visual representations of the steps a user takes to accomplish a goal with your product or service. They document the user's experience at each step, including their satisfaction level, pain points, and emotional response.
+
+Journey maps are essential tools for:
+- **UX research** — Understanding current user experience
+- **Product design** — Identifying improvement opportunities
+- **Stakeholder communication** — Making user pain points visible
+- **Onboarding optimization** — Smoothing the new user experience
+- **Service design** — Mapping end-to-end customer journeys
+
+Mermaid.js provides a \`journey\` diagram type that lets you create these maps as code — quick to write, easy to update, and version-controllable.
+
+## Basic Syntax
+
+\`\`\`mermaid
+journey
+    title My Working Day
+    section Morning
+        Wake up: 3: Me
+        Commute to work: 1: Me
+        Arrive at office: 5: Me
+    section Afternoon
+        Lunch meeting: 3: Me, PM
+        Code review: 4: Me, Dev
+    section Evening
+        Leave office: 5: Me
+        Dinner: 5: Me, Family
+\`\`\`
+
+### Key Elements
+
+- **\`title\`** — The journey map's title
+- **\`section\`** — Groups steps into phases (shown as labeled sections)
+- **Steps** — Format: \`Task name: score: actors\`
+- **Score** — Satisfaction rating from 1 (worst) to 5 (best)
+- **Actors** — Who's involved in this step (comma-separated)
+
+## Scoring Guide
+
+The score (1-5) represents the user's experience at each step:
+
+- **5** — Delighted, exceeded expectations, wow moment
+- **4** — Satisfied, smooth experience, no issues
+- **3** — Neutral, acceptable but unremarkable
+- **2** — Frustrated, encountering friction or confusion
+- **1** — Very unhappy, major pain point, might abandon
+
+Mermaid visualizes these scores with color coding — higher scores appear in green tones, lower scores in red/orange tones. This makes pain points immediately visible.
+
+## Practical Example: E-Commerce Purchase Journey
+
+\`\`\`mermaid
+journey
+    title Online Shopping Experience
+    section Discovery
+        Google search for product: 3: Customer
+        Land on product page: 4: Customer
+        Browse similar items: 4: Customer
+        Read reviews: 5: Customer
+    section Decision
+        Compare prices: 3: Customer
+        Check shipping options: 2: Customer
+        Calculate total with tax: 2: Customer
+    section Purchase
+        Add to cart: 5: Customer
+        Create account: 1: Customer
+        Enter payment details: 3: Customer
+        Confirm order: 4: Customer
+    section Post-Purchase
+        Receive confirmation email: 5: Customer
+        Track shipment: 4: Customer
+        Receive package: 5: Customer
+        Unbox product: 5: Customer
+\`\`\`
+
+### Insights from This Journey
+
+Looking at the scores, we can immediately identify:
+- **Pain points**: Account creation (1), shipping options (2), tax calculation (2)
+- **Delight moments**: Reviews (5), add to cart (5), confirmation email (5), unboxing (5)
+- **Improvement opportunities**: Simplify account creation (guest checkout), be transparent about total costs earlier
+
+## Practical Example: SaaS Onboarding Journey
+
+\`\`\`mermaid
+journey
+    title New User Onboarding
+    section Sign Up
+        Visit landing page: 4: User
+        Click Sign Up: 5: User
+        Fill registration form: 3: User
+        Verify email: 2: User
+        Complete profile: 2: User
+    section First Use
+        See empty dashboard: 1: User
+        Find tutorial: 3: User
+        Create first project: 4: User, App
+        Import data: 2: User, App
+        See first results: 5: User
+    section Activation
+        Invite team member: 3: User
+        Set up integration: 2: User, Admin
+        Configure settings: 3: User, Admin
+        Complete onboarding: 4: User
+    section Retention
+        Daily usage: 4: User
+        Discover advanced feature: 5: User
+        Hit usage limit: 1: User
+        Upgrade decision: 3: User
+\`\`\`
+
+### Analysis
+
+- The **empty dashboard** (score: 1) is a critical moment — new users who see nothing are likely to churn.
+- **Email verification** (score: 2) creates friction before the user sees any value.
+- **Hitting usage limits** (score: 1) is a conversion moment but needs careful handling to avoid frustration.
+
+## Practical Example: Developer API Integration
+
+\`\`\`mermaid
+journey
+    title API Integration Journey
+    section Research
+        Find API documentation: 3: Developer
+        Read getting started guide: 4: Developer
+        Review API reference: 3: Developer
+        Check pricing/limits: 4: Developer
+    section Setup
+        Create developer account: 3: Developer
+        Generate API key: 5: Developer
+        Install SDK: 4: Developer
+        Configure environment: 3: Developer
+    section Integration
+        Make first API call: 5: Developer
+        Handle authentication: 3: Developer
+        Implement error handling: 2: Developer
+        Parse response data: 4: Developer
+    section Production
+        Test under load: 3: Developer, DevOps
+        Deploy to production: 4: Developer, DevOps
+        Monitor performance: 3: Developer, DevOps
+        Handle rate limits: 2: Developer
+\`\`\`
+
+## Multiple Actors
+
+Journey maps can track multiple actors to show different perspectives:
+
+\`\`\`mermaid
+journey
+    title Restaurant Dining Experience
+    section Arrival
+        Find restaurant: 3: Customer
+        Welcome guests: 5: Customer, Host
+        Show to table: 4: Customer, Host
+    section Ordering
+        Browse menu: 4: Customer
+        Take order: 4: Customer, Waiter
+        Send to kitchen: 3: Waiter, Chef
+    section Dining
+        Prepare food: 3: Chef
+        Serve food: 5: Customer, Waiter
+        Enjoy meal: 5: Customer
+        Check on table: 4: Customer, Waiter
+    section Payment
+        Request bill: 3: Customer, Waiter
+        Process payment: 3: Customer, Waiter
+        Leave tip: 4: Customer
+        Say goodbye: 5: Customer, Host
+\`\`\`
+
+This multi-actor view helps identify where interactions between roles create friction or delight.
+
+## Using Journey Maps in UX Research
+
+### Step 1: Gather Data
+
+Before creating a journey map, collect data through:
+- User interviews and surveys
+- Analytics data (funnel analysis, drop-off rates)
+- Customer support tickets and common complaints
+- Session recordings (Hotjar, FullStory, etc.)
+- NPS and satisfaction surveys
+
+### Step 2: Map the Current State
+
+Create a journey map reflecting the actual user experience:
+
+\`\`\`mermaid
+journey
+    title Current Checkout Experience
+    section Cart Review
+        View cart: 4: User
+        Update quantities: 3: User
+        Apply coupon: 1: User
+    section Shipping
+        Enter address: 3: User
+        Choose shipping: 2: User
+        See delivery estimate: 4: User
+    section Payment
+        Enter card details: 3: User
+        See order summary: 4: User
+        Click purchase: 5: User
+    section Confirmation
+        See confirmation: 5: User
+        Get email receipt: 5: User
+\`\`\`
+
+### Step 3: Identify Opportunities
+
+Look for steps with scores of 1-2 — these are your improvement opportunities:
+- Coupon application (1): Make the UI more intuitive
+- Shipping options (2): Simplify choices, show costs upfront
+
+### Step 4: Map the Desired State
+
+Create a target journey map showing the ideal experience:
+
+\`\`\`mermaid
+journey
+    title Improved Checkout Experience
+    section Cart Review
+        View cart: 5: User
+        Update quantities: 5: User
+        Apply coupon (auto-suggest): 4: User
+    section Shipping
+        Auto-fill address: 5: User
+        Smart shipping recommendation: 4: User
+        Real-time delivery estimate: 5: User
+    section Payment
+        Saved payment method: 5: User
+        Clear order summary: 5: User
+        One-click purchase: 5: User
+    section Confirmation
+        Instant confirmation: 5: User
+        Rich email receipt: 5: User
+\`\`\`
+
+Compare the current vs. desired maps to build your product roadmap.
+
+## Journey Maps in Documentation
+
+Add journey maps to your product documentation:
+
+### In README Files
+
+\`\`\`markdown
+## User Experience
+
+\`\`\`mermaid
+journey
+    title Getting Started with OurTool
+    section Setup
+        Install CLI: 5: Developer
+        Run init command: 5: Developer
+        Configure project: 4: Developer
+    section First Use
+        Create first item: 5: Developer
+        See preview: 5: Developer
+        Deploy: 4: Developer
+\`\`\`
+\`\`\`
+
+### In Design Documents
+
+Include journey maps in your product design docs to:
+- Show the current user experience
+- Highlight pain points that justify the proposed changes
+- Illustrate the expected improved journey
+
+### In Sprint Retrospectives
+
+Map the team's development experience:
+
+\`\`\`mermaid
+journey
+    title Sprint 14 Developer Experience
+    section Planning
+        Sprint planning meeting: 3: Team
+        Ticket breakdown: 4: Team
+        Estimation: 2: Team
+    section Development
+        Pick up tickets: 5: Dev
+        Local development: 4: Dev
+        Code review turnaround: 2: Dev
+    section Deployment
+        CI pipeline: 3: Dev, DevOps
+        Staging deploy: 4: Dev, DevOps
+        Production deploy: 5: Dev, DevOps
+\`\`\`
+
+## Tips for Effective Journey Maps
+
+1. **Base scores on data, not assumptions.** Use analytics, surveys, and user feedback to assign scores.
+
+2. **Keep it focused.** Map one journey (one user goal) per diagram. Don't try to map every possible path.
+
+3. **Use sections meaningfully.** Sections should represent distinct phases of the journey, not arbitrary groupings.
+
+4. **Include all relevant actors.** If a support agent is involved in a step, include them — it reveals handoff points.
+
+5. **Update regularly.** Journey maps should evolve as you ship improvements. Update scores when you fix pain points.
+
+6. **Pair with metrics.** Link journey map steps to actual metrics: "Cart Review (score: 4) — 85% proceed to next step."
+
+7. **Keep scores honest.** A journey map full of 5s isn't useful. The whole point is to reveal where the experience needs improvement.
+
+8. **Share widely.** Journey maps are communication tools. Share them with engineering, design, product, and leadership.
+
+## Limitations of Mermaid Journey Maps
+
+- **No custom icons or images** — Steps are text-only
+- **Linear flow only** — You can't show branching paths or loops
+- **Limited styling** — Colors are determined by scores, not customizable
+- **No annotations** — You can't add detailed notes to individual steps
+- **Simple scoring** — Only integer scores 1-5 are supported
+
+For more sophisticated journey mapping with detailed annotations, emotional curves, and branching paths, consider dedicated UX tools like Figma, Miro, or Smaply. Mermaid journey maps excel at **quick, version-controlled documentation** that lives alongside your code.
+
+## Conclusion
+
+Mermaid journey maps bring user experience visualization into your development workflow. They're quick to create, easy to update, and version-controllable — making them perfect for documenting user journeys in README files, design documents, and sprint retrospectives. Start by mapping your most important user journey, identify the low-scoring steps, and use that data to drive product improvements.
+
+[Create journey maps in our free Mermaid Live Editor →](/)
+`
+  },
 ];

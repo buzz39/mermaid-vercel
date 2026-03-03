@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from 'next/script';
+import FeedbackWidget from './components/FeedbackWidget';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,15 +15,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mermaideditor.lol'),
   title: "Mermaid Live Editor - Render & Export Mermaid Diagrams",
   description: "Free online Mermaid editor. Render Mermaid charts, diagrams, and graphs instantly. Export to SVG and PNG. Supports Flowchart, Sequence, Gantt, and more.",
   keywords: ["mermaid", "editor", "diagram", "chart", "flowchart", "sequence diagram", "gantt", "live editor", "svg", "png"],
   authors: [{ name: "Gagan Thakur", url: "https://www.linkedin.com/in/gaganthakur" }],
   creator: "Gagan Thakur",
+  alternates: {
+    canonical: 'https://mermaideditor.lol',
+  },
   openGraph: {
     title: "Mermaid Live Editor",
-    description: "Render and export Mermaid diagrams instantly.",
+    description: "Render and export Mermaid diagrams instantly. Free online editor for flowcharts, sequence diagrams, Gantt charts, class diagrams, and more.",
     type: "website",
+    url: 'https://mermaideditor.lol',
+    siteName: 'Mermaid Live Editor',
   },
 };
 
@@ -58,10 +65,11 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           />
-          {/* AdSense Script Placeholder - Replace client ID when approved */}
+          {/* Replace with Bing Webmaster Tools verification code */}
+          <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
           <Script
              async
-             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX"
+             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2892900713777311"
              crossOrigin="anonymous"
              strategy="lazyOnload"
           />
@@ -70,6 +78,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <FeedbackWidget />
       </body>
     </html>
   );
