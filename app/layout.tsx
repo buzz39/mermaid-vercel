@@ -66,7 +66,7 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           />
           {/* Replace with Bing Webmaster Tools verification code */}
-          <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
+          <meta name="msvalidate.01" content="E8526A596FF6783F9177B38EF141F88C" />
           <Script
              async
              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2892900713777311"
