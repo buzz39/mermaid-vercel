@@ -5392,4 +5392,231 @@ The key is matching the use case to the tool: use mindmaps for **hierarchical ex
 [Try building your own mindmap in our free Mermaid editor →](/)
 `
   },
+  {
+    slug: "mermaid-in-vscode",
+    title: "How to Use Mermaid.js in VS Code: Extensions, Preview & Tips (2026)",
+    description: "Learn how to create, preview, and export Mermaid.js diagrams directly in VS Code. Complete guide to the best extensions, settings, and workflow tips for developers.",
+    date: "2026-03-13",
+    keywords: ["mermaid vscode", "mermaid js vs code", "mermaid preview vscode", "vscode mermaid extension", "mermaid diagram vscode", "mermaid markdown vscode"],
+    content: `
+# How to Use Mermaid.js in VS Code: The Complete Guide
+
+If you write code in **Visual Studio Code**, you can create and preview Mermaid.js diagrams without ever leaving your editor. VS Code has become one of the most popular environments for working with Mermaid diagrams thanks to excellent extension support and built-in Markdown preview capabilities.
+
+In this guide, you'll learn how to set up Mermaid in VS Code, which extensions to install, and how to build an efficient diagramming workflow right inside your code editor.
+
+## Why Use Mermaid.js in VS Code?
+
+Developers already spend most of their time in VS Code. Adding Mermaid diagram support means you can:
+
+- **Document architecture** alongside your code
+- **Preview diagrams instantly** as you type
+- **Version control** your diagrams with Git
+- **Keep docs and code in sync** in the same repository
+- **Skip context-switching** to external diagramming tools
+
+Instead of opening Lucidchart or draw.io in a browser tab, you define diagrams in text and see them rendered live.
+
+## Setting Up Mermaid in VS Code
+
+### Step 1: Install the Mermaid Preview Extension
+
+The most popular extension is **"Markdown Preview Mermaid Support"** by Matt Bierner. It adds Mermaid rendering to VS Code's built-in Markdown preview.
+
+1. Open VS Code
+2. Go to Extensions (\`Ctrl+Shift+X\` / \`Cmd+Shift+X\`)
+3. Search for **"Markdown Preview Mermaid Support"**
+4. Click **Install**
+
+That's it. Now any Mermaid code block inside a Markdown file will render automatically in the preview pane.
+
+### Step 2: Create Your First Diagram
+
+Create a new file called \`docs/architecture.md\` and add:
+
+\`\`\`
+graph TD
+    A[User Request] --> B[API Gateway]
+    B --> C[Auth Service]
+    B --> D[App Server]
+    D --> E[(Database)]
+    D --> F[Cache Layer]
+    F --> E
+\`\`\`
+
+Open the Markdown preview (\`Ctrl+Shift+V\` / \`Cmd+Shift+V\`) and you'll see your flowchart rendered live.
+
+### Step 3: Install Mermaid Syntax Highlighting
+
+For a better editing experience, install **"Mermaid Markdown Syntax Highlighting"** — this adds syntax coloring inside Mermaid code blocks so you can spot errors faster.
+
+Search for it in the Extensions panel and install it alongside the preview extension.
+
+## Best VS Code Extensions for Mermaid
+
+Here's a quick comparison of the top extensions:
+
+**Markdown Preview Mermaid Support** — Adds Mermaid rendering to the built-in Markdown preview. Lightweight, reliable, and the most installed Mermaid extension. Best for most developers.
+
+**Mermaid Markdown Syntax Highlighting** — Adds syntax highlighting for Mermaid code blocks in Markdown files. Makes editing much easier. Pairs perfectly with the preview extension.
+
+**Mermaid Editor** — A dedicated Mermaid editing pane with live preview, separate from Markdown. Useful if you want to work on diagrams in isolation before embedding them.
+
+**Mermaid Chart** — Official extension from the Mermaid team. Connects to the Mermaid Chart cloud platform for collaboration and exporting.
+
+For most developers, installing the **first two** gives you everything you need.
+
+## Practical Workflow: Diagrams as Code in Your Repo
+
+The real power of Mermaid in VS Code is treating diagrams like code. Here's a workflow that works well for teams:
+
+### 1. Create a \`docs/\` Folder
+
+\`\`\`
+my-project/
+├── src/
+├── docs/
+│   ├── architecture.md
+│   ├── api-flow.md
+│   └── database-schema.md
+├── README.md
+└── package.json
+\`\`\`
+
+### 2. Document Key Flows with Mermaid
+
+In \`docs/api-flow.md\`:
+
+\`\`\`
+sequenceDiagram
+    participant Client
+    participant Gateway
+    participant AuthService
+    participant UserAPI
+    participant DB
+
+    Client->>Gateway: POST /api/users
+    Gateway->>AuthService: Validate JWT
+    AuthService-->>Gateway: Token Valid
+    Gateway->>UserAPI: Forward Request
+    UserAPI->>DB: INSERT user
+    DB-->>UserAPI: Success
+    UserAPI-->>Gateway: 201 Created
+    Gateway-->>Client: 201 Created
+\`\`\`
+
+### 3. Reference Diagrams in Your README
+
+In your \`README.md\`, link to the detailed docs:
+
+\`\`\`markdown
+## Architecture
+
+See [Architecture Overview](docs/architecture.md) for system diagrams.
+See [API Flow](docs/api-flow.md) for request lifecycle.
+\`\`\`
+
+If you host your repo on **GitHub**, Mermaid blocks in Markdown files render automatically — no extra setup needed.
+
+### 4. Review Diagrams in PRs
+
+When someone updates a diagram, reviewers can see the text diff in the pull request. This makes architectural changes reviewable, unlike binary image files from traditional diagramming tools.
+
+## Advanced Tips for Mermaid in VS Code
+
+### Use Snippets for Common Patterns
+
+Create custom VS Code snippets for diagram types you use often. Go to **File → Preferences → Configure User Snippets → markdown.json** and add:
+
+\`\`\`json
+{
+  "Mermaid Flowchart": {
+    "prefix": "mermaid-flow",
+    "body": [
+      "\`\`\`mermaid",
+      "graph TD",
+      "    A[$1] --> B[$2]",
+      "    B --> C[$3]",
+      "\`\`\`"
+    ]
+  },
+  "Mermaid Sequence": {
+    "prefix": "mermaid-seq",
+    "body": [
+      "\`\`\`mermaid",
+      "sequenceDiagram",
+      "    participant $1",
+      "    participant $2",
+      "    $1->>$2: $3",
+      "\`\`\`"
+    ]
+  }
+}
+\`\`\`
+
+Now typing \`mermaid-flow\` and pressing Tab scaffolds a flowchart instantly.
+
+### Configure Theme for Dark Mode
+
+If you use a dark VS Code theme, Mermaid diagrams might look off. You can configure the preview theme in your \`settings.json\`:
+
+\`\`\`json
+{
+  "markdown-mermaid.darkModeTheme": "dark",
+  "markdown-mermaid.lightModeTheme": "default"
+}
+\`\`\`
+
+This ensures diagrams match your editor's appearance.
+
+### Export Diagrams as Images
+
+The preview extensions render diagrams in the preview pane, but sometimes you need a PNG or SVG. Options:
+
+1. **Right-click the preview** and save/copy the rendered image
+2. **Use the Mermaid CLI** (\`mmdc\`) to batch-export from the terminal
+3. **Use an online editor** like [Mermaid Editor](https://mermaideditor.lol) for quick exports with more control
+
+For quick one-off exports, an online editor is often faster than setting up the CLI.
+
+## Mermaid in VS Code vs Online Editors
+
+| Feature | VS Code + Extensions | Online Mermaid Editor |
+|---|---|---|
+| Live preview | ✅ | ✅ |
+| Syntax highlighting | ✅ | ✅ |
+| Git integration | ✅ Native | ❌ Manual |
+| One-click export | ❌ Limited | ✅ PNG/SVG |
+| No install needed | ❌ | ✅ |
+| Works offline | ✅ | ❌ |
+| Team collaboration | Via Git PRs | Via sharing links |
+
+**Best approach:** Use VS Code for diagrams that live in your codebase, and an [online Mermaid editor](https://mermaideditor.lol) for quick diagrams, sharing with non-technical stakeholders, or when you need fast image exports.
+
+## Common Issues and Fixes
+
+**Diagram not rendering in preview?**
+- Make sure you're using \`\`\`mermaid\`\`\` as the code fence language (not \`\`\`mmd\`\`\` or \`\`\`diagram\`\`\`)
+- Restart the preview pane (\`Ctrl+Shift+P\` → "Markdown: Refresh Preview")
+
+**Syntax errors showing a blank diagram?**
+- Check for missing arrows (\`-->\` not \`->\`)
+- Ensure node IDs don't contain special characters without brackets
+- Use the [Mermaid Live Editor](https://mermaideditor.lol) to debug syntax — it shows error messages more clearly
+
+**Preview is slow with large diagrams?**
+- Split large diagrams into multiple smaller ones
+- Mermaid renders client-side, so very complex diagrams (100+ nodes) can lag
+
+## Conclusion
+
+VS Code is one of the best environments for working with Mermaid.js diagrams. With just two extensions installed, you get live preview, syntax highlighting, and a seamless workflow that keeps your documentation next to your code.
+
+The key advantages over standalone diagramming tools: **version control, code review, and zero context-switching.** Your diagrams evolve with your codebase, and every change is tracked in Git.
+
+Start with a \`docs/\` folder in your next project, add a few Mermaid diagrams, and you'll never want to go back to dragging boxes in a browser.
+
+[Try Mermaid diagrams in our free online editor →](/)
+`
+  },
 ];
