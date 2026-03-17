@@ -5393,6 +5393,380 @@ The key is matching the use case to the tool: use mindmaps for **hierarchical ex
 `
   },
   {
+    slug: "mermaid-themes-dark-mode",
+    title: "Mermaid.js Themes & Dark Mode — Complete Customization Guide (2026)",
+    description: "Learn how to apply built-in themes, enable dark mode, and customize Mermaid.js diagrams with themeVariables and CSS. Includes copy-paste examples for every theme.",
+    date: "2026-03-17",
+    keywords: ["mermaid dark mode", "mermaid themes", "mermaid custom colors", "mermaid styling guide", "mermaid.js customize"],
+    content: `
+## Why Customize Mermaid Diagrams?
+
+Mermaid.js renders diagrams using a default blue-and-gray palette that works fine for most documentation. But there are plenty of reasons to go further:
+
+- Your company has a **brand color palette** to match
+- You're embedding diagrams in a **dark mode** documentation site
+- You want **color-coded diagrams** that communicate meaning (red = error, green = success)
+- The default theme doesn't match your project's aesthetic
+
+Mermaid gives you three layers of customization: **built-in themes**, **theme variables**, and **CSS overrides**. This guide covers all three.
+
+## Built-In Themes
+
+Mermaid ships with five built-in themes. Switching between them requires just one line of configuration.
+
+### The 5 Built-In Themes
+
+**\`default\`** — The standard Mermaid look. Blue primary color, light background, clean lines. Works well for technical documentation on white backgrounds.
+
+**\`neutral\`** — Muted grays and desaturated colors. Professional and understated. A great choice for documentation sites where the diagram shouldn't compete with the content.
+
+**\`dark\`** — Inverted palette for dark backgrounds. White text, dark backgrounds, bright accent colors. Perfect for dark mode documentation sites or terminal-style presentations.
+
+**\`forest\`** — Green-accented theme. Calming, organic feel. Popular for environmental projects, health-related documentation, and anyone who finds the default blue palette monotonous.
+
+**\`base\`** — A minimal starting point designed for customization via theme variables. Almost no default styling — you build on top of it. Best when you need full brand control.
+
+### How to Apply a Theme
+
+**Method 1: Per-diagram init directive**
+
+Add a \`%%{init: ...}%%\` comment at the very top of your diagram:
+
+\`\`\`
+%%{init: {'theme': 'dark'}}%%
+graph TD
+    A[Start] --> B[Process]
+    B --> C[End]
+\`\`\`
+
+This overrides the global theme for just this one diagram. Great for mixing themes on the same page.
+
+**Method 2: Global JavaScript configuration**
+
+When embedding Mermaid in a webpage or configuring it via your documentation framework:
+
+\`\`\`javascript
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'dark',
+});
+\`\`\`
+
+**Method 3: Docusaurus / MkDocs config**
+
+In Docusaurus (\`docusaurus.config.js\`):
+
+\`\`\`javascript
+themeConfig: {
+  mermaid: {
+    theme: {
+      light: 'neutral',
+      dark: 'dark',
+    },
+  },
+},
+\`\`\`
+
+This automatically switches between light and dark Mermaid themes based on the user's Docusaurus theme preference.
+
+## Dark Mode — The Right Way
+
+Dark mode is often requested for diagrams embedded in dark documentation themes or developer portals. Here's how to handle it properly in different contexts.
+
+### Standalone Dark Diagram
+
+\`\`\`
+%%{init: {'theme': 'dark'}}%%
+flowchart LR
+    Client([Client]) --> Gateway[API Gateway]
+    Gateway --> Auth[Auth Service]
+    Gateway --> API[Core API]
+    API --> DB[(PostgreSQL)]
+    API --> Cache[(Redis)]
+\`\`\`
+
+### Auto-Switch with CSS Media Query
+
+For a webpage that supports both light and dark OS preferences, use CSS to select the right diagram:
+
+\`\`\`html
+<div class="diagram-light">
+  <div class="mermaid">
+    %%{init: {'theme': 'default'}}%%
+    graph TD
+        A --> B --> C
+  </div>
+</div>
+<div class="diagram-dark">
+  <div class="mermaid">
+    %%{init: {'theme': 'dark'}}%%
+    graph TD
+        A --> B --> C
+  </div>
+</div>
+
+<style>
+  @media (prefers-color-scheme: dark) {
+    .diagram-light { display: none; }
+    .diagram-dark { display: block; }
+  }
+  @media (prefers-color-scheme: light) {
+    .diagram-light { display: block; }
+    .diagram-dark { display: none; }
+  }
+</style>
+\`\`\`
+
+### Dark Mode in GitHub
+
+GitHub automatically detects the user's system theme and renders Mermaid diagrams appropriately. If a user has dark mode enabled, GitHub applies its own dark styling to your Mermaid diagrams. No configuration needed on your end.
+
+## Theme Variables — Deep Customization
+
+Theme variables let you customize specific aspects of any theme without writing CSS. They're applied via the \`themeVariables\` key inside the \`init\` directive.
+
+### Core Theme Variables
+
+\`\`\`
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#4f46e5',
+  'primaryTextColor': '#ffffff',
+  'primaryBorderColor': '#3730a3',
+  'secondaryColor': '#e0e7ff',
+  'tertiaryColor': '#f5f3ff',
+  'lineColor': '#6366f1',
+  'background': '#ffffff',
+  'mainBkg': '#4f46e5',
+  'nodeBorder': '#3730a3',
+  'clusterBkg': '#e0e7ff',
+  'titleColor': '#1e1b4b',
+  'edgeLabelBackground': '#f5f5f5',
+  'fontFamily': 'Inter, sans-serif',
+  'fontSize': '14px'
+}}}%%
+graph TD
+    A[Initialize] --> B[Process]
+    B --> C{Success?}
+    C -->|Yes| D[Complete]
+    C -->|No| E[Retry]
+    E --> B
+\`\`\`
+
+### Variable Reference
+
+| Variable | Controls |
+|---|---|
+| \`primaryColor\` | Node fill color |
+| \`primaryTextColor\` | Text color inside nodes |
+| \`primaryBorderColor\` | Node border color |
+| \`secondaryColor\` | Secondary node fill (alt nodes) |
+| \`tertiaryColor\` | Tertiary fill (subgraphs, etc.) |
+| \`lineColor\` | Arrow and edge color |
+| \`background\` | Diagram background |
+| \`mainBkg\` | Main background for some elements |
+| \`titleColor\` | Title text color |
+| \`edgeLabelBackground\` | Label box background on edges |
+| \`fontFamily\` | Font for all text |
+| \`fontSize\` | Base font size |
+
+### Sequence Diagram Variables
+
+\`\`\`
+%%{init: {'theme': 'base', 'themeVariables': {
+  'actorBkg': '#4f46e5',
+  'actorTextColor': '#ffffff',
+  'actorBorderColor': '#3730a3',
+  'actorLineColor': '#6366f1',
+  'signalColor': '#374151',
+  'signalTextColor': '#111827',
+  'labelBoxBkgColor': '#e0e7ff',
+  'labelBoxBorderColor': '#4f46e5',
+  'labelTextColor': '#1e1b4b',
+  'loopTextColor': '#4338ca',
+  'noteBorderColor': '#6366f1',
+  'noteBkgColor': '#f5f3ff',
+  'noteTextColor': '#1e1b4b',
+  'activationBorderColor': '#4f46e5',
+  'activationBkgColor': '#c7d2fe'
+}}}%%
+sequenceDiagram
+    Client->>+Server: POST /api/login
+    Server->>+DB: SELECT user
+    DB-->>-Server: User found
+    Server-->>-Client: 200 OK + JWT
+\`\`\`
+
+### Class Diagram Variables
+
+\`\`\`
+%%{init: {'theme': 'base', 'themeVariables': {
+  'classText': '#1e1b4b',
+  'lineColor': '#6366f1',
+  'attributeBackgroundColorEven': '#f5f3ff',
+  'attributeBackgroundColorOdd': '#e0e7ff'
+}}}%%
+classDiagram
+    class User {
+        +String id
+        +String email
+        +login() void
+    }
+    class Admin {
+        +deleteUser(id) void
+    }
+    User <|-- Admin
+\`\`\`
+
+## CSS Overrides — Surgical Precision
+
+For full control, you can target Mermaid's SVG elements with CSS. This works best in documentation frameworks and custom web pages.
+
+### Basic Node Styling
+
+\`\`\`css
+/* Style all nodes in a specific diagram */
+#my-diagram .node rect {
+  fill: #4f46e5;
+  stroke: #3730a3;
+  stroke-width: 2px;
+  rx: 8px;
+  ry: 8px;
+}
+
+/* Style node text */
+#my-diagram .node .label {
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Style edges */
+#my-diagram .edgePath path {
+  stroke: #6366f1;
+  stroke-width: 2px;
+}
+\`\`\`
+
+### Dark Mode CSS Override
+
+Apply a dark look to any Mermaid diagram without using the built-in dark theme:
+
+\`\`\`css
+.dark-diagram .mermaid svg {
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 16px;
+}
+.dark-diagram .mermaid .node rect,
+.dark-diagram .mermaid .node circle,
+.dark-diagram .mermaid .node polygon {
+  fill: #374151;
+  stroke: #6b7280;
+}
+.dark-diagram .mermaid .nodeLabel {
+  color: #f9fafb;
+}
+.dark-diagram .mermaid .edgePath path {
+  stroke: #9ca3af;
+}
+\`\`\`
+
+## Practical Brand Customization Example
+
+Here's a complete example customizing Mermaid to match a purple brand palette:
+
+\`\`\`
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#7c3aed',
+    'primaryTextColor': '#ffffff',
+    'primaryBorderColor': '#6d28d9',
+    'secondaryColor': '#ede9fe',
+    'tertiaryColor': '#f5f3ff',
+    'lineColor': '#8b5cf6',
+    'background': '#fafafa',
+    'titleColor': '#4c1d95',
+    'edgeLabelBackground': '#ede9fe',
+    'fontFamily': 'system-ui, sans-serif'
+  }
+}}%%
+flowchart LR
+    subgraph Customer Journey
+        A([Visit]) --> B[Browse]
+        B --> C{Interested?}
+        C -->|Yes| D[Sign Up]
+        C -->|No| E([Exit])
+        D --> F[Onboard]
+        F --> G([Active User])
+    end
+\`\`\`
+
+## Quick Reference: All 5 Themes Side by Side
+
+### Default Theme
+\`\`\`
+%%{init: {'theme': 'default'}}%%
+graph LR
+    A[Node A] --> B[Node B] --> C[Node C]
+\`\`\`
+**Best for:** Standard technical documentation, GitHub READMEs
+
+### Neutral Theme
+\`\`\`
+%%{init: {'theme': 'neutral'}}%%
+graph LR
+    A[Node A] --> B[Node B] --> C[Node C]
+\`\`\`
+**Best for:** Professional docs, minimal aesthetic, mixed content pages
+
+### Dark Theme
+\`\`\`
+%%{init: {'theme': 'dark'}}%%
+graph LR
+    A[Node A] --> B[Node B] --> C[Node C]
+\`\`\`
+**Best for:** Dark mode sites, terminal/CLI documentation, developer portals
+
+### Forest Theme
+\`\`\`
+%%{init: {'theme': 'forest'}}%%
+graph LR
+    A[Node A] --> B[Node B] --> C[Node C]
+\`\`\`
+**Best for:** Environmental projects, healthcare, non-tech audiences
+
+### Base Theme
+\`\`\`
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#e11d48'}}}%%
+graph LR
+    A[Node A] --> B[Node B] --> C[Node C]
+\`\`\`
+**Best for:** Brand-aligned diagrams, full custom control
+
+## Tips and Common Pitfalls
+
+**Tip 1: Use \`base\` for custom brands.** The \`default\` and other themes have opinionated styles that can clash with custom variables. Starting from \`base\` gives you a clean slate.
+
+**Tip 2: Test across diagrams.** Theme variables apply differently to flowcharts vs. sequence diagrams vs. class diagrams. Test your theme on each type you use.
+
+**Tip 3: Respect accessibility.** Ensure sufficient contrast between text and background colors. A color that looks great might fail WCAG contrast ratio requirements.
+
+**Tip 4: Don't over-style.** The goal of a diagram is to communicate. Heavy customization can make diagrams harder to read. When in doubt, keep it simple.
+
+**Pitfall: \`init\` placement.** The \`%%{init: ...}%%\` directive must be the very first line of your diagram — not after any other code.
+
+**Pitfall: JSON formatting.** Theme variable values in the init directive must be valid JSON. Use double quotes for strings, and don't use trailing commas.
+
+## Conclusion
+
+Mermaid's theming system gives you everything from one-line theme switches to surgical CSS overrides. For most projects, picking the right built-in theme (likely \`neutral\` or \`dark\`) is all you need. When brand alignment matters, the \`base\` theme plus \`themeVariables\` lets you match any design system without writing CSS.
+
+The init directive syntax means your theme configuration lives inside the diagram definition itself — keeping everything self-contained and portable across platforms.
+
+[Try all these themes in our free Mermaid Live Editor →](/)
+`
+  },
+  {
     slug: "mermaid-in-vscode",
     title: "How to Use Mermaid.js in VS Code: Extensions, Preview & Tips (2026)",
     description: "Learn how to create, preview, and export Mermaid.js diagrams directly in VS Code. Complete guide to the best extensions, settings, and workflow tips for developers.",
