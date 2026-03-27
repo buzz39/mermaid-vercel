@@ -5767,6 +5767,428 @@ The init directive syntax means your theme configuration lives inside the diagra
 `
   },
   {
+    slug: "mermaid-vs-plantuml",
+    title: "Mermaid.js vs PlantUML — Which Diagrams-as-Code Tool Should You Use?",
+    description: "Compare Mermaid.js and PlantUML on syntax, diagram types, rendering, integration, and performance. Find out which diagrams-as-code tool is right for your team.",
+    date: "2026-03-27",
+    keywords: ["mermaid vs plantuml", "plantuml vs mermaid", "diagrams as code comparison", "best diagram tool", "mermaid or plantuml", "plantuml alternative", "mermaid.js comparison"],
+    content: `
+## Two Giants of Diagrams as Code
+
+If you've decided to write your diagrams as code — congratulations, you've made the right call. Version control, diff-friendly docs, and no drag-and-drop grief. But now you face a new decision: **Mermaid.js or PlantUML?**
+
+Both tools let you describe diagrams in plain text and render them as images. Both are open-source and widely adopted. Yet they feel completely different to use, have different strengths, and suit different teams. This guide gives you a thorough, honest comparison so you can make the right choice.
+
+## A Quick Introduction to Each
+
+### Mermaid.js
+
+Mermaid is a **JavaScript-based** diagramming library that renders diagrams client-side in the browser. It uses a clean, human-readable syntax inspired by Markdown, and it integrates natively with GitHub, GitLab, Notion, Obsidian, Docusaurus, and MkDocs.
+
+\`\`\`
+graph TD
+    A[Client] --> B[API]
+    B --> C[(Database)]
+\`\`\`
+
+### PlantUML
+
+PlantUML is a **Java-based** tool that generates diagrams on the server side, producing PNG, SVG, or ASCII art. It's been around since 2009, has a massive feature set, and is the dominant tool in enterprise and Java-heavy teams. It requires a Java runtime (or a remote server) to render diagrams.
+
+\`\`\`
+@startuml
+[Client] --> [API]
+[API] --> [Database]
+@enduml
+\`\`\`
+
+## Syntax Comparison
+
+This is where the tools feel most different.
+
+### Flowcharts
+
+**Mermaid:**
+
+\`\`\`
+flowchart TD
+    Start([Begin]) --> Input[Read data]
+    Input --> Validate{Valid?}
+    Validate -->|Yes| Process[Process data]
+    Validate -->|No| Error[Show error]
+    Process --> End([Done])
+    Error --> Input
+\`\`\`
+
+**PlantUML:**
+
+\`\`\`
+@startuml
+start
+:Read data;
+if (Valid?) then (Yes)
+  :Process data;
+else (No)
+  :Show error;
+  :Read data;
+endif
+stop
+@enduml
+\`\`\`
+
+**Verdict:** PlantUML's activity diagram syntax is more expressive for complex flows with explicit control structures (\`if/else\`, \`while\`). Mermaid's flowchart syntax is more visual and readable at a glance, but achieves conditional logic through diamond nodes rather than language constructs.
+
+### Sequence Diagrams
+
+**Mermaid:**
+
+\`\`\`
+sequenceDiagram
+    participant C as Client
+    participant A as API
+    participant D as Database
+
+    C->>+A: POST /login
+    A->>+D: SELECT user
+    D-->>-A: User found
+    A-->>-C: JWT token
+\`\`\`
+
+**PlantUML:**
+
+\`\`\`
+@startuml
+participant Client as C
+participant API as A
+participant Database as D
+
+C -> A: POST /login
+activate A
+A -> D: SELECT user
+activate D
+D --> A: User found
+deactivate D
+A --> C: JWT token
+deactivate A
+@enduml
+\`\`\`
+
+**Verdict:** Mermaid wins here for conciseness. The \`+/-\` activation syntax is far cleaner than PlantUML's explicit \`activate/deactivate\` blocks. Both tools produce comparable output for sequence diagrams.
+
+### Class Diagrams
+
+**Mermaid:**
+
+\`\`\`
+classDiagram
+    class Animal {
+        +String name
+        +makeSound() void
+    }
+    class Dog {
+        +fetch() void
+    }
+    Animal <|-- Dog
+\`\`\`
+
+**PlantUML:**
+
+\`\`\`
+@startuml
+class Animal {
+  +String name
+  +makeSound()
+}
+class Dog {
+  +fetch()
+}
+Animal <|-- Dog
+@enduml
+\`\`\`
+
+**Verdict:** Very similar — both follow UML class diagram conventions closely. PlantUML has more UML-specific features (namespaces, packages, notes on relationships), while Mermaid's output is cleaner by default.
+
+### ER Diagrams
+
+**Mermaid:**
+
+\`\`\`
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER {
+        int id PK
+        string name
+        string email UK
+    }
+    ORDER {
+        int id PK
+        int customer_id FK
+        date created_at
+    }
+\`\`\`
+
+**PlantUML:**
+
+\`\`\`
+@startuml
+entity CUSTOMER {
+  * id : int <<PK>>
+  --
+  * name : varchar
+  * email : varchar <<UK>>
+}
+entity ORDER {
+  * id : int <<PK>>
+  --
+  * customer_id : int <<FK>>
+  * created_at : date
+}
+CUSTOMER ||--o{ ORDER : places
+@enduml
+\`\`\`
+
+**Verdict:** Both are capable. Mermaid's cardinality notation for ER diagrams is identical to PlantUML's. PlantUML's entity notation (\`* required\` vs optional) offers a bit more expressiveness for data modeling.
+
+## Diagram Types Supported
+
+| Diagram Type | Mermaid | PlantUML |
+|---|---|---|
+| Flowchart / Activity | ✅ | ✅ |
+| Sequence | ✅ | ✅ |
+| Class (UML) | ✅ | ✅ |
+| State | ✅ | ✅ |
+| ER / Database | ✅ | ✅ |
+| Gantt | ✅ | ✅ |
+| Pie chart | ✅ | ✅ |
+| Mind map | ✅ | ✅ |
+| Git graph | ✅ | ❌ |
+| Timeline | ✅ | ❌ |
+| Quadrant chart | ✅ | ❌ |
+| User journey | ✅ | ❌ |
+| Component / Deployment (UML) | ❌ | ✅ |
+| Use case | ❌ | ✅ |
+| Object diagram | ❌ | ✅ |
+| Network / Nwdiag | ❌ | ✅ |
+| Timing diagram | ❌ | ✅ |
+| JSON / YAML visualizer | ❌ | ✅ |
+| Wireframes (Salt) | ❌ | ✅ |
+| Math / LaTeX | ❌ | ✅ |
+
+**Verdict:** PlantUML wins on total diagram count, especially for UML-heavy use cases. Mermaid covers more modern diagram types (git graphs, timelines, quadrant charts, journey maps) that PlantUML lacks.
+
+## Rendering: Browser vs Server
+
+This is a fundamental architectural difference.
+
+### Mermaid — Client-Side Rendering
+
+Mermaid is a JavaScript library. Diagrams render in the browser using JavaScript. This means:
+
+- **No server required** — Embed Mermaid.js from a CDN and it just works
+- **No Java needed** — No JVM, no installation complexity
+- **Native platform support** — GitHub, GitLab, Notion, Obsidian render Mermaid without plugins
+- **Lightweight integration** — One \`<script>\` tag and you're done
+
+### PlantUML — Server-Side Rendering
+
+PlantUML is a Java application. Rendering requires:
+
+- A **local Java runtime** (\`java -jar plantuml.jar\`)
+- Or a **remote PlantUML server** (e.g., \`https://www.plantuml.com/plantuml\`)
+- Or a **CI/CD job** that runs PlantUML and commits the output images
+
+This adds complexity, especially for teams that don't already have Java in their toolchain. However, server-side rendering also means:
+
+- **Consistent output** regardless of browser/OS
+- **Better performance** for very large diagrams
+- **Support for local fonts and custom styles** more easily
+
+**Verdict:** Mermaid wins for ease of setup. PlantUML wins for teams already running Java infrastructure.
+
+## Platform Integration
+
+### Mermaid
+
+Native support (no plugins) in:
+- **GitHub** — Renders in Markdown files, issues, PRs, and discussions
+- **GitLab** — Native Markdown rendering
+- **Notion** — Code blocks with "mermaid" language
+- **Obsidian** — Built-in support
+- **Docusaurus** — Official \`@docusaurus/theme-mermaid\` package
+- **MkDocs** — \`mkdocs-mermaid2-plugin\`
+- **Confluence** — Via third-party plugins
+
+### PlantUML
+
+Plugin-based support in:
+- **GitHub** — Requires CI/CD to pre-render images, or third-party GitHub Actions
+- **GitLab** — Native support for PlantUML blocks (requires PlantUML server config)
+- **Confluence** — Official and third-party plugins; well-established
+- **Jira** — Via Confluence + PlantUML integration
+- **IntelliJ / JetBrains IDEs** — Native PlantUML plugin
+- **VS Code** — PlantUML extension with preview
+- **Sphinx** — \`sphinxcontrib-plantuml\`
+
+**Verdict:** Mermaid wins for modern web platforms (GitHub, Notion, Obsidian). PlantUML wins for enterprise platforms and JetBrains IDE users.
+
+## Rendering Quality and Layout
+
+### Mermaid Layout
+
+Mermaid uses automatic graph layout algorithms (Dagre for flowcharts, specific engines for other types). The layout is handled client-side and can sometimes produce suboptimal results for complex graphs — crossing edges, cramped layouts, or unexpected positioning.
+
+You have limited control over layout: you can set direction (TD, LR, BT, RL) and add hints via edge lengths, but you can't position specific nodes manually.
+
+### PlantUML Layout
+
+PlantUML uses **Graphviz** (for most diagram types) or its own rendering engine. Graphviz is a mature, well-tuned layout engine that generally produces cleaner layouts for complex graphs. PlantUML also supports layout hints like \`together\`, \`hidden\` edges for positioning, and \`skinparam\` for detailed visual control.
+
+**Verdict:** PlantUML generally produces better layouts for complex diagrams with many nodes and edges. For simple to moderately complex diagrams, both are comparable.
+
+## Theming and Styling
+
+### Mermaid Styling
+
+\`\`\`
+%%{init: {'theme': 'dark', 'themeVariables': {
+  'primaryColor': '#4f46e5',
+  'primaryTextColor': '#fff',
+  'lineColor': '#6366f1'
+}}}%%
+graph TD
+    A --> B --> C
+\`\`\`
+
+Mermaid has 5 built-in themes (\`default\`, \`dark\`, \`neutral\`, \`forest\`, \`base\`) and supports theme variables and CSS overrides. The \`base\` theme is fully customizable. Per-diagram theme overrides work via init directives.
+
+### PlantUML Styling
+
+\`\`\`
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam component {
+  BackgroundColor #4f46e5
+  FontColor #ffffff
+  BorderColor #3730a3
+  FontSize 14
+}
+[Component A] --> [Component B]
+@enduml
+\`\`\`
+
+PlantUML's \`skinparam\` system is extremely granular — you can control colors, fonts, borders, shadows, arrows, and more for every element type. It supports custom styles, themes (via \`!theme\`), and preprocessor includes.
+
+**Verdict:** PlantUML wins on styling depth and control. Mermaid's theming is simpler but sufficient for most documentation use cases.
+
+## Developer Experience
+
+### Learning Curve
+
+Mermaid's syntax is designed to be approachable. A developer with no prior knowledge can write a working flowchart in 5 minutes. The syntax reads almost like plain English:
+
+\`\`\`
+flowchart LR
+    Browser -->|HTTP| Server
+    Server -->|SQL| Database
+\`\`\`
+
+PlantUML's syntax is more verbose and requires learning PlantUML-specific conventions. The upside is more power; the downside is a steeper initial learning curve.
+
+### Tooling
+
+**Mermaid:**
+- Live browser editors (mermaideditor.lol, mermaid.live)
+- VS Code extensions
+- CLI via \`@mermaid-js/mermaid-cli\` (npm package, no Java)
+
+**PlantUML:**
+- VS Code PlantUML extension (excellent live preview)
+- IntelliJ / JetBrains built-in support
+- PlantUML.com web editor
+- CLI via \`plantuml.jar\` (requires Java)
+
+**Verdict:** Mermaid is easier to get started with and has a lower tooling overhead. PlantUML has better IDE integration in JetBrains products.
+
+## Performance at Scale
+
+For teams with hundreds of diagrams:
+
+**Mermaid** renders client-side, so each page load triggers rendering. Very large or complex diagrams can cause browser jank. For documentation sites, pre-rendering to SVG at build time is possible with the CLI.
+
+**PlantUML** pre-renders at build time (or server-side), so pages load pre-generated images. This is faster for readers but adds build complexity. PlantUML handles very large UML diagrams better than Mermaid.
+
+## Which Tool Should You Choose?
+
+### Choose Mermaid.js when:
+
+- Your team **doesn't use Java** in their toolchain
+- You want diagrams on **GitHub, Notion, or Obsidian** without plugins
+- You need **git graphs, timelines, journey maps, or quadrant charts**
+- You want the **lowest possible setup friction**
+- Your audience is developers who are comfortable with Markdown
+- You're building a **documentation site** with Docusaurus or MkDocs
+- You prioritize **ease of use** over layout precision
+
+### Choose PlantUML when:
+
+- You're in a **Java or enterprise** environment where Java is already standard
+- You need **complete UML coverage** (use case, component, deployment, timing diagrams)
+- You use **JetBrains IDEs** and want excellent native integration
+- You need **pixel-perfect layout control** with skinparam
+- You're documenting a **large, complex system** where Graphviz layouts outperform Dagre
+- Your team uses **Confluence** extensively (PlantUML has mature Confluence plugins)
+- You need **LaTeX math** in your diagrams
+
+### The Hybrid Approach
+
+Many teams use both:
+
+- **Mermaid** for developer-facing docs: READMEs, GitHub wiki, architecture notes
+- **PlantUML** for formal UML documentation and Confluence pages
+
+There's no rule that says you must pick one. The tools solve overlapping but not identical problems.
+
+## Migration Between the Tools
+
+If you're already using PlantUML and want to migrate to Mermaid (or vice versa), there's no automatic conversion tool. You'll need to rewrite diagrams manually. The effort depends on diagram complexity — simple flowcharts are quick to rewrite; large UML class hierarchies take more time.
+
+A pragmatic approach: migrate diagrams when they need updates anyway. Don't rewrite working diagrams just to change tools.
+
+## Summary Table
+
+| Criteria | Mermaid.js | PlantUML |
+|---|---|---|
+| Setup complexity | Low (JS library) | Medium (needs Java) |
+| Syntax readability | High | Medium |
+| Learning curve | Low | Medium |
+| Diagram types | 13+ | 20+ |
+| UML completeness | Partial | Full |
+| Modern diagram types | More | Fewer |
+| GitHub native | ✅ | ❌ |
+| Notion / Obsidian | ✅ | ❌ |
+| Confluence | Plugin | Plugin (mature) |
+| JetBrains IDE | Extension | Native |
+| Layout quality | Good | Excellent |
+| Styling control | Moderate | Extensive |
+| Browser rendering | ✅ | ❌ |
+| Performance at scale | Good | Better |
+| Open source | ✅ | ✅ |
+| Cost | Free | Free |
+
+## Conclusion
+
+Both Mermaid.js and PlantUML are excellent tools for diagrams as code. The right choice comes down to your environment, your team's background, and the platforms you work with.
+
+If you're a developer working primarily in GitHub, building docs with Docusaurus or MkDocs, or working in a JavaScript-heavy environment, **Mermaid is the clear winner** — lower setup friction, better platform integration, and a syntax that feels natural.
+
+If you're in an enterprise environment, working heavily in Confluence or JetBrains IDEs, or need the full expressiveness of UML, **PlantUML is the stronger choice** — it's been battle-tested for 15+ years and offers unmatched depth.
+
+When in doubt, try Mermaid first. It gets out of your way and lets you focus on what actually matters: communicating ideas visually.
+
+[Try Mermaid.js in our free online editor →](/)
+`,
+  },
+  {
     slug: "mermaid-in-vscode",
     title: "How to Use Mermaid.js in VS Code: Extensions, Preview & Tips (2026)",
     description: "Learn how to create, preview, and export Mermaid.js diagrams directly in VS Code. Complete guide to the best extensions, settings, and workflow tips for developers.",
