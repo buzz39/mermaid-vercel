@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { posts } from "./posts";
 
 export const metadata: Metadata = {
-  title: "Mermaid.js Tutorials & Guides — Mermaid Editor Blog",
-  description: "Learn Mermaid.js with tutorials, examples, and best practices. Create flowcharts, sequence diagrams, Gantt charts, ER diagrams, and more.",
+  title: "Mermaid.js Tutorials & Guides — MermaidEditor.lol Blog",
+  description: "Learn Mermaid.js with tutorials, examples, and guides. Flowcharts, sequence diagrams, mindmaps, and more.",
   alternates: {
     canonical: 'https://mermaideditor.lol/blog',
   },

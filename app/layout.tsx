@@ -16,17 +16,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mermaideditor.lol'),
-  title: "Mermaid Live Editor - Render & Export Mermaid Diagrams",
-  description: "Free online Mermaid editor. Render Mermaid charts, diagrams, and graphs instantly. Export to SVG and PNG. Supports Flowchart, Sequence, Gantt, and more.",
-  keywords: ["mermaid", "editor", "diagram", "chart", "flowchart", "sequence diagram", "gantt", "live editor", "svg", "png"],
+  title: "Mermaid Live Editor — Free Online Diagram Tool | Export PNG & SVG",
+  description: "Create flowcharts, sequence diagrams, class diagrams, and more with our free Mermaid live editor. Real-time preview, export to PNG/SVG, dark mode. No signup required.",
+  keywords: ["mermaid live editor", "mermaid editor", "diagram", "chart", "flowchart", "sequence diagram", "gantt", "online diagram tool", "svg", "png", "free mermaid editor"],
   authors: [{ name: "Gagan Thakur", url: "https://www.linkedin.com/in/gaganthakur" }],
   creator: "Gagan Thakur",
   alternates: {
     canonical: 'https://mermaideditor.lol',
   },
   openGraph: {
-    title: "Mermaid Live Editor",
-    description: "Render and export Mermaid diagrams instantly. Free online editor for flowcharts, sequence diagrams, Gantt charts, class diagrams, and more.",
+    title: "Mermaid Live Editor — Free Diagram Tool",
+    description: "Create Mermaid diagrams online. Flowcharts, sequence diagrams, ER diagrams & more. Export to PNG, SVG. Free, no signup.",
     type: "website",
     url: 'https://mermaideditor.lol',
     siteName: 'Mermaid Live Editor',
