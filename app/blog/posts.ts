@@ -9,6 +9,239 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "mermaid-timeline-diagram",
+    title: "How to Create Timeline Diagrams with Mermaid.js",
+    description: "Learn how to create mermaid timeline diagrams with simple text syntax. Includes real-world examples for project roadmaps, historical events, and release schedules.",
+    date: "2026-04-07",
+    keywords: ["mermaid timeline diagram", "mermaid.js timeline", "timeline diagram code", "diagrams as code", "mermaid timeline examples"],
+    content: `
+## What Is a Mermaid Timeline Diagram?
+
+A **mermaid timeline diagram** lets you visualize events, milestones, and phases in chronological order — using nothing but text. No drag-and-drop tools, no image editing, no external software. Just write the syntax, and Mermaid renders a clean, shareable timeline.
+
+Timeline diagrams are perfect for:
+- Product roadmaps and release schedules
+- Historical events and project retrospectives
+- Onboarding docs showing company or project history
+- Sprint planning visuals embedded in your README
+
+In this guide you'll learn the complete Mermaid timeline syntax, see multiple real-world examples, and pick up tips for writing timelines that are easy to maintain.
+
+## Basic Mermaid Timeline Syntax
+
+The timeline diagram type was introduced in Mermaid v9.4. The core structure is straightforward:
+
+\`\`\`mermaid
+timeline
+    title History of Mermaid.js
+    2014 : Knut Sveidqvist releases Mermaid on GitHub
+    2016 : First major adoption in developer docs
+    2019 : GitHub integration discussions begin
+    2022 : GitHub natively renders Mermaid in Markdown
+    2023 : Mermaid v10 released with major improvements
+    2024 : Over 60,000 GitHub stars
+\`\`\`
+
+Breaking down the syntax:
+- **\`timeline\`** — declares the diagram type
+- **\`title\`** — optional chart title displayed at the top
+- **\`2014 : Event text\`** — a time period followed by \`:\` and the event label
+
+Multiple events can share the same time period by adding more lines with the same period label.
+
+## Adding Multiple Events Per Period
+
+One of the most useful features is grouping multiple events under a single time label:
+
+\`\`\`mermaid
+timeline
+    title 2025 Product Roadmap
+    Q1 : Launch beta
+        : Onboard first 100 users
+        : Set up analytics
+    Q2 : Public launch
+        : Email campaign
+    Q3 : Mobile app release
+        : Paid tier introduced
+    Q4 : Enterprise plan
+        : Partner integrations
+\`\`\`
+
+Each additional \`: event\` line (indented, without repeating the period) is added to that period's column. This keeps related events grouped without cluttering the timeline axis.
+
+## Sections — Adding Colour-Coded Groups
+
+For longer timelines, you can organise periods into named sections. Each section gets its own colour in the rendered diagram:
+
+\`\`\`mermaid
+timeline
+    title Company Growth Timeline
+    section Early Stage
+        2020 : Company founded
+             : Seed funding ($500K)
+        2021 : First product shipped
+             : 5-person team
+    section Growth Stage
+        2022 : Series A ($3M)
+             : 20-person team
+             : First enterprise customer
+        2023 : Product line expanded
+             : Reached profitability
+    section Scale Stage
+        2024 : Series B ($15M)
+             : 80-person team
+        2025 : International expansion
+             : IPO preparation
+\`\`\`
+
+Sections are declared with \`section Name\` and apply to all subsequent periods until another section is declared. They're great for separating phases of a project, company lifecycle stages, or sprint cycles.
+
+## Real-World Example: Software Release History
+
+Here's a mermaid timeline diagram documenting a product's version history — a common use case for developer docs and README files:
+
+\`\`\`mermaid
+timeline
+    title My App — Release History
+    section Alpha
+        v0.1 : Core authentication
+             : Basic CRUD operations
+        v0.2 : REST API stabilised
+             : Unit tests added
+    section Beta
+        v0.5 : Public beta launched
+             : Dashboard UI
+             : Email notifications
+        v0.9 : Performance optimisations
+             : Bug fixes from beta feedback
+    section Production
+        v1.0 : General availability
+             : Stripe payments integrated
+        v1.1 : Team collaboration features
+        v2.0 : Real-time sync
+             : Mobile app (iOS + Android)
+\`\`\`
+
+Because the source is plain text, this lives right in your repo. When you ship v2.1, you add two lines — no image exports needed.
+
+## Example: Project Sprint Timeline
+
+Timeline diagrams also work well for sprint planning or retrospective documentation:
+
+\`\`\`mermaid
+timeline
+    title Q1 Sprint Overview
+    section Sprint 1 (Jan)
+        Week 1 : Kick-off and backlog grooming
+               : Environment setup
+        Week 2 : User auth module
+        Week 3 : Profile management
+        Week 4 : Sprint review and demo
+    section Sprint 2 (Feb)
+        Week 5 : Dashboard v1
+               : API rate limiting
+        Week 6 : Notifications service
+        Week 7 : Data export feature
+        Week 8 : Sprint review
+    section Sprint 3 (Mar)
+        Week 9  : Mobile-responsive UI
+        Week 10 : Performance profiling
+        Week 11 : Load testing
+        Week 12 : Q1 retrospective
+\`\`\`
+
+## Example: Historical Technology Timeline
+
+Mermaid timeline diagrams aren't just for software projects. They're equally useful for educational content, articles, and documentation that places events in historical context:
+
+\`\`\`mermaid
+timeline
+    title Key Moments in Web Development
+    section Web 1.0
+        1991 : Tim Berners-Lee publishes the first website
+        1994 : Netscape Navigator launches
+        1995 : JavaScript created by Brendan Eich
+             : Java applets introduced
+        1996 : CSS 1 specification released
+    section Web 2.0
+        2004 : Gmail launches, proving rich web apps are possible
+        2005 : AJAX popularised by Google Maps
+             : YouTube founded
+        2006 : jQuery released
+        2008 : V8 JavaScript engine by Google
+        2009 : Node.js created by Ryan Dahl
+    section Modern Web
+        2013 : React released by Facebook
+        2014 : Vue.js introduced
+        2016 : Angular 2 released
+        2017 : WebAssembly becomes a W3C recommendation draft
+        2020 : Deno 1.0 released
+        2022 : Bun JavaScript runtime released
+\`\`\`
+
+## Embedding Timelines in Your Docs
+
+Mermaid timeline diagrams render natively in **GitHub Markdown** (wrap in a \`mermaid\` code fence), **Notion** (paste using the Mermaid block), **Obsidian**, **Docusaurus**, **MkDocs**, and anywhere Mermaid is supported.
+
+For GitHub specifically:
+
+\`\`\`
+\`\`\`mermaid
+timeline
+    title My Project Milestones
+    2024 : MVP shipped
+    2025 : 1,000 users
+\`\`\`
+\`\`\`
+
+You can also try and iterate on your timeline syntax in the [Mermaid Live Editor](https://mermaideditor.lol) before committing — it gives instant visual feedback as you type, so you can see how sections and event groupings look before they go into your docs.
+
+## Mermaid Timeline vs Gantt Chart
+
+Mermaid offers two diagram types that handle time-based content differently:
+
+| Feature | Timeline | Gantt Chart |
+|---|---|---|
+| Purpose | Events and milestones | Task durations and schedules |
+| Shows duration | No | Yes |
+| Dependencies | No | Yes |
+| Best for | History, roadmaps, retrospectives | Project planning, scheduling |
+| Syntax complexity | Simple | Moderate |
+
+If you need to show **how long** tasks take, use a Gantt chart. If you want to place **events and milestones** in chronological context, use a timeline diagram.
+
+## Tips for Better Timeline Diagrams
+
+**Keep event labels short.** The timeline renders each event as a chip inside a column. Long text wraps awkwardly. Aim for 3-6 words per event.
+
+**Use consistent period granularity.** Mixing \`Q1 2024\` with \`Week 3\` in the same diagram looks messy. Pick a granularity (quarters, months, sprints) and stick to it.
+
+**Use sections for long timelines.** Anything with more than 6-8 periods benefits from section groupings — they add colour contrast and logical separation.
+
+**Put the most important events first in a period.** Mermaid displays events top-to-bottom within a period column. Lead with the headline event.
+
+**Test in the live editor first.** Before adding a timeline to your repo's README or docs, paste it into [mermaideditor.lol](https://mermaideditor.lol) to see how it renders. Easier to tweak there than after pushing a commit.
+
+## Troubleshooting Common Issues
+
+**Timeline not rendering?** Check that you're on Mermaid v9.4+. GitHub, Notion, and most modern integrations are already there, but self-hosted tools may lag behind.
+
+**Events appearing in wrong order?** Mermaid renders periods in the order they appear in the source — there's no automatic date sorting. Write them top-to-bottom in chronological order.
+
+**Text overflowing?** Shorten event labels or split into multiple sections.
+
+**Section colours look off in dark mode?** Mermaid's built-in themes handle dark mode differently. Use the \`dark\` or \`default\` theme directive at the top of your diagram if needed.
+
+## Conclusion
+
+Mermaid timeline diagrams are a quick, maintainable way to visualise chronological information in your documentation. The syntax is minimal, the output is clean, and because diagrams live as text in your repo, they stay up-to-date as your project evolves.
+
+Start with a simple 4-5 period timeline, add sections when it grows, and you'll have professional-looking roadmap and history diagrams without ever opening a design tool.
+
+[Try building your timeline diagram for free at mermaideditor.lol →](/)
+`
+  },
+  {
     slug: "what-is-mermaid-js",
     title: "What is Mermaid.js? A Beginner's Introduction to Diagrams as Code",
     description: "Learn what Mermaid.js is, how it works, and why developers love creating diagrams from simple text. A complete beginner's guide to diagrams as code.",
@@ -6186,6 +6419,477 @@ If you're in an enterprise environment, working heavily in Confluence or JetBrai
 When in doubt, try Mermaid first. It gets out of your way and lets you focus on what actually matters: communicating ideas visually.
 
 [Try Mermaid.js in our free online editor →](/)
+`,
+  },
+  {
+    slug: "mermaid-subgraph-guide",
+    title: "Mermaid Subgraphs: Group, Nest & Style Diagram Sections",
+    description: "Master Mermaid.js subgraphs to group related nodes, nest containers, set per-subgraph directions, and build cleaner architecture diagrams. Includes real-world examples.",
+    date: "2026-04-04",
+    keywords: ["mermaid subgraph", "mermaid subgraph tutorial", "mermaid nested subgraph", "mermaid group nodes", "mermaid flowchart subgraph", "mermaid cluster"],
+    content: `
+## What Are Subgraphs in Mermaid?
+
+When a flowchart grows beyond a handful of nodes, it quickly becomes hard to read. Nodes scatter across the diagram with no sense of belonging. **Subgraphs** solve this by letting you group related nodes inside a labeled container — similar to how a bounding box or swim lane works in traditional diagramming tools.
+
+Subgraphs are one of the most powerful features in Mermaid's flowchart syntax. They let you:
+
+- **Group nodes by service, team, or layer** (frontend, backend, database)
+- **Nest containers** for microservice architectures and cloud diagrams
+- **Set independent layout directions** per section
+- **Connect entire groups** to other nodes or groups
+- **Style containers** with custom colors and borders
+
+If you've been writing flat flowcharts and wondering why they look cluttered, subgraphs are the answer.
+
+## Basic Subgraph Syntax
+
+A subgraph is declared with the \`subgraph\` keyword, followed by an optional ID and title, and closed with \`end\`:
+
+\`\`\`
+flowchart TD
+    subgraph Frontend
+        A[React App] --> B[API Client]
+    end
+    subgraph Backend
+        C[Express Server] --> D[(PostgreSQL)]
+    end
+    B --> C
+\`\`\`
+
+The key rules:
+- **\`subgraph [id] ["title"]\`** — Opens a subgraph. ID is used for linking; title is displayed.
+- **\`end\`** — Closes the subgraph.
+- Nodes inside a subgraph are laid out within the container.
+- You can still draw edges **between** nodes across different subgraphs.
+
+### ID vs Title
+
+If you want a subgraph title with spaces, use quotes:
+
+\`\`\`
+flowchart LR
+    subgraph fe["Frontend Layer"]
+        A[React]
+    end
+    subgraph be["Backend Layer"]
+        B[Node.js]
+    end
+    A --> B
+\`\`\`
+
+Here \`fe\` and \`be\` are the IDs (used in edges), and \`"Frontend Layer"\` / \`"Backend Layer"\` are the displayed titles.
+
+You can also omit the ID and just provide a title — Mermaid generates one internally:
+
+\`\`\`
+flowchart TD
+    subgraph "API Services"
+        A[Auth] --> B[Users]
+    end
+\`\`\`
+
+## Connecting Subgraphs to Nodes and Other Subgraphs
+
+You can draw edges from a **node to a subgraph** or from a **subgraph to another subgraph**. Mermaid treats the subgraph as a unit when used in an edge:
+
+\`\`\`
+flowchart LR
+    Client([Browser]) --> fe
+
+    subgraph fe["Frontend"]
+        React[React App]
+    end
+
+    subgraph be["Backend"]
+        API[REST API] --> DB[(Database)]
+    end
+
+    fe --> be
+\`\`\`
+
+Here, the edge \`fe --> be\` connects the two containers directly. Mermaid draws the arrow from the outer boundary of the first subgraph to the second.
+
+### Connecting Subgraph to Specific Nodes
+
+You can also connect a subgraph to a specific node inside another subgraph:
+
+\`\`\`
+flowchart TD
+    subgraph Client
+        Browser[Web Browser]
+    end
+    subgraph Server
+        Gateway[API Gateway] --> App[Application]
+        App --> DB[(PostgreSQL)]
+    end
+    Browser --> Gateway
+\`\`\`
+
+Mixing subgraph-to-subgraph and node-to-node edges in the same diagram is perfectly valid.
+
+## Nested Subgraphs
+
+Subgraphs can be nested inside other subgraphs to reflect hierarchical architectures:
+
+\`\`\`
+flowchart TB
+    subgraph Cloud["AWS Cloud"]
+        subgraph VPC["VPC (172.16.0.0/16)"]
+            subgraph Public["Public Subnet"]
+                ALB[Load Balancer]
+                NAT[NAT Gateway]
+            end
+            subgraph Private["Private Subnet"]
+                ECS[ECS Service]
+                RDS[(RDS Database)]
+                Redis[(ElastiCache)]
+            end
+        end
+        S3[(S3 Bucket)]
+        CloudFront[CloudFront CDN]
+    end
+
+    Internet([Internet]) --> CloudFront
+    CloudFront --> ALB
+    ALB --> ECS
+    ECS --> RDS
+    ECS --> Redis
+    ECS --> S3
+    NAT --> Internet
+\`\`\`
+
+Nesting depth is technically unlimited, but **two to three levels** is the practical maximum before diagrams become hard to read. Use nesting to show **genuine hierarchy** — cloud region → VPC → subnet → service — not just for visual grouping.
+
+## Per-Subgraph Direction
+
+One of the most underused Mermaid features: each subgraph can have its **own layout direction**, independent of the root flowchart:
+
+\`\`\`
+flowchart TB
+    subgraph RequestPath["Request Path (left-to-right)"]
+        direction LR
+        Client([Client]) --> LB[Load Balancer] --> API[API Server]
+    end
+
+    subgraph DataLayer["Data Layer (top-to-bottom)"]
+        direction TB
+        API2[API Server] --> Cache[(Redis)]
+        API2 --> DB[(PostgreSQL)]
+    end
+
+    API --> API2
+\`\`\`
+
+This is powerful for diagrams where **different sections have different natural flow directions**. A request pipeline flows left-to-right, but a data hierarchy flows top-to-bottom. Combining both in one diagram — each section with its own direction — produces a far more readable result than forcing everything into a single direction.
+
+## Practical Example: Three-Tier Web Architecture
+
+\`\`\`
+flowchart TB
+    subgraph "Presentation Tier"
+        Browser[Web Browser]
+        MobileApp[Mobile App]
+    end
+
+    subgraph "Application Tier"
+        direction LR
+        Gateway[API Gateway] --> Auth[Auth Service]
+        Gateway --> Users[User Service]
+        Gateway --> Orders[Order Service]
+    end
+
+    subgraph "Data Tier"
+        direction LR
+        UsersDB[(Users DB)] 
+        OrdersDB[(Orders DB)]
+        Cache[(Redis Cache)]
+        Queue[Message Queue]
+    end
+
+    Browser --> Gateway
+    MobileApp --> Gateway
+    Auth --> UsersDB
+    Users --> UsersDB
+    Users --> Cache
+    Orders --> OrdersDB
+    Orders --> Queue
+\`\`\`
+
+This is a clean, scannable architecture diagram. A developer joining the team instantly understands the three tiers and which services connect to which data stores.
+
+## Practical Example: Microservices System
+
+\`\`\`
+flowchart LR
+    Client([External Client])
+
+    subgraph Edge["Edge Layer"]
+        direction TB
+        CDN[CDN] --> WAF[WAF]
+        WAF --> Gateway[API Gateway]
+    end
+
+    subgraph Services["Core Services"]
+        direction TB
+        AuthSvc[Auth Service]
+        UserSvc[User Service]
+        ProductSvc[Product Service]
+        OrderSvc[Order Service]
+        NotifSvc[Notification Service]
+    end
+
+    subgraph Infra["Infrastructure"]
+        direction TB
+        subgraph Databases["Databases"]
+            UserDB[(Users)]
+            ProductDB[(Products)]
+            OrderDB[(Orders)]
+        end
+        subgraph Messaging["Messaging"]
+            Kafka[Kafka]
+        end
+        subgraph Cache["Caching"]
+            Redis[(Redis)]
+        end
+    end
+
+    Client --> CDN
+    Gateway --> AuthSvc
+    Gateway --> UserSvc
+    Gateway --> ProductSvc
+    Gateway --> OrderSvc
+    UserSvc --> UserDB
+    UserSvc --> Redis
+    ProductSvc --> ProductDB
+    OrderSvc --> OrderDB
+    OrderSvc --> Kafka
+    Kafka --> NotifSvc
+\`\`\`
+
+## Styling Subgraphs
+
+### Using classDef
+
+Apply classes to subgraph container backgrounds and borders:
+
+\`\`\`
+flowchart TB
+    subgraph frontend["Frontend"]:::feStyle
+        A[React]
+        B[Next.js]
+    end
+    subgraph backend["Backend"]:::beStyle
+        C[Node.js]
+        D[(PostgreSQL)]
+    end
+
+    A --> C
+    B --> C
+    C --> D
+
+    classDef feStyle fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+    classDef beStyle fill:#dcfce7,stroke:#22c55e,stroke-width:2px,color:#14532d
+\`\`\`
+
+The \`:::className\` syntax attaches a class to the subgraph container itself, letting you visually distinguish groups by color.
+
+### Styling Individual Nodes Inside Subgraphs
+
+Nodes inside subgraphs are styled just like any other node:
+
+\`\`\`
+flowchart TD
+    subgraph prod["Production"]
+        A[Web Server]:::critical
+        B[(Primary DB)]:::critical
+    end
+    subgraph standby["Standby"]
+        C[Replica Server]
+        D[(Replica DB)]
+    end
+    A -->|replicates| C
+    B -->|replicates| D
+
+    classDef critical fill:#fef2f2,stroke:#ef4444,stroke-width:2px
+\`\`\`
+
+### Theme-Aware Subgraph Colors
+
+If your diagrams are embedded on a site with light/dark mode, use Mermaid's theme variables instead of hard-coded colors so they adapt automatically:
+
+\`\`\`
+%%{init: {'theme': 'base', 'themeVariables': {
+    'clusterBkg': '#f0f9ff',
+    'clusterBorder': '#0ea5e9',
+    'titleColor': '#0c4a6e'
+}}}%%
+flowchart TB
+    subgraph A["Service Group A"]
+        Node1[Service 1]
+        Node2[Service 2]
+    end
+    subgraph B["Service Group B"]
+        Node3[Service 3]
+    end
+    A --> B
+\`\`\`
+
+The \`clusterBkg\` and \`clusterBorder\` variables control all subgraph containers globally.
+
+## Subgraph Gotchas and Common Mistakes
+
+### 1. Missing \`end\` keyword
+
+Every \`subgraph\` must have a matching \`end\`. Forgetting it causes a parse error:
+
+\`\`\`
+%% WRONG — missing end
+flowchart TD
+    subgraph A
+        Node1 --> Node2
+
+subgraph B
+    Node3
+end
+\`\`\`
+
+\`\`\`
+%% CORRECT
+flowchart TD
+    subgraph A
+        Node1 --> Node2
+    end
+    subgraph B
+        Node3
+    end
+\`\`\`
+
+### 2. Node IDs Must Be Globally Unique
+
+Even if two nodes are in different subgraphs, they share the same namespace. \`A\` inside "Frontend" and \`A\` inside "Backend" is the **same node**:
+
+\`\`\`
+%% WRONG — both subgraphs share node "A"
+flowchart TD
+    subgraph Frontend
+        A[React] --> B[Redux]
+    end
+    subgraph Backend
+        A[Express] --> C[(DB)]
+    end
+\`\`\`
+
+\`\`\`
+%% CORRECT — unique IDs
+flowchart TD
+    subgraph Frontend
+        feReact[React] --> feRedux[Redux]
+    end
+    subgraph Backend
+        beExpress[Express] --> beDB[(DB)]
+    end
+\`\`\`
+
+### 3. Connecting to a Subgraph ID vs. a Node ID
+
+\`\`\`
+flowchart LR
+    X[External] --> myGroup   %% Edge to the subgraph container
+    X[External] --> A         %% Edge to node A (which may be inside a subgraph)
+
+    subgraph myGroup
+        A[Node A] --> B[Node B]
+    end
+\`\`\`
+
+Both are valid but produce different visual results. Arrow-to-container edges touch the container boundary; arrow-to-node edges touch the specific node.
+
+### 4. Direction Inside Subgraphs Requires \`flowchart\`, Not \`graph\`
+
+Per-subgraph direction only works with the \`flowchart\` keyword, not the older \`graph\` keyword:
+
+\`\`\`
+%% WORKS
+flowchart TB
+    subgraph A
+        direction LR
+        X --> Y
+    end
+
+%% DOES NOT WORK (older syntax)
+graph TB
+    subgraph A
+        direction LR
+        X --> Y
+    end
+\`\`\`
+
+## When to Use Subgraphs
+
+**Use subgraphs when:**
+- Your diagram has **6+ nodes** and they form natural groups
+- You're documenting a **layered architecture** (presentation / application / data)
+- You need to show **service ownership** (team A owns these services, team B owns those)
+- Your diagram represents a **cloud architecture** with regions, VPCs, and subnets
+- You're showing **phase groupings** in a pipeline (build, test, deploy)
+
+**Don't use subgraphs when:**
+- Your diagram is simple enough to read without grouping
+- You're adding subgraphs just for visual variety — they should reflect real structural relationships
+- The nesting depth exceeds 3 levels — split the diagram instead
+
+## Subgraphs vs. Separate Diagrams
+
+A common question: should you group with a subgraph, or create a separate diagram for each section?
+
+**Use subgraphs when:** The groups need to show how they connect. A microservices diagram where you want to see frontend ↔ backend ↔ database relationships benefits from showing all three in one diagram with subgraph grouping.
+
+**Use separate diagrams when:** Each section is complex enough to deserve its own diagram. A detailed database schema doesn't belong in the same diagram as a request flow. Link between them with text references or documentation navigation.
+
+## Complete Reference: Subgraph Syntax
+
+\`\`\`
+flowchart [direction]
+    %% Basic subgraph
+    subgraph id["Title"]
+        nodes...
+    end
+
+    %% Subgraph with per-group direction
+    subgraph id2["Title 2"]
+        direction LR
+        nodes...
+    end
+
+    %% Nested subgraph
+    subgraph outer["Outer"]
+        subgraph inner["Inner"]
+            nodes...
+        end
+    end
+
+    %% Styled subgraph
+    subgraph styled["Styled Group"]:::myClass
+        nodes...
+    end
+
+    %% Edge to subgraph (touches container boundary)
+    externalNode --> id
+
+    %% Edge between subgraphs
+    id --> id2
+
+    classDef myClass fill:#fef3c7,stroke:#d97706
+\`\`\`
+
+## Conclusion
+
+Subgraphs transform flat, cluttered flowcharts into structured architecture diagrams. They're the bridge between "a bunch of nodes" and "a readable system overview." Master the basics — grouping nodes, connecting subgraphs, and using per-group directions — and your Mermaid diagrams will communicate architectures that anyone on your team can understand at a glance.
+
+Start with a single subgraph in your next diagram to group related services, and build from there.
+
+[Try subgraphs in our free Mermaid Live Editor →](/)
 `,
   },
   {
