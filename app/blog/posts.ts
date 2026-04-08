@@ -7119,4 +7119,271 @@ Start with a \`docs/\` folder in your next project, add a few Mermaid diagrams, 
 [Try Mermaid diagrams in our free online editor →](/)
 `
   },
+  },
+  {
+    slug: "mermaid-in-gitlab",
+    title: "How to Use Mermaid.js Diagrams in GitLab: Complete Guide",
+    description: "Integrate Mermaid.js diagrams into your GitLab Markdown files, wikis, issues, and merge requests. Learn native support, configuration, and best practices for developers.",
+    date: "2026-03-31",
+    keywords: ["mermaid gitlab", "gitlab diagrams", "mermaid in gitlab", "gitlab mermaid support", "gitlab markdown diagrams", "mermaid documentation gitlab"],
+    content: `
+## Enhance Your GitLab Documentation with Mermaid.js Diagrams
+
+GitLab is a powerful DevOps platform, and effective documentation separates good teams from great ones. Integrating **Mermaid.js diagrams** into GitLab lets you create clear, maintainable, version-controlled visuals directly alongside your code.
+
+Whether you're mapping CI/CD pipelines, API flows, user journeys, or system architectures — Mermaid renders rich diagrams from plain text. Your diagrams live in the repo, update in the same merge request as the code, and are reviewable by the whole team.
+
+## GitLab's Native Mermaid.js Support
+
+GitLab provides built-in Mermaid.js support in its Markdown renderer. No plugins, no extensions, no admin configuration needed. Just use a mermaid code block.
+
+**Mermaid diagrams render in:**
+- Markdown files: \`README.md\`, \`CONTRIBUTING.md\`, \`docs/*.md\`
+- Project and group wikis
+- Issues and epics (descriptions and comments)
+- Merge request descriptions and comments
+- Snippets
+
+## Your First Mermaid Diagram in GitLab
+
+Wrap your Mermaid syntax in a fenced code block with \`mermaid\` as the language identifier:
+
+\`\`\`mermaid
+graph TD
+    A[Code Push] --> B(Run Tests)
+    B --> C{Pass?}
+    C -- Yes --> D(Deploy to Staging)
+    C -- No --> E[Notify Developer]
+    D --> F[Manual Review]
+    F --> G(Deploy to Production)
+\`\`\`
+
+GitLab renders this inline on save — no external tools needed.
+
+## Practical Diagram Examples for GitLab Teams
+
+### CI/CD Pipeline Flowchart
+
+\`\`\`mermaid
+graph TD
+    A[Code Push] --> B(Unit Tests)
+    B --> C{Tests Pass?}
+    C -- Yes --> D(Build Docker Image)
+    C -- No --> E[Notify Developer]
+    D --> F(Push to Registry)
+    F --> G(Deploy to Staging)
+    G --> H{Staging OK?}
+    H -- Yes --> I[Manual Approval]
+    H -- No --> E
+    I --> J(Deploy to Production)
+\`\`\`
+
+### API Sequence Diagram
+
+\`\`\`mermaid
+sequenceDiagram
+    autonumber
+    actor User
+    participant Frontend
+    participant API
+    participant DB
+
+    User->>Frontend: Register (email, password)
+    Frontend->>API: POST /register
+    API->>DB: INSERT new user
+    DB-->>API: User ID
+    API-->>Frontend: 201 Created
+    Frontend-->>User: Success
+\`\`\`
+
+### Database ER Diagram
+
+\`\`\`mermaid
+erDiagram
+    USER ||--o{ POST : writes
+    POST ||--o{ COMMENT : has
+    USER {
+        int id PK
+        string username UK
+        string email
+    }
+    POST {
+        int id PK
+        string title
+        int author_id FK
+        datetime published_at
+    }
+    COMMENT {
+        int id PK
+        text body
+        int post_id FK
+        int author_id FK
+    }
+\`\`\`
+
+### Project Timeline (Gantt)
+
+\`\`\`mermaid
+gantt
+    title Feature Development Schedule
+    dateFormat YYYY-MM-DD
+    section Backend
+    API Endpoints  :2026-04-01, 7d
+    DB Integration :after API Endpoints, 5d
+    section Frontend
+    UI Components  :2026-04-05, 6d
+    section Testing
+    QA             :crit, 2026-04-14, 5d
+    Release        :milestone, 2026-04-20, 0d
+\`\`\`
+
+## Best Practices
+
+1. **Add a title** — makes every diagram self-explanatory
+2. **One diagram, one concept** — break complex systems into multiple focused diagrams
+3. **Update in the same MR** — diagram changes should accompany code changes
+4. **Add a text summary** — helps accessibility and readers using screen readers
+5. **Validate syntax first** — use [MermaidEditor.lol](https://mermaideditor.lol) before committing
+
+## Troubleshooting
+
+**Diagram not rendering?**
+- Confirm the code fence language is \`mermaid\` (not \`js\` or \`markdown\`)
+- Check for syntax errors — Mermaid is strict about colons, arrows, and brackets
+- Use an [online Mermaid editor](https://mermaideditor.lol) to isolate the problem quickly
+
+**Diagram looks different in GitLab vs the editor?**
+- GitLab applies its own CSS theme — this is expected and ensures consistency
+- GitLab may run a slightly older Mermaid version; avoid bleeding-edge syntax
+
+## Conclusion
+
+Mermaid.js is a first-class citizen in GitLab Flavored Markdown. Every diagram you write is version-controlled, reviewable in MRs, and renders beautifully without external tools. Start documenting your CI/CD pipelines, API flows, and database schemas as code — your team will thank you.
+
+[Practice your Mermaid syntax in our free online editor →](/)
+`
+  },
+  {
+    slug: "mermaid-js-in-confluence",
+    title: "How to Add Mermaid.js Diagrams to Confluence",
+    description: "Learn how to embed Mermaid.js diagrams in Confluence using macros and third-party apps. Step-by-step instructions and real-world examples for technical teams.",
+    date: "2026-04-03",
+    keywords: ["mermaid confluence", "confluence diagrams", "mermaid.js confluence", "diagrams as code confluence", "confluence mermaid macro"],
+    content: `
+## Why Use Mermaid.js in Confluence?
+
+Confluence is one of the most widely used documentation platforms in enterprise teams. Its built-in diagramming tools (Gliffy, Draw.io) create binary files that are hard to version-control, diff, or update without reopening a visual editor.
+
+**Mermaid.js changes that.** Write plain text, get a rendered diagram. Updates take seconds, not minutes. And because the source is text, you can copy-paste it anywhere — GitHub, Notion, VS Code, your docs site.
+
+This guide covers every method to add Mermaid diagrams to Confluence.
+
+## Method 1: Marketplace App (Confluence Cloud — Easiest)
+
+For **Confluence Cloud**, the fastest path is a marketplace app. Search for "Mermaid" in the Atlassian Marketplace — several free and paid options are available.
+
+**Installation:**
+1. Go to **Confluence Settings → Find new apps**
+2. Search for "Mermaid Diagrams" or "Markdown Macro"
+3. Install your chosen app
+4. On any page, insert \`/mermaid\` or \`{mermaid}\` macro
+5. Paste your Mermaid syntax
+6. Save — the diagram renders inline
+
+## Method 2: HTML Macro (Data Center / Server)
+
+For **Confluence Data Center or Server**, use the **HTML Macro** (if your admin has enabled it). This loads Mermaid.js via CDN client-side.
+
+\`\`\`html
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<div class="mermaid">
+graph TD
+    A[Product Backlog] --> B[Sprint Planning]
+    B --> C[Sprint Execution]
+    C --> D[Sprint Review]
+    D --> E[Retrospective]
+    E --> B
+</div>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+\`\`\`
+
+> The HTML macro must be enabled by a Confluence administrator.
+
+## Method 3: Export as Image (Universal Fallback)
+
+Works in every Confluence version, no admin permission needed:
+
+1. Build your diagram at [MermaidEditor.lol](https://mermaideditor.lol)
+2. Export as **PNG** or **SVG**
+3. Upload the image to Confluence
+4. Add a collapsible code block with the raw Mermaid source for future edits
+
+This gives you a visual diagram now, with the source preserved for later.
+
+## Real-World Examples
+
+### System Architecture
+
+\`\`\`mermaid
+graph TB
+    subgraph Cloud
+        LB[Load Balancer]
+        subgraph App Tier
+            A1[API Server 1]
+            A2[API Server 2]
+        end
+        subgraph Data Tier
+            DB[(Primary DB)]
+            CACHE[Redis]
+        end
+    end
+    USERS[Users] --> LB
+    LB --> A1 & A2
+    A1 & A2 --> DB & CACHE
+\`\`\`
+
+### Incident Response Flow
+
+\`\`\`mermaid
+graph TD
+    ALERT[Alert Triggered] --> SEV{Severity?}
+    SEV -- P1/P2 --> PAGE[Page On-Call]
+    SEV -- P3/P4 --> TICKET[Create Ticket]
+    PAGE --> ACK[Acknowledge 15min]
+    ACK --> INV[Investigate]
+    INV --> RES{Resolved?}
+    RES -- Yes --> PIR[Post-Incident Review]
+    RES -- No --> ESC[Escalate to Lead]
+    ESC --> INV
+    PIR --> RUNBOOK[Update Runbook]
+\`\`\`
+
+### Agile Sprint States
+
+\`\`\`mermaid
+stateDiagram-v2
+    [*] --> Backlog
+    Backlog --> InProgress : Sprint Start
+    InProgress --> InReview : Dev Complete
+    InReview --> Done : Approved
+    InReview --> InProgress : Changes Requested
+    Done --> [*]
+\`\`\`
+
+## Tips for Teams
+
+- **Create a Confluence template** with placeholder Mermaid diagrams for common doc types (architecture, runbook, RFC)
+- **Always include source** — even when using screenshots, add the Mermaid code in a collapsed section
+- **Name pages clearly** — "Architecture: Payment Service v2" beats "Payment Diagram"
+- **Update diagrams in the same session** as the system changes they describe
+
+## Conclusion
+
+Mermaid.js brings diagrams-as-code to Confluence. Whether you use a marketplace macro, the HTML macro, or the screenshot workflow, your team can have clean, maintainable technical diagrams in the knowledge base.
+
+The real win: diagrams become living documentation that evolves with your codebase.
+
+[Create and export Mermaid diagrams for free →](/)
+`
+  },
 ];
