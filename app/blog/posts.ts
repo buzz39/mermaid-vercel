@@ -31,7 +31,7 @@ In this guide you'll learn the complete Mermaid timeline syntax, see multiple re
 
 The timeline diagram type was introduced in Mermaid v9.4. The core structure is straightforward:
 
-```mermaid
+\`\`\`mermaid
 timeline
     title History of Mermaid.js
     2014 : Knut Sveidqvist releases Mermaid on GitHub
@@ -40,7 +40,7 @@ timeline
     2022 : GitHub natively renders Mermaid in Markdown
     2023 : Mermaid v10 released with major improvements
     2024 : Over 60,000 GitHub stars
-```
+\`\`\`
 
 Breaking down the syntax:
 - **\`timeline\`** — declares the diagram type
@@ -53,7 +53,7 @@ Multiple events can share the same time period by adding more lines with the sam
 
 One of the most useful features is grouping multiple events under a single time label:
 
-```mermaid
+\`\`\`mermaid
 timeline
     title 2025 Product Roadmap
     Q1 : Launch beta
@@ -65,7 +65,7 @@ timeline
         : Paid tier introduced
     Q4 : Enterprise plan
         : Partner integrations
-```
+\`\`\`
 
 Each additional \`: event\` line (indented, without repeating the period) is added to that period's column. This keeps related events grouped without cluttering the timeline axis.
 
@@ -73,7 +73,7 @@ Each additional \`: event\` line (indented, without repeating the period) is add
 
 For longer timelines, you can organise periods into named sections. Each section gets its own colour in the rendered diagram:
 
-```mermaid
+\`\`\`mermaid
 timeline
     title Company Growth Timeline
     section Early Stage
@@ -92,7 +92,7 @@ timeline
              : 80-person team
         2025 : International expansion
              : IPO preparation
-```
+\`\`\`
 
 Sections are declared with \`section Name\` and apply to all subsequent periods until another section is declared. They're great for separating phases of a project, company lifecycle stages, or sprint cycles.
 
@@ -100,7 +100,7 @@ Sections are declared with \`section Name\` and apply to all subsequent periods 
 
 Here's a mermaid timeline diagram documenting a product's version history — a common use case for developer docs and README files:
 
-```mermaid
+\`\`\`mermaid
 timeline
     title My App — Release History
     section Alpha
@@ -120,7 +120,7 @@ timeline
         v1.1 : Team collaboration features
         v2.0 : Real-time sync
              : Mobile app (iOS + Android)
-```
+\`\`\`
 
 Because the source is plain text, this lives right in your repo. When you ship v2.1, you add two lines — no image exports needed.
 
@@ -128,7 +128,7 @@ Because the source is plain text, this lives right in your repo. When you ship v
 
 Timeline diagrams also work well for sprint planning or retrospective documentation:
 
-```mermaid
+\`\`\`mermaid
 timeline
     title Q1 Sprint Overview
     section Sprint 1 (Jan)
@@ -148,13 +148,13 @@ timeline
         Week 10 : Performance profiling
         Week 11 : Load testing
         Week 12 : Q1 retrospective
-```
+\`\`\`
 
 ## Example: Historical Technology Timeline
 
 Mermaid timeline diagrams aren't just for software projects. They're equally useful for educational content, articles, and documentation that places events in historical context:
 
-```mermaid
+\`\`\`mermaid
 timeline
     title Key Moments in Web Development
     section Web 1.0
@@ -177,7 +177,7 @@ timeline
         2017 : WebAssembly becomes a W3C recommendation draft
         2020 : Deno 1.0 released
         2022 : Bun JavaScript runtime released
-```
+\`\`\`
 
 ## Embedding Timelines in Your Docs
 
@@ -185,14 +185,14 @@ Mermaid timeline diagrams render natively in **GitHub Markdown** (wrap in a \`me
 
 For GitHub specifically:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 timeline
     title My Project Milestones
     2024 : MVP shipped
     2025 : 1,000 users
-```
-```
+\`\`\`
+\`\`\`
 
 You can also try and iterate on your timeline syntax in the [Mermaid Live Editor](https://mermaideditor.lol) before committing — it gives instant visual feedback as you type, so you can see how sections and event groupings look before they go into your docs.
 
@@ -279,12 +279,12 @@ Think of it as **Markdown, but for diagrams**. Just as Markdown lets you write f
 
 Here's how simple it is. This text:
 
-```
+\`\`\`
 graph TD
     A[Write Code] --> B[Commit]
     B --> C[Push to GitHub]
     C --> D[Deploy]
-```
+\`\`\`
 
 Produces a clean flowchart showing a basic deployment pipeline. No mouse dragging, no alignment headaches — just text.
 
@@ -339,7 +339,7 @@ The fastest way to try Mermaid is with an online editor. You type on the left, s
 
 Include Mermaid in any HTML page:
 
-```html
+\`\`\`html
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true });
@@ -349,18 +349,18 @@ Include Mermaid in any HTML page:
 graph LR
     A --> B --> C
 </pre>
-```
+\`\`\`
 
 ### Option 3: Use in Markdown
 
 On platforms like GitHub, simply wrap your diagram in a mermaid code fence:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 graph TD
     A --> B
-```
-```
+\`\`\`
+\`\`\`
 
 GitHub will render it automatically — no plugins needed.
 
@@ -368,15 +368,15 @@ GitHub will render it automatically — no plugins needed.
 
 For programmatic use in Node.js or build tools:
 
-```bash
+\`\`\`bash
 npm install mermaid
-```
+\`\`\`
 
 ## Your First Flowchart
 
 Let's build a practical example — a user login flow:
 
-```
+\`\`\`
 graph TD
     Start([User visits site]) --> Check{Logged in?}
     Check -- Yes --> Dashboard[Show Dashboard]
@@ -386,7 +386,7 @@ graph TD
     Validate -- Yes --> Dashboard
     Validate -- No --> Error[Show Error]
     Error --> Login
-```
+\`\`\`
 
 This creates a complete login flow diagram with decision points, loops, and clear labels. Notice how readable the source text is — even without rendering, you can understand the flow.
 
@@ -448,11 +448,11 @@ Once you're comfortable with the basics, Mermaid has several advanced features t
 
 Mermaid supports five built-in themes: \`default\`, \`dark\`, \`forest\`, \`neutral\`, and \`base\`. You can switch themes per diagram:
 
-```
+\`\`\`
 %%{init: {'theme': 'dark'}}%%
 graph TD
     A[Dark themed] --> B[Diagram]
-```
+\`\`\`
 
 The \`base\` theme is fully customizable with CSS-like variables, letting you match your company's brand colours.
 
@@ -460,11 +460,11 @@ The \`base\` theme is fully customizable with CSS-like variables, letting you ma
 
 You can apply custom styles to specific nodes:
 
-```
+\`\`\`
 graph TD
     A[Normal]:::default --> B[Critical]:::alert
     classDef alert fill:#ff6b6b,color:white,stroke:#c0392b
-```
+\`\`\`
 
 This is useful for highlighting error states, critical paths, or key components.
 
@@ -472,7 +472,7 @@ This is useful for highlighting error states, critical paths, or key components.
 
 When diagrams get larger, subgraphs keep them organised:
 
-```
+\`\`\`
 flowchart TB
     subgraph Frontend
         React[React App] --> Redux[State Management]
@@ -481,7 +481,7 @@ flowchart TB
         API[REST API] --> DB[(PostgreSQL)]
     end
     Redux --> API
-```
+\`\`\`
 
 Subgraphs act like visual containers that group related nodes together.
 
@@ -547,11 +547,11 @@ In this guide, you'll learn every aspect of Mermaid flowcharts — from basic sy
 
 Every Mermaid flowchart starts with a direction declaration:
 
-```
+\`\`\`
 graph TD
     A[Start] --> B[Process]
     B --> C[End]
-```
+\`\`\`
 
 The direction keyword controls layout:
 
@@ -562,16 +562,16 @@ The direction keyword controls layout:
 
 You can also use \`flowchart\` instead of \`graph\` for the newer syntax with more features:
 
-```
+\`\`\`
 flowchart LR
     A[Start] --> B[Process] --> C[End]
-```
+\`\`\`
 
 ## Node Shapes
 
 Mermaid provides many node shapes to convey meaning visually:
 
-```
+\`\`\`
 flowchart TD
     A[Rectangle - Default]
     B(Rounded Rectangle)
@@ -586,7 +586,7 @@ flowchart TD
     K[\\Parallelogram Alt\\]
     L[/Trapezoid\\]
     M[\\Trapezoid Alt/]
-```
+\`\`\`
 
 ### When to Use Each Shape
 
@@ -602,7 +602,7 @@ flowchart TD
 
 Edges (arrows and lines) are how you connect nodes. Mermaid offers many styles:
 
-```
+\`\`\`
 flowchart LR
     A -->|Arrow| B
     C ---|Line| D
@@ -610,18 +610,18 @@ flowchart LR
     G ==>|Thick arrow| H
     I --o|Circle end| J
     K --x|Cross end| L
-```
+\`\`\`
 
 ### Edge Length
 
 You can control edge length by adding extra dashes:
 
-```
+\`\`\`
 flowchart TD
     A --> B
     A ----> C
     A -------> D
-```
+\`\`\`
 
 Longer edges push nodes further apart, which helps with layout.
 
@@ -629,12 +629,12 @@ Longer edges push nodes further apart, which helps with layout.
 
 Add labels to describe the relationship:
 
-```
+\`\`\`
 flowchart TD
     A{Is it raining?}
     A -->|Yes| B[Take umbrella]
     A -->|No| C[Enjoy the sun]
-```
+\`\`\`
 
 You can also use this syntax: \`A -- "label text" --> B\`
 
@@ -642,7 +642,7 @@ You can also use this syntax: \`A -- "label text" --> B\`
 
 Let's build a real-world flowchart — a CI/CD deployment pipeline:
 
-```
+\`\`\`
 flowchart LR
     A([Developer pushes code]) --> B[Run Linter]
     B --> C[Run Unit Tests]
@@ -659,7 +659,7 @@ flowchart LR
     L --> M{E2E pass?}
     M -->|Yes| J
     M -->|No| F
-```
+\`\`\`
 
 This single text block produces a complete CI/CD visualization that's easy to update when the process changes.
 
@@ -667,7 +667,7 @@ This single text block produces a complete CI/CD visualization that's easy to up
 
 Subgraphs let you group nodes into labeled sections:
 
-```
+\`\`\`
 flowchart TB
     subgraph Frontend
         A[React App] --> B[API Client]
@@ -677,13 +677,13 @@ flowchart TB
         D --> E[(PostgreSQL)]
     end
     B --> C
-```
+\`\`\`
 
 ### Nested Subgraphs
 
 You can nest subgraphs for complex architectures:
 
-```
+\`\`\`
 flowchart TB
     subgraph Cloud["AWS Cloud"]
         subgraph VPC["VPC"]
@@ -697,13 +697,13 @@ flowchart TB
         end
     end
     User([User]) --> ALB --> ECS --> RDS
-```
+\`\`\`
 
 ### Subgraph Direction
 
 Each subgraph can have its own direction:
 
-```
+\`\`\`
 flowchart LR
     subgraph TOP
         direction TB
@@ -714,7 +714,7 @@ flowchart LR
         C --> D
     end
     TOP --> BOTTOM
-```
+\`\`\`
 
 ## Styling Your Flowcharts
 
@@ -722,27 +722,27 @@ flowchart LR
 
 Apply CSS-like styles directly to nodes:
 
-```
+\`\`\`
 flowchart LR
     A[Critical]:::critical --> B[Normal] --> C[Success]:::success
 
     classDef critical fill:#ff6b6b,stroke:#c0392b,color:white
     classDef success fill:#51cf66,stroke:#2f9e44,color:white
-```
+\`\`\`
 
 ### Style by Node ID
 
-```
+\`\`\`
 flowchart TD
     A[Important Node]
     style A fill:#f9f,stroke:#333,stroke-width:4px
-```
+\`\`\`
 
 ### Common Style Patterns
 
 Here's a reusable set of class definitions:
 
-```
+\`\`\`
 flowchart TD
     A[Start]:::start --> B[Process]:::process --> C{Decision}:::decision
     C -->|Yes| D[Success]:::success
@@ -753,19 +753,19 @@ flowchart TD
     classDef decision fill:#faf089,stroke:#d69e2e
     classDef success fill:#c6f6d5,stroke:#38a169
     classDef error fill:#fed7d7,stroke:#e53e3e
-```
+\`\`\`
 
 ## Advanced Techniques
 
 ### Multiple Links from One Node
 
-```
+\`\`\`
 flowchart TD
     A[Router] --> B[Handler 1]
     A --> C[Handler 2]
     A --> D[Handler 3]
     B & C & D --> E[Response]
-```
+\`\`\`
 
 The \`&\` operator connects multiple nodes at once.
 
@@ -773,23 +773,23 @@ The \`&\` operator connects multiple nodes at once.
 
 Use quotes for special characters:
 
-```
+\`\`\`
 flowchart LR
     A["Node with (parentheses)"] --> B["Contains {braces}"]
     B --> C["Has #quot;quotes#quot;"]
-```
+\`\`\`
 
 ### Comments
 
 Add comments with \`%%\`:
 
-```
+\`\`\`
 flowchart TD
     %% This is a comment
     A --> B
     %% Another comment
     B --> C
-```
+\`\`\`
 
 ## Best Practices for Flowcharts
 
@@ -825,7 +825,7 @@ flowchart TD
 
 Here's a flowchart showing how a web application handles API errors:
 
-```
+\`\`\`
 flowchart TD
     Request([API Request]) --> Auth{Authenticated?}
     Auth -->|No| Return401[Return 401 Unauthorized]
@@ -839,13 +839,13 @@ flowchart TD
     Retry -->|Yes| DBCall
     Retry -->|No| Return500[Return 500 Server Error]
     Return401 & Return400 & Return200 & Return500 --> Log[Log to Monitoring]
-```
+\`\`\`
 
 This pattern is commonly used in API documentation to show developers exactly how errors propagate through the system.
 
 ## Practical Example: User Registration Flow
 
-```
+\`\`\`
 flowchart LR
     Start([User clicks Sign Up]) --> Form[Show Registration Form]
     Form --> Fill[User fills details]
@@ -860,7 +860,7 @@ flowchart LR
     CreateUser --> SendEmail[Send verification email]
     SendEmail --> Confirm[User clicks verify link]
     Confirm --> Active([Account active])
-```
+\`\`\`
 
 ## When to Use Flowcharts vs Other Diagram Types
 
@@ -927,11 +927,11 @@ Mermaid makes sequence diagrams easy to write and maintain — no drawing tools 
 
 ## Basic Syntax
 
-```
+\`\`\`
 sequenceDiagram
     Alice->>Bob: Hello Bob, how are you?
     Bob-->>Alice: Great!
-```
+\`\`\`
 
 The key elements:
 - **Participants** are automatically created when first mentioned
@@ -943,7 +943,7 @@ The key elements:
 
 Mermaid supports several arrow types for different message semantics:
 
-```
+\`\`\`
 sequenceDiagram
     A->>B: Solid line with arrowhead (sync call)
     B-->>A: Dotted line with arrowhead (response)
@@ -951,13 +951,13 @@ sequenceDiagram
     B--)A: Dotted line with open arrow (async response)
     A-xB: Solid line with cross (lost message)
     B--xA: Dotted line with cross
-```
+\`\`\`
 
 ## Defining Participants
 
 You can explicitly declare participants to control order and add aliases:
 
-```
+\`\`\`
 sequenceDiagram
     participant U as User
     participant F as Frontend
@@ -970,33 +970,33 @@ sequenceDiagram
     D-->>A: User record
     A-->>F: JWT token
     F-->>U: Redirect to dashboard
-```
+\`\`\`
 
 Use \`actor\` instead of \`participant\` to show a stick figure:
 
-```
+\`\`\`
 sequenceDiagram
     actor User
     participant API
     User->>API: Request
     API-->>User: Response
-```
+\`\`\`
 
 ## Activation Bars
 
 Activation bars show when a participant is actively processing:
 
-```
+\`\`\`
 sequenceDiagram
     Client->>+Server: HTTP Request
     Server->>+Database: Query
     Database-->>-Server: Results
     Server-->>-Client: HTTP Response
-```
+\`\`\`
 
 The \`+\` activates (starts the bar) and \`-\` deactivates (ends it). You can also use explicit syntax:
 
-```
+\`\`\`
 sequenceDiagram
     Client->>Server: Request
     activate Server
@@ -1006,11 +1006,11 @@ sequenceDiagram
     deactivate Database
     Server-->>Client: Response
     deactivate Server
-```
+\`\`\`
 
 ## Real-World Example: OAuth 2.0 Flow
 
-```
+\`\`\`
 sequenceDiagram
     actor User
     participant App as Client App
@@ -1027,13 +1027,13 @@ sequenceDiagram
     App->>+API: GET /user (Bearer token)
     API-->>-App: User profile data
     App-->>User: Show profile
-```
+\`\`\`
 
 ## Loops
 
 Show repeated interactions:
 
-```
+\`\`\`
 sequenceDiagram
     participant Client
     participant Server
@@ -1044,13 +1044,13 @@ sequenceDiagram
         Server-->>Client: Pong
     end
     Client->>Server: Disconnect
-```
+\`\`\`
 
 ## Alt / Else Blocks (Conditionals)
 
 Show branching logic:
 
-```
+\`\`\`
 sequenceDiagram
     participant User
     participant API
@@ -1065,13 +1065,13 @@ sequenceDiagram
         DB-->>API: Not found
         API-->>User: 401 Unauthorized
     end
-```
+\`\`\`
 
 ## Optional Blocks
 
 The \`opt\` block shows something that may or may not happen:
 
-```
+\`\`\`
 sequenceDiagram
     participant User
     participant Cart
@@ -1086,13 +1086,13 @@ sequenceDiagram
     Cart->>Payment: Process payment
     Payment-->>Cart: Confirmation
     Cart-->>User: Order complete
-```
+\`\`\`
 
 ## Parallel (Par) Blocks
 
 Show things happening simultaneously:
 
-```
+\`\`\`
 sequenceDiagram
     participant App
     participant UserSvc as User Service
@@ -1108,13 +1108,13 @@ sequenceDiagram
     UserSvc-->>App: User data
     OrderSvc-->>App: Order ID
     NotifSvc-->>App: Sent OK
-```
+\`\`\`
 
 ## Notes
 
 Add notes for extra context:
 
-```
+\`\`\`
 sequenceDiagram
     participant C as Client
     participant S as Server
@@ -1128,7 +1128,7 @@ sequenceDiagram
     C->>S: GET /api/data
     Note right of S: Validate token, query DB
     S-->>C: 200 OK + JSON
-```
+\`\`\`
 
 Note positions: \`Note left of\`, \`Note right of\`, \`Note over A,B\` (spans multiple participants).
 
@@ -1136,7 +1136,7 @@ Note positions: \`Note left of\`, \`Note right of\`, \`Note over A,B\` (spans mu
 
 Highlight critical sections:
 
-```
+\`\`\`
 sequenceDiagram
     participant App
     participant DB
@@ -1150,24 +1150,24 @@ sequenceDiagram
     end
     App->>DB: COMMIT
     DB-->>App: OK
-```
+\`\`\`
 
 ## Autonumber
 
 Automatically number each message for easy reference:
 
-```
+\`\`\`
 sequenceDiagram
     autonumber
     Alice->>Bob: Request
     Bob->>Charlie: Forward
     Charlie-->>Bob: Response
     Bob-->>Alice: Response
-```
+\`\`\`
 
 ## Real-World Example: Microservice Order Flow
 
-```
+\`\`\`
 sequenceDiagram
     autonumber
     actor Customer
@@ -1195,7 +1195,7 @@ sequenceDiagram
         OS-->>GW: Payment failed (402)
         GW-->>Customer: Error message
     end
-```
+\`\`\`
 
 ## Best Practices
 
@@ -1217,7 +1217,7 @@ sequenceDiagram
 
 WebSocket flows are perfect for sequence diagrams because they show the full connection lifecycle:
 
-```
+\`\`\`
 sequenceDiagram
     participant Client
     participant Server
@@ -1241,11 +1241,11 @@ sequenceDiagram
     Client->>Server: Close connection
     Server-->>Client: Close acknowledgement
     Note over Client,Server: Connection terminated
-```
+\`\`\`
 
 ## Real-World Example: File Upload with Progress
 
-```
+\`\`\`
 sequenceDiagram
     autonumber
     actor User
@@ -1268,7 +1268,7 @@ sequenceDiagram
     S3-->>API: Complete
     API-->>App: File URL
     App-->>User: Upload complete!
-```
+\`\`\`
 
 ## Sequence Diagrams for Documentation
 
@@ -1286,7 +1286,7 @@ The text-based nature of Mermaid means these diagrams stay up-to-date with the c
 
 You can customise the look of sequence diagrams with the init directive:
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {
     'actorBkg': '#4f46e5',
     'actorTextColor': '#fff',
@@ -1298,7 +1298,7 @@ sequenceDiagram
     participant B as Service B
     A->>B: Request
     B-->>A: Response
-```
+\`\`\`
 
 This lets you match your documentation's colour scheme or highlight specific elements.
 
@@ -1349,7 +1349,7 @@ This is perfect for README files, design docs, and technical proposals where you
 
 ## Basic Gantt Syntax
 
-```
+\`\`\`
 gantt
     title My Project Plan
     dateFormat YYYY-MM-DD
@@ -1365,7 +1365,7 @@ gantt
     section Testing
     Integration testing     :c1, after b1, 5d
     UAT                     :c2, after c1, 3d
-```
+\`\`\`
 
 ### Key Elements
 
@@ -1378,7 +1378,7 @@ gantt
 
 Tasks can be defined in several ways:
 
-```
+\`\`\`
 gantt
     dateFormat YYYY-MM-DD
 
@@ -1387,7 +1387,7 @@ gantt
     With duration     :t2, 2025-03-01, 10d
     After dependency  :t3, after t1, 5d
     No ID needed      :2025-03-15, 7d
-```
+\`\`\`
 
 ### Duration Units
 
@@ -1400,7 +1400,7 @@ gantt
 
 Tasks can have different visual states:
 
-```
+\`\`\`
 gantt
     dateFormat YYYY-MM-DD
 
@@ -1410,7 +1410,7 @@ gantt
     Future task       :t3, after t2, 5d
     Critical task     :crit, t4, after t3, 3d
     Critical & active :crit, active, t5, after t4, 3d
-```
+\`\`\`
 
 - **\`done\`** — Shown as completed (usually gray)
 - **\`active\`** — Currently in progress (highlighted)
@@ -1421,7 +1421,7 @@ gantt
 
 Mark key dates with zero-duration milestones:
 
-```
+\`\`\`
 gantt
     dateFormat YYYY-MM-DD
 
@@ -1436,13 +1436,13 @@ gantt
     section Release
     Release prep          :r1, after m2, 3d
     Go live               :milestone, m3, after r1, 0d
-```
+\`\`\`
 
 ## Dependencies
 
 Tasks can depend on one or more previous tasks:
 
-```
+\`\`\`
 gantt
     dateFormat YYYY-MM-DD
 
@@ -1457,13 +1457,13 @@ gantt
 
     section QA
     Testing           :test, after fedev, 5d
-```
+\`\`\`
 
 Notice \`after api db\` — the task starts after BOTH \`api\` and \`db\` are complete.
 
 ## Practical Example: Software Release Plan
 
-```
+\`\`\`
 gantt
     title Q1 2025 Release Plan
     dateFormat YYYY-MM-DD
@@ -1495,7 +1495,7 @@ gantt
     Staging deployment      :stg, after pt sa, 2d
     UAT                     :uat, after stg, 5d
     Production deployment   :milestone, crit, prod, after uat, 0d
-```
+\`\`\`
 
 ## Date Formatting
 
@@ -1503,11 +1503,11 @@ gantt
 
 Control how Mermaid parses your dates:
 
-```
+\`\`\`
 gantt
     dateFormat DD-MM-YYYY
     task1 :01-03-2025, 10d
-```
+\`\`\`
 
 Common formats:
 - \`YYYY-MM-DD\` — ISO standard (recommended)
@@ -1518,14 +1518,14 @@ Common formats:
 
 Control how the timeline axis looks:
 
-```
+\`\`\`
 gantt
     dateFormat YYYY-MM-DD
     axisFormat %Y-%m-%d
 
     section Tasks
     Task 1 :2025-01-01, 30d
-```
+\`\`\`
 
 Common axis formats:
 - \`%Y-%m-%d\` — 2025-01-15
@@ -1537,7 +1537,7 @@ Common axis formats:
 
 Skip weekends or holidays:
 
-```
+\`\`\`
 gantt
     dateFormat YYYY-MM-DD
     excludes weekends
@@ -1545,20 +1545,20 @@ gantt
     section Development
     Task 1 :t1, 2025-03-03, 5d
     Task 2 :t2, after t1, 5d
-```
+\`\`\`
 
 With weekends excluded, a 5-day task truly means 5 business days.
 
 You can also exclude specific dates:
-```
+\`\`\`
 excludes weekends, 2025-12-25, 2025-12-26
-```
+\`\`\`
 
 ## Sections as Swim Lanes
 
 Use sections to organize by team, phase, or component:
 
-```
+\`\`\`
 gantt
     title Cross-Team Project
     dateFormat YYYY-MM-DD
@@ -1574,7 +1574,7 @@ gantt
     section Team Gamma
     Feature E    :g1, 2025-03-08, 14d
     Integration  :g2, after a2 b2 g1, 5d
-```
+\`\`\`
 
 ## Best Practices
 
@@ -1607,7 +1607,7 @@ Mermaid Gantt charts shine for **documentation** — embedding a project timelin
 
 Here's a practical Gantt chart for migrating from REST to GraphQL:
 
-```
+\`\`\`
 gantt
     title REST to GraphQL Migration
     dateFormat YYYY-MM-DD
@@ -1636,7 +1636,7 @@ gantt
     Remove REST endpoints          :c1, after m4, 5d
     Documentation update           :c2, after m4, 3d
     Final review                   :milestone, crit, cm, after c1 c2, 0d
-```
+\`\`\`
 
 This chart tells a complete story: research is done, implementation is in progress, and the critical migration phase is clearly marked.
 
@@ -1685,7 +1685,7 @@ The sweet spot: use your PM tool for execution, and export a simplified Mermaid 
 
 For teams that want to keep Gantt diagrams in sync with actual project data, consider generating Mermaid syntax programmatically:
 
-```javascript
+\`\`\`javascript
 function generateGantt(sprints) {
   let output = 'gantt\n    title Sprint Roadmap\n    dateFormat YYYY-MM-DD\n';
   for (const sprint of sprints) {
@@ -1696,7 +1696,7 @@ function generateGantt(sprints) {
   }
   return output;
 }
-```
+\`\`\`
 
 This pattern lets you pull data from your project management API and generate a fresh Mermaid Gantt chart automatically.
 
@@ -1722,7 +1722,7 @@ Mermaid lets you create class diagrams from text, making them perfect for docume
 
 ## Basic Class Syntax
 
-```
+\`\`\`
 classDiagram
     class Animal {
         +String name
@@ -1730,7 +1730,7 @@ classDiagram
         +makeSound() void
         +move(distance) void
     }
-```
+\`\`\`
 
 ### Visibility Modifiers
 
@@ -1740,7 +1740,7 @@ Mermaid follows UML conventions:
 - \`#\` Protected
 - \`~\` Package/Internal
 
-```
+\`\`\`
 classDiagram
     class User {
         +String username
@@ -1751,13 +1751,13 @@ classDiagram
         -hashPassword(raw) String
         #validateEmail() bool
     }
-```
+\`\`\`
 
 ## Relationships
 
 ### Inheritance (Generalization)
 
-```
+\`\`\`
 classDiagram
     Animal <|-- Dog
     Animal <|-- Cat
@@ -1776,11 +1776,11 @@ classDiagram
     class Bird {
         +fly() void
     }
-```
+\`\`\`
 
 ### All Relationship Types
 
-```
+\`\`\`
 classDiagram
     classA <|-- classB : Inheritance
     classC *-- classD : Composition
@@ -1789,7 +1789,7 @@ classDiagram
     classI -- classJ : Link
     classK ..> classL : Dependency
     classM ..|> classN : Realization
-```
+\`\`\`
 
 **When to use each:**
 - **Inheritance** (\`<|--\`): "is a" — Dog is an Animal
@@ -1803,12 +1803,12 @@ classDiagram
 
 Show how many instances relate:
 
-```
+\`\`\`
 classDiagram
     Customer "1" --> "*" Order : places
     Order "1" --> "1..*" OrderItem : contains
     OrderItem "*" --> "1" Product : references
-```
+\`\`\`
 
 Common multiplicities:
 - \`1\` — exactly one
@@ -1818,7 +1818,7 @@ Common multiplicities:
 
 ## Interfaces and Abstract Classes
 
-```
+\`\`\`
 classDiagram
     class IRepository {
         <<interface>>
@@ -1841,13 +1841,13 @@ classDiagram
 
     IRepository <|.. AbstractRepository
     AbstractRepository <|-- UserRepository
-```
+\`\`\`
 
 ### Annotations
 
 Use \`<<annotation>>\` for stereotypes:
 
-```
+\`\`\`
 classDiagram
     class PaymentService {
         <<service>>
@@ -1861,11 +1861,11 @@ classDiagram
         GREEN
         BLUE
     }
-```
+\`\`\`
 
 ## Practical Example: E-Commerce Domain Model
 
-```
+\`\`\`
 classDiagram
     class Customer {
         +String id
@@ -1924,11 +1924,11 @@ classDiagram
     Order "1" --> "1..*" OrderItem : contains
     Order --> OrderStatus
     OrderItem "*" --> "1" Product : references
-```
+\`\`\`
 
 ## Design Pattern: Repository Pattern
 
-```
+\`\`\`
 classDiagram
     class IRepository~T~ {
         <<interface>>
@@ -1966,13 +1966,13 @@ classDiagram
     IRepository~T~ <|.. UserRepository
     IRepository~T~ <|.. ProductRepository
     UserService --> UserRepository : uses
-```
+\`\`\`
 
 ## Generics
 
 Mermaid supports generic types with tilde syntax:
 
-```
+\`\`\`
 classDiagram
     class List~T~ {
         +add(item T) void
@@ -1983,13 +1983,13 @@ classDiagram
         +put(key K, value V) void
         +get(key K) V
     }
-```
+\`\`\`
 
 ## Namespaces
 
 Group related classes:
 
-```
+\`\`\`
 classDiagram
     namespace Domain {
         class User {
@@ -2009,11 +2009,11 @@ classDiagram
     }
     User --> Order
     Order ..> Database
-```
+\`\`\`
 
 ## Styling
 
-```
+\`\`\`
 classDiagram
     class Service {
         +process() void
@@ -2024,7 +2024,7 @@ classDiagram
 
     style Service fill:#e1f5fe,stroke:#0288d1
     style Entity fill:#f3e5f5,stroke:#7b1fa2
-```
+\`\`\`
 
 ## Best Practices
 
@@ -2048,7 +2048,7 @@ classDiagram
 
 Class diagrams are excellent for documenting design patterns in your codebase:
 
-```
+\`\`\`
 classDiagram
     class EventEmitter {
         -Map~String, Function[]~ listeners
@@ -2074,11 +2074,11 @@ classDiagram
     EventEmitter --> EmailNotifier : notifies
     EventEmitter --> InventoryTracker : notifies
     EventEmitter --> AnalyticsLogger : notifies
-```
+\`\`\`
 
 ## Real-World Example: Authentication System
 
-```
+\`\`\`
 classDiagram
     class AuthService {
         -TokenProvider tokenProvider
@@ -2123,7 +2123,7 @@ classDiagram
     AuthService --> TokenProvider
     AuthService --> PasswordHasher
     AuthService --> AuthResult : returns
-```
+\`\`\`
 
 This diagram communicates the authentication architecture at a glance — interfaces for testability, concrete implementations for production, and clear dependencies.
 
@@ -2144,7 +2144,7 @@ Mermaid class diagrams bring UML into your codebase. They're ideal for documenti
 
 Here's a complete class diagram for an e-commerce system showing real-world complexity:
 
-```
+\`\`\`
 classDiagram
     class Product {
         +String sku
@@ -2204,7 +2204,7 @@ classDiagram
     Customer "1" --> "1..*" Address : has
     Payment <|-- CreditCardPayment
     Payment <|-- PayPalPayment
-```
+\`\`\`
 
 This diagram communicates the entire order domain at a glance — entities, relationships, and the payment abstraction pattern.
 
@@ -2492,14 +2492,14 @@ This is a game-changer for documentation. Instead of maintaining separate image 
 
 Add a Mermaid diagram to any Markdown file (.md) by using a code fence with the \`mermaid\` language identifier:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 graph LR
     A[User] --> B[Frontend]
     B --> C[API]
     C --> D[(Database)]
-```
-```
+\`\`\`
+\`\`\`
 
 GitHub will render this as an interactive SVG diagram instead of showing the raw text.
 
@@ -2518,8 +2518,8 @@ Mermaid rendering works in:
 
 Every project should have an architecture diagram. Here's a typical web app:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 graph TB
     subgraph Client
         React[React SPA]
@@ -2539,15 +2539,15 @@ graph TB
     API --> Cache
     API --> DB
     API --> S3
-```
-```
+\`\`\`
+\`\`\`
 
 ### Contribution Workflow
 
 Help contributors understand your process:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 graph TD
     Fork([Fork the repo]) --> Clone[Clone locally]
     Clone --> Branch[Create feature branch]
@@ -2559,15 +2559,15 @@ graph TD
     PR --> Review{Code review}
     Review -->|Approved| Merge[Merge to main]
     Review -->|Changes requested| Code
-```
-```
+\`\`\`
+\`\`\`
 
 ### API Flow Documentation
 
 Document your API interactions:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 sequenceDiagram
     participant Client
     participant Gateway as API Gateway
@@ -2580,15 +2580,15 @@ sequenceDiagram
     User-->>Auth: User data
     Auth-->>Gateway: JWT token
     Gateway-->>Client: 200 OK + token
-```
-```
+\`\`\`
+\`\`\`
 
 ### Database Schema
 
 Document your data model:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 erDiagram
     USER ||--o{ POST : creates
     USER ||--o{ COMMENT : writes
@@ -2607,15 +2607,15 @@ erDiagram
         int author_id FK
         datetime published_at
     }
-```
-```
+\`\`\`
+\`\`\`
 
 ### Project Roadmap
 
 Show your planned timeline:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 gantt
     title Project Roadmap 2025
     dateFormat YYYY-MM-DD
@@ -2633,8 +2633,8 @@ gantt
     section v2.0
     New features     :2025-05-01, 2025-08-01
     v2.0 release     :milestone, 2025-08-01, 0d
-```
-```
+\`\`\`
+\`\`\`
 
 ## Best Practices for GitHub READMEs
 
@@ -2650,14 +2650,14 @@ Use a live editor to verify your diagram renders correctly before committing. Gi
 
 Unfortunately, GitHub doesn't support alt text for Mermaid diagrams directly. Consider adding a text description below complex diagrams:
 
-```markdown
-```mermaid
+\`\`\`markdown
+\`\`\`mermaid
 graph LR
     A --> B --> C
-```
+\`\`\`
 
 *The diagram shows data flowing from component A through B to C.*
-```
+\`\`\`
 
 ### 4. Use Consistent Direction
 
@@ -2676,7 +2676,7 @@ If your README might be viewed outside GitHub (npm, PyPI, etc.), platforms that 
 
 Alternatively, render to an image and include both:
 
-```markdown
+\`\`\`markdown
 <!-- Rendered diagram (for platforms without Mermaid support) -->
 ![Architecture](./docs/architecture.png)
 
@@ -2684,20 +2684,20 @@ Alternatively, render to an image and include both:
 <details>
 <summary>Diagram source</summary>
 
-```mermaid
+\`\`\`mermaid
 graph TD
     A --> B
-```
+\`\`\`
 
 </details>
-```
+\`\`\`
 
 ## Practical Example: Monorepo Documentation
 
 For monorepos with multiple packages, use Mermaid to show package dependencies:
 
-```
-```mermaid
+\`\`\`
+\`\`\`mermaid
 graph TD
     subgraph Packages
         Core["@myorg/core"]
@@ -2712,8 +2712,8 @@ graph TD
     API --> Utils
     Core --> Config
     Utils --> Config
-```
-```
+\`\`\`
+\`\`\`
 
 This helps contributors understand which packages depend on which, making refactoring safer.
 
@@ -2768,7 +2768,7 @@ Each of these patterns takes 5 minutes to create but saves every reader minutes 
 
 You can automatically render Mermaid diagrams to images in CI:
 
-```yaml
+\`\`\`yaml
 name: Render Diagrams
 on: [push]
 jobs:
@@ -2781,7 +2781,7 @@ jobs:
         with:
           input: docs/diagrams/
           output: docs/images/
-```
+\`\`\`
 
 This generates PNG/SVG files from your .mmd files, useful for platforms that don't support Mermaid natively.
 
@@ -2789,21 +2789,21 @@ This generates PNG/SVG files from your .mmd files, useful for platforms that don
 
 Here's how a well-structured README uses diagrams:
 
-```markdown
+\`\`\`markdown
 # My Awesome API
 
 A RESTful API for managing tasks.
 
 ## Architecture
 
-```mermaid
+\`\`\`mermaid
 graph TB
     Client[Client Apps] --> LB[Load Balancer]
     LB --> API1[API Server 1]
     LB --> API2[API Server 2]
     API1 & API2 --> DB[(PostgreSQL)]
     API1 & API2 --> Cache[(Redis)]
-```
+\`\`\`
 
 ## Getting Started
 ...
@@ -2812,14 +2812,14 @@ graph TB
 
 ### Authentication Flow
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     Client->>API: POST /auth/login
     API-->>Client: JWT Token
     Client->>API: GET /tasks (Bearer token)
     API-->>Client: Task list
-```
-```
+\`\`\`
+\`\`\`
 
 ## Conclusion
 
@@ -2829,7 +2829,7 @@ Mermaid in GitHub READMEs is one of the most impactful documentation improvement
 
 You can automate diagram validation in your CI pipeline using \`@mermaid-js/mermaid-cli\`:
 
-```yaml
+\`\`\`yaml
 # .github/workflows/validate-diagrams.yml
 name: Validate Mermaid Diagrams
 
@@ -2847,11 +2847,11 @@ jobs:
       - name: Validate all Mermaid diagrams in docs
         run: |
           find docs -name '*.md' | while read f; do
-            grep -A100 '```mermaid' "$f" | grep -B100 '```' | \
-            grep -v '```' | mmdc -i /dev/stdin -o /dev/null && \
+            grep -A100 '\`\`\`mermaid' "$f" | grep -B100 '\`\`\`' | \
+            grep -v '\`\`\`' | mmdc -i /dev/stdin -o /dev/null && \
             echo "OK: $f" || echo "FAIL: $f"
           done
-```
+\`\`\`
 
 This catches broken Mermaid syntax before it's merged — especially useful when multiple contributors are adding or editing diagrams.
 
@@ -2861,11 +2861,11 @@ This catches broken Mermaid syntax before it's merged — especially useful when
 
 **GitHub Pages** with Jekyll supports Mermaid via the \`jekyll-mermaid\` gem, or you can inject the Mermaid.js script manually in your layout template.
 
-```html
+\`\`\`html
 <!-- In _layouts/default.html -->
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
-```
+\`\`\`
 
 With this in place, any \`pre.mermaid\` block or mermaid code fence in your pages will render automatically.
 
@@ -2895,7 +2895,7 @@ State diagrams (also called state machine diagrams or statecharts) show the diff
 
 ## Basic Syntax
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Idle
     Idle --> Processing : Start
@@ -2903,7 +2903,7 @@ stateDiagram-v2
     Processing --> Failed : Error
     Failed --> Idle : Retry
     Completed --> [*]
-```
+\`\`\`
 
 Key elements:
 - \`[*]\` — Start state (filled circle) or end state
@@ -2915,17 +2915,17 @@ Key elements:
 
 ### Simple States
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Active
     Active --> Inactive : Deactivate
     Inactive --> Active : Activate
     Active --> [*] : Delete
-```
+\`\`\`
 
 ### States with Descriptions
 
-```
+\`\`\`
 stateDiagram-v2
     state "Waiting for Payment" as WFP
     state "Order Confirmed" as OC
@@ -2935,7 +2935,7 @@ stateDiagram-v2
     WFP --> OC : Payment received
     OC --> STC : Dispatched
     STC --> [*] : Delivered
-```
+\`\`\`
 
 Use the \`state "description" as alias\` syntax for multi-word state names.
 
@@ -2943,14 +2943,14 @@ Use the \`state "description" as alias\` syntax for multi-word state names.
 
 ### Labeled Transitions
 
-```
+\`\`\`
 stateDiagram-v2
     Idle --> Running : start()
     Running --> Idle : stop()
     Running --> Running : process(item)
     Running --> Error : exception thrown
     Error --> Idle : reset()
-```
+\`\`\`
 
 ### Self-Transitions
 
@@ -2960,7 +2960,7 @@ A state can transition to itself (like "Running → Running" above). This repres
 
 Group related states inside a parent state:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Active
 
@@ -2975,13 +2975,13 @@ stateDiagram-v2
     Active --> Suspended : Suspend
     Suspended --> Active : Resume
     Active --> [*] : Terminate
-```
+\`\`\`
 
 This shows that Active has its own internal states. The system can be suspended from any Active sub-state and resume back.
 
 ### Deeply Nested States
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> App
 
@@ -3004,11 +3004,11 @@ stateDiagram-v2
         Auth --> LoggedIn : Authenticated
         LoggedIn --> Auth : Logout
     }
-```
+\`\`\`
 
 ## Practical Example: Order Lifecycle
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Draft
 
@@ -3043,13 +3043,13 @@ stateDiagram-v2
     Draft --> Cancelled : Customer cancels
     Submitted --> Cancelled : Validation failed
     Cancelled --> [*]
-```
+\`\`\`
 
 ## Choice (Decision) States
 
 Show conditional branching:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> RequestReceived
 
@@ -3065,13 +3065,13 @@ stateDiagram-v2
     Success --> [*]
 
     Unauthorized --> [*]
-```
+\`\`\`
 
 ## Fork and Join (Parallel States)
 
 Show concurrent execution:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> OrderPlaced
 
@@ -3089,7 +3089,7 @@ stateDiagram-v2
 
     join_state --> OrderComplete
     OrderComplete --> [*]
-```
+\`\`\`
 
 This models three activities happening in parallel after an order is placed, with all three needing to complete before the order is marked complete.
 
@@ -3097,7 +3097,7 @@ This models three activities happening in parallel after an order is placed, wit
 
 Add context with notes:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Active
     Active --> Inactive
@@ -3111,11 +3111,11 @@ stateDiagram-v2
         All connections closed.
         Resources released.
     end note
-```
+\`\`\`
 
 ## Practical Example: UI Component States
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Initial
 
@@ -3142,13 +3142,13 @@ stateDiagram-v2
     Success --> Loading : Refresh
     Success --> [*] : Unmount
     Error --> [*] : Unmount
-```
+\`\`\`
 
 ## Styling
 
 Apply CSS-like styles:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Active
     Active --> Error
@@ -3159,17 +3159,17 @@ stateDiagram-v2
 
     class Error errorState
     class Active activeState
-```
+\`\`\`
 
 ## Direction
 
 Control layout direction:
 
-```
+\`\`\`
 stateDiagram-v2
     direction LR
     [*] --> A --> B --> C --> [*]
-```
+\`\`\`
 
 Options: \`TB\` (top-bottom, default), \`LR\` (left-right), \`BT\`, \`RL\`.
 
@@ -3191,7 +3191,7 @@ Options: \`TB\` (top-bottom, default), \`LR\` (left-right), \`BT\`, \`RL\`.
 
 ## Real-World Example: Authentication Session States
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Anonymous
 
@@ -3213,7 +3213,7 @@ stateDiagram-v2
 
     SessionWarning --> Anonymous : Timeout (30 min)
     Authenticated --> Anonymous : Logout
-```
+\`\`\`
 
 This diagram documents a complete session management system. Developers can see exactly when tokens refresh, when idle warnings appear, and what triggers a forced logout.
 
@@ -3246,7 +3246,7 @@ State diagrams are invaluable for documenting system behavior — especially for
 
 Frontend developers can use state diagrams to document interactive component behaviour:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Idle
 
@@ -3263,7 +3263,7 @@ stateDiagram-v2
         [*] --> Showing
         Showing --> Hidden : after 3s
     }
-```
+\`\`\`
 
 This documents a form component's full lifecycle — loading, success, error, retry — in a way that's useful for both developers implementing the component and designers reviewing its behaviour.
 
@@ -3271,7 +3271,7 @@ This documents a form component's full lifecycle — loading, success, error, re
 
 Infrastructure engineers can use state diagrams for circuit breakers, health checks, and deployment states:
 
-```
+\`\`\`
 stateDiagram-v2
     [*] --> Closed
 
@@ -3283,7 +3283,7 @@ stateDiagram-v2
     note right of Closed : Normal operation\nAll requests pass through
     note right of Open : Circuit broken\nAll requests fail fast
     note right of HalfOpen : Testing recovery\nOne probe request allowed
-```
+\`\`\`
 
 A circuit breaker state diagram like this is essential documentation for on-call engineers who need to understand service behaviour during incidents.
 
@@ -3314,7 +3314,7 @@ Mermaid's ER diagram syntax lets you create these diagrams as code, keeping your
 
 ## Basic Syntax
 
-```
+\`\`\`
 erDiagram
     CUSTOMER {
         int id PK
@@ -3327,7 +3327,7 @@ erDiagram
         int customer_id FK
     }
     CUSTOMER ||--o{ ORDER : places
-```
+\`\`\`
 
 Key elements:
 - **Entities** are defined with their name and attributes in curly braces
@@ -3338,7 +3338,7 @@ Key elements:
 
 Each attribute follows the pattern: \`type name constraint "comment"\`
 
-```
+\`\`\`
 erDiagram
     USER {
         int id PK "Auto-increment primary key"
@@ -3349,7 +3349,7 @@ erDiagram
         datetime updated_at "Updated on change"
         boolean is_active "Default: true"
     }
-```
+\`\`\`
 
 ### Supported Constraints
 
@@ -3361,13 +3361,13 @@ erDiagram
 
 Mermaid uses a notation combining two symbols — one for each end:
 
-```
+\`\`\`
 erDiagram
     A ||--|| B : "one to one"
     C ||--o{ D : "one to many"
     E }o--o{ F : "many to many"
     G ||--o| H : "one to zero or one"
-```
+\`\`\`
 
 ### Notation Guide
 
@@ -3383,7 +3383,7 @@ The line style:
 
 ### Common Patterns
 
-```
+\`\`\`
 erDiagram
     %% One-to-many (most common)
     AUTHOR ||--o{ BOOK : writes
@@ -3396,11 +3396,11 @@ erDiagram
 
     %% Optional relationship
     EMPLOYEE ||--o| PARKING_SPOT : assigned
-```
+\`\`\`
 
 ## Practical Example: Blog Platform
 
-```
+\`\`\`
 erDiagram
     USER {
         int id PK
@@ -3459,11 +3459,11 @@ erDiagram
     TAG ||--o{ POST_TAG : tagged
     USER ||--o{ LIKE : gives
     POST ||--o{ LIKE : receives
-```
+\`\`\`
 
 ## Practical Example: E-Commerce Database
 
-```
+\`\`\`
 erDiagram
     CUSTOMER {
         int id PK
@@ -3540,11 +3540,11 @@ erDiagram
     ORDER_ITEM }o--|| PRODUCT : references
     PRODUCT }o--|| CATEGORY : belongs_to
     CATEGORY ||--o{ CATEGORY : parent_of
-```
+\`\`\`
 
 ## Practical Example: SaaS Multi-Tenant
 
-```
+\`\`\`
 erDiagram
     TENANT {
         int id PK
@@ -3585,7 +3585,7 @@ erDiagram
     USER ||--o{ PROJECT : manages
     PROJECT ||--o{ TASK : contains
     USER ||--o{ TASK : assigned
-```
+\`\`\`
 
 ## Tips for Data Modeling with Mermaid
 
@@ -3601,14 +3601,14 @@ The label after the colon describes the relationship: \`CUSTOMER ||--o{ ORDER : 
 
 For many-to-many relationships, explicitly show the junction table:
 
-```
+\`\`\`
 erDiagram
     STUDENT }o--o{ COURSE : enrolls_in
-```
+\`\`\`
 
 Or with the junction table visible:
 
-```
+\`\`\`
 erDiagram
     STUDENT ||--o{ ENROLLMENT : has
     COURSE ||--o{ ENROLLMENT : has
@@ -3618,7 +3618,7 @@ erDiagram
         date enrolled_at
         string grade
     }
-```
+\`\`\`
 
 The second approach is better when the junction table has its own attributes.
 
@@ -3641,13 +3641,13 @@ Always mark PK, FK, and UK. These are the most important structural information 
 
 Add comments in quotes to document constraints that aren't visible in the structure:
 
-```
+\`\`\`
 erDiagram
     ORDER {
         string status "Enum: pending|processing|shipped|delivered|cancelled"
         decimal total "Computed: sum of line items + tax"
     }
-```
+\`\`\`
 
 ## Common Mistakes
 
@@ -3660,7 +3660,7 @@ erDiagram
 
 For teams using event sourcing or CQRS patterns:
 
-```
+\`\`\`
 erDiagram
     EVENT_STORE {
         uuid id PK
@@ -3695,7 +3695,7 @@ erDiagram
     AGGREGATE ||--o{ EVENT_STORE : has_events
     AGGREGATE ||--o{ SNAPSHOT : has_snapshots
     EVENT_STORE ..o{ READ_MODEL_USER : projects_to
-```
+\`\`\`
 
 ## ER Diagrams in Your Development Workflow
 
@@ -3765,14 +3765,14 @@ While pie charts aren't suited for every data visualization scenario, they excel
 
 ## Basic Syntax
 
-```
+\`\`\`
 pie title Technology Stack Distribution
     "JavaScript" : 45
     "Python" : 25
     "Go" : 15
     "Rust" : 10
     "Other" : 5
-```
+\`\`\`
 
 That's it. Three elements:
 1. \`pie\` keyword (optionally followed by \`title Your Title\`)
@@ -3785,67 +3785,67 @@ Mermaid automatically calculates percentages and assigns colors.
 
 ### Project Language Breakdown
 
-```
+\`\`\`
 pie title Lines of Code by Language
     "TypeScript" : 42000
     "CSS/SCSS" : 15000
     "HTML" : 8000
     "Python (scripts)" : 3000
     "Shell" : 1500
-```
+\`\`\`
 
 ### Sprint Task Distribution
 
-```
+\`\`\`
 pie title Sprint 14 Tasks by Category
     "Feature Development" : 12
     "Bug Fixes" : 8
     "Technical Debt" : 5
     "Documentation" : 3
     "DevOps" : 2
-```
+\`\`\`
 
 ### Browser Market Share
 
-```
+\`\`\`
 pie title Browser Usage - Our App Analytics
     "Chrome" : 64
     "Safari" : 19
     "Firefox" : 8
     "Edge" : 6
     "Other" : 3
-```
+\`\`\`
 
 ### Budget Allocation
 
-```
+\`\`\`
 pie title Engineering Budget Q1 2025
     "Personnel" : 65
     "Infrastructure (AWS)" : 18
     "Tools & Licenses" : 8
     "Training" : 5
     "Misc" : 4
-```
+\`\`\`
 
 ### Test Coverage
 
-```
+\`\`\`
 pie title Test Suite Composition
     "Unit Tests" : 340
     "Integration Tests" : 85
     "E2E Tests" : 42
     "Performance Tests" : 15
-```
+\`\`\`
 
 ### Error Distribution
 
-```
+\`\`\`
 pie title Production Errors Last 30 Days
     "4xx Client Errors" : 156
     "5xx Server Errors" : 23
     "Timeout Errors" : 45
     "Network Errors" : 12
-```
+\`\`\`
 
 ## Display Options
 
@@ -3853,14 +3853,14 @@ pie title Production Errors Last 30 Days
 
 By default, Mermaid shows percentages. You can add \`showData\` to display raw values:
 
-```
+\`\`\`
 pie showData
     title Response Time Buckets
     "< 100ms" : 450
     "100-500ms" : 230
     "500ms-1s" : 80
     "> 1s" : 40
-```
+\`\`\`
 
 ## When to Use Pie Charts
 
@@ -3884,26 +3884,26 @@ pie showData
 
 If you have more categories, group the small ones into "Other":
 
-```
+\`\`\`
 pie title API Endpoints by Usage
     "GET /api/users" : 40
     "POST /api/auth" : 25
     "GET /api/products" : 20
     "Other (15 endpoints)" : 15
-```
+\`\`\`
 
 ### 2. Order by Size
 
 List items from largest to smallest for easier reading:
 
-```
+\`\`\`
 pie title Deploy Frequency by Service
     "API Gateway" : 45
     "User Service" : 25
     "Order Service" : 15
     "Notification Service" : 10
     "Analytics" : 5
-```
+\`\`\`
 
 ### 3. Use Descriptive Labels
 
@@ -3923,30 +3923,30 @@ Good: \`pie title Monthly Active Users by Platform (March 2025)\`
 
 Use actual values when they matter, percentages when they don't:
 
-```
+\`\`\`
 pie showData
     title Incident Severity (Last Quarter)
     "Critical (P0)" : 3
     "High (P1)" : 12
     "Medium (P2)" : 45
     "Low (P3)" : 89
-```
+\`\`\`
 
 ## Pie Charts in README Files
 
 Pie charts work well in GitHub README files for quick project overviews:
 
-```markdown
+\`\`\`markdown
 ## Project Stats
 
-```mermaid
+\`\`\`mermaid
 pie title Codebase Composition
     "Application Code" : 60
     "Tests" : 25
     "Configuration" : 10
     "Documentation" : 5
-```
-```
+\`\`\`
+\`\`\`
 
 They're also great in:
 - **Architecture Decision Records** — showing trade-off analysis
@@ -3979,14 +3979,14 @@ For advanced data visualization, consider dedicated charting libraries like Char
 
 Pie charts are excellent for incident postmortems and root cause analysis:
 
-```
+\`\`\`
 pie title Root Causes of Production Incidents (Q1 2025)
     "Configuration errors" : 12
     "Code bugs" : 8
     "Infrastructure failures" : 5
     "Third-party service outages" : 4
     "Capacity issues" : 3
-```
+\`\`\`
 
 This makes it immediately clear where to invest in prevention — configuration management improvements would have the biggest impact.
 
@@ -3994,14 +3994,14 @@ This makes it immediately clear where to invest in prevention — configuration 
 
 During sprint retrospectives, use pie charts to visualise how time was spent:
 
-```
+\`\`\`
 pie title Sprint 12 — Time Allocation
     "Feature development" : 45
     "Bug fixes" : 20
     "Code review" : 15
     "Meetings" : 12
     "DevOps & infra" : 8
-```
+\`\`\`
 
 If meetings are eating 12% of sprint capacity, that's a conversation worth having. The visual makes it undeniable.
 
@@ -4016,12 +4016,12 @@ A pie chart alone doesn't tell the full story. Always pair it with:
 
 For example:
 
-```markdown
+\`\`\`markdown
 ## Customer Support Tickets by Category
 
 Based on 847 tickets received in March 2025:
 
-```mermaid
+\`\`\`mermaid
 pie showData
     title Support Tickets — March 2025
     "Billing questions" : 312
@@ -4029,10 +4029,10 @@ pie showData
     "Feature requests" : 156
     "Bug reports" : 112
     "Account deletion" : 69
-```
+\`\`\`
 
 **Insight:** Billing questions dominate (37%). Improving the billing FAQ page could reduce ticket volume by 20-30%.
-```
+\`\`\`
 
 ## Pie Chart Accessibility
 
@@ -4053,37 +4053,37 @@ Some of the most impactful uses of pie charts in engineering docs:
 
 ### Test Coverage Distribution
 
-```
+\`\`\`
 pie showData title Test Coverage by Module
     "Core business logic" : 94
     "API handlers" : 87
     "Data access layer" : 72
     "Utilities" : 65
     "UI components" : 41
-```
+\`\`\`
 
 This immediately shows which areas need more test coverage investment.
 
 ### Error Rate by Category
 
-```
+\`\`\`
 pie showData title Production Errors (Last 30 Days)
     "Client errors (4xx)" : 1240
     "Server errors (5xx)" : 89
     "Timeout errors" : 34
     "Rate limit errors" : 28
-```
+\`\`\`
 
 ### Bundle Size Distribution
 
-```
+\`\`\`
 pie showData title JavaScript Bundle Composition
     "React + ReactDOM" : 42
     "UI component library" : 28
     "Charting library" : 15
     "Form validation" : 8
     "App code" : 7
-```
+\`\`\`
 
 Seeing that third-party dependencies make up 93% of your bundle makes the case for code splitting or lighter alternatives much more visceral.
 
@@ -4116,18 +4116,18 @@ Mermaid pie charts are the fastest way to add proportional data visualisation to
 
 ### Direction
 
-```
+\`\`\`
 graph TD   %% Top to Bottom
 graph LR   %% Left to Right
 graph BT   %% Bottom to Top
 graph RL   %% Right to Left
-```
+\`\`\`
 
 Use \`flowchart\` instead of \`graph\` for extended features.
 
 ### Node Shapes
 
-```
+\`\`\`
 flowchart TD
     A[Rectangle]
     B(Rounded)
@@ -4141,11 +4141,11 @@ flowchart TD
     J[/Parallelogram/]
     K[\\Parallelogram Alt\\]
     L[/Trapezoid\\]
-```
+\`\`\`
 
 ### Edge Types
 
-```
+\`\`\`
 flowchart LR
     A --> B           %% Arrow
     A --- B           %% Line
@@ -4155,11 +4155,11 @@ flowchart LR
     A --x B           %% Cross end
     A -->|label| B    %% Labeled arrow
     A -- "label" --- B %% Labeled line
-```
+\`\`\`
 
 ### Subgraphs
 
-```
+\`\`\`
 flowchart TB
     subgraph Group Name
         A --> B
@@ -4169,22 +4169,22 @@ flowchart TB
         C --> D
     end
     Group Name --> Another
-```
+\`\`\`
 
 ### Styling
 
-```
+\`\`\`
 flowchart TD
     A:::myClass --> B
     classDef myClass fill:#f9f,stroke:#333,color:black
     style B fill:#bbf,stroke:#33f
-```
+\`\`\`
 
 ## Sequence Diagrams
 
 ### Basics
 
-```
+\`\`\`
 sequenceDiagram
     participant A as Alice
     actor U as User
@@ -4192,11 +4192,11 @@ sequenceDiagram
     B-->>A: Dotted arrow (response)
     A-)B: Open arrow (async)
     A-xB: Cross (lost message)
-```
+\`\`\`
 
 ### Features
 
-```
+\`\`\`
 sequenceDiagram
     autonumber
 
@@ -4235,11 +4235,11 @@ sequenceDiagram
     rect rgb(200, 220, 255)
         A->>B: Highlighted section
     end
-```
+\`\`\`
 
 ## Gantt Charts
 
-```
+\`\`\`
 gantt
     title Project Timeline
     dateFormat YYYY-MM-DD
@@ -4254,7 +4254,7 @@ gantt
     section Phase 2
     Task 3          :t3, after m1, 10d
     Critical task   :crit, t4, after t3, 3d
-```
+\`\`\`
 
 ### Task States
 - \`done\` — completed
@@ -4266,7 +4266,7 @@ gantt
 
 ### Classes
 
-```
+\`\`\`
 classDiagram
     class ClassName {
         +String publicAttr
@@ -4278,11 +4278,11 @@ classDiagram
         +staticMethod()$ int
         +abstractMethod()* void
     }
-```
+\`\`\`
 
 ### Relationships
 
-```
+\`\`\`
 classDiagram
     A <|-- B    : Inheritance
     C *-- D     : Composition
@@ -4291,11 +4291,11 @@ classDiagram
     I ..> J     : Dependency
     K ..|> L    : Realization (implements)
     M "1" --> "*" N : Cardinality
-```
+\`\`\`
 
 ### Annotations
 
-```
+\`\`\`
 classDiagram
     class MyInterface {
         <<interface>>
@@ -4311,20 +4311,20 @@ classDiagram
     class MyService {
         <<service>>
     }
-```
+\`\`\`
 
 ### Generics
 
-```
+\`\`\`
 classDiagram
     class List~T~ {
         +add(item T) void
     }
-```
+\`\`\`
 
 ## State Diagrams
 
-```
+\`\`\`
 stateDiagram-v2
     direction LR
     [*] --> Active
@@ -4355,11 +4355,11 @@ stateDiagram-v2
     note right of Active
         This is a note
     end note
-```
+\`\`\`
 
 ## ER Diagrams
 
-```
+\`\`\`
 erDiagram
     CUSTOMER {
         int id PK
@@ -4372,7 +4372,7 @@ erDiagram
         date ordered_at
     }
     CUSTOMER ||--o{ ORDER : places
-```
+\`\`\`
 
 ### Cardinality
 
@@ -4387,19 +4387,19 @@ erDiagram
 
 ## Pie Charts
 
-```
+\`\`\`
 pie title Distribution
     "Category A" : 40
     "Category B" : 30
     "Category C" : 20
     "Other" : 10
-```
+\`\`\`
 
 Add \`showData\` after \`pie\` to show raw values.
 
 ## Mind Maps
 
-```
+\`\`\`
 mindmap
     root((Central Topic))
         Branch 1
@@ -4410,11 +4410,11 @@ mindmap
                 Detail 1
                 Detail 2
         Branch 3
-```
+\`\`\`
 
 ## Git Graphs
 
-```
+\`\`\`
 gitGraph
     commit
     commit
@@ -4425,11 +4425,11 @@ gitGraph
     checkout main
     merge develop
     commit
-```
+\`\`\`
 
 ## Timeline
 
-```
+\`\`\`
 timeline
     title History of Our Product
     2020 : Founded
@@ -4439,11 +4439,11 @@ timeline
     2022 : Series B
          : International expansion
     2023 : 1M users milestone
-```
+\`\`\`
 
 ## Quadrant Charts
 
-```
+\`\`\`
 quadrantChart
     title Priority Matrix
     x-axis Low Effort --> High Effort
@@ -4455,7 +4455,7 @@ quadrantChart
     Feature A: [0.8, 0.9]
     Feature B: [0.3, 0.7]
     Feature C: [0.6, 0.3]
-```
+\`\`\`
 
 ## Global Configuration
 
@@ -4463,21 +4463,21 @@ quadrantChart
 
 Set theme at the top of any diagram:
 
-```
+\`\`\`
 %%{init: {'theme': 'dark'}}%%
 graph TD
     A --> B
-```
+\`\`\`
 
 Available themes: \`default\`, \`dark\`, \`forest\`, \`neutral\`, \`base\`.
 
 ### Custom Theme Variables
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ff6b6b', 'edgeLabelBackground':'#ffffff'}}}%%
 graph TD
     A --> B
-```
+\`\`\`
 
 ## Tips
 
@@ -4498,7 +4498,7 @@ Here are complete, copy-paste examples for the most common use cases:
 
 ### Architecture Diagram (README-ready)
 
-```
+\`\`\`
 flowchart TB
     subgraph Client
         Web[Web App]
@@ -4517,11 +4517,11 @@ flowchart TB
     API --> Auth
     API --> Core
     Core --> DB & Cache
-```
+\`\`\`
 
 ### API Request Flow
 
-```
+\`\`\`
 sequenceDiagram
     autonumber
     actor User
@@ -4535,11 +4535,11 @@ sequenceDiagram
     DB-->>-API: OK
     API-->>-App: 201 Created
     App-->>User: Show success
-```
+\`\`\`
 
 ### Database Schema
 
-```
+\`\`\`
 erDiagram
     USER ||--o{ POST : writes
     POST ||--o{ COMMENT : has
@@ -4562,11 +4562,11 @@ erDiagram
         int post_id FK
         int user_id FK
     }
-```
+\`\`\`
 
 ### Sprint Timeline
 
-```
+\`\`\`
 gantt
     title Sprint Plan
     dateFormat YYYY-MM-DD
@@ -4578,7 +4578,7 @@ gantt
     section QA
     Testing      :b1, after a2, 3d
     Release      :milestone, after b1, 0d
-```
+\`\`\`
 
 ## How to Use This Cheat Sheet
 
@@ -4656,7 +4656,7 @@ Mermaid's mind map syntax uses indentation to define the hierarchy, making it in
 
 ## Basic Syntax
 
-```
+\`\`\`
 mindmap
     root((Project Plan))
         Design
@@ -4671,7 +4671,7 @@ mindmap
             Marketing
             Documentation
             Monitoring
-```
+\`\`\`
 
 The rules are simple:
 1. Start with \`mindmap\`
@@ -4683,7 +4683,7 @@ The rules are simple:
 
 Mind map nodes support different shapes:
 
-```
+\`\`\`
 mindmap
     root((Circle Root))
         (Rounded Rectangle)
@@ -4691,7 +4691,7 @@ mindmap
                 Default shape
         ))Bang((
             {{Hexagon}}
-```
+\`\`\`
 
 ### Shape Reference
 
@@ -4704,7 +4704,7 @@ mindmap
 
 ## Practical Example: Software Architecture
 
-```
+\`\`\`
 mindmap
     root((Web Application))
         Frontend
@@ -4743,11 +4743,11 @@ mindmap
                 Logging
                 Alerting
                 APM
-```
+\`\`\`
 
 ## Practical Example: Learning Path
 
-```
+\`\`\`
 mindmap
     root((Learn Web Development))
         HTML & CSS
@@ -4781,11 +4781,11 @@ mindmap
             VS Code
             Chrome DevTools
             Terminal/CLI
-```
+\`\`\`
 
 ## Practical Example: Product Feature Map
 
-```
+\`\`\`
 mindmap
     root((SaaS Product))
         Authentication
@@ -4813,11 +4813,11 @@ mindmap
             Team Management
             Integrations
             API Keys
-```
+\`\`\`
 
 ## Practical Example: Content Strategy
 
-```
+\`\`\`
 mindmap
     root((Content Strategy 2025))
         Blog
@@ -4843,11 +4843,11 @@ mindmap
             Discord Server
             GitHub Discussions
             Meetups & Webinars
-```
+\`\`\`
 
 ## Practical Example: Sprint Retrospective
 
-```
+\`\`\`
 mindmap
     root((Sprint 14 Retro))
         What Went Well
@@ -4862,7 +4862,7 @@ mindmap
             Timebox standups to 10 min
             Add AC template to tickets
             Include design in sprint planning
-```
+\`\`\`
 
 ## Tips for Effective Mind Maps
 
@@ -4916,10 +4916,10 @@ Mind maps are particularly useful in:
 
 ### GitHub README Example
 
-```markdown
+\`\`\`markdown
 ## Feature Overview
 
-```mermaid
+\`\`\`mermaid
 mindmap
     root((MyApp))
         Auth
@@ -4932,8 +4932,8 @@ mindmap
         API
             REST
             GraphQL
-```
-```
+\`\`\`
+\`\`\`
 
 ## Limitations
 
@@ -4949,7 +4949,7 @@ For complex, interactive mind maps with custom styling, consider dedicated tools
 
 Use mind maps to document technology decisions and their rationale:
 
-```
+\`\`\`
 mindmap
     root((Tech Stack Decisions))
         Frontend
@@ -4982,7 +4982,7 @@ mindmap
             GitHub Actions
                 Free for open-source
                 Native GitHub integration
-```
+\`\`\`
 
 This captures not just what technologies were chosen, but why — invaluable context for future team members.
 
@@ -4990,7 +4990,7 @@ This captures not just what technologies were chosen, but why — invaluable con
 
 Before a brainstorming meeting, create a skeleton mind map with the topics to discuss. During the meeting, fill in the branches in real-time. After the meeting, commit the final mind map to your repo:
 
-```
+\`\`\`
 mindmap
     root((Feature Priorities Q2))
         Must Have
@@ -5008,7 +5008,7 @@ mindmap
         Won't Do This Quarter
             AI recommendations
             Marketplace features
-```
+\`\`\`
 
 This MoSCoW prioritisation mind map gives everyone a shared visual of what's in and out of scope.
 
@@ -5104,13 +5104,13 @@ If you're on an older version of Obsidian, update to the latest version to get M
 
 In any Obsidian note, type:
 
-```mermaid
+\`\`\`mermaid
 graph TD
     A[Idea] --> B[Research]
     B --> C[Draft]
     C --> D[Review]
     D --> E[Publish]
-```
+\`\`\`
 
 Switch to **Reading View** (or use **Live Preview**) and you'll see the diagram rendered inline with your notes. It's that simple.
 
@@ -5137,14 +5137,14 @@ The exact feature support depends on which version of Mermaid is bundled with yo
 
 Combine text and diagrams in a single note:
 
-```markdown
+\`\`\`markdown
 # Project Alpha — Planning
 
 ## Overview
 Project Alpha aims to rebuild our authentication system with OAuth 2.0 support.
 
 ## Architecture
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph Frontend
         React[React App] --> AuthSDK[Auth SDK]
@@ -5155,10 +5155,10 @@ graph TB
         AuthService --> Redis[(Session Store)]
     end
     AuthSDK --> API
-```
+\`\`\`
 
 ## Timeline
-```mermaid
+\`\`\`mermaid
 gantt
     title Project Alpha Timeline
     dateFormat YYYY-MM-DD
@@ -5168,14 +5168,14 @@ gantt
     Implementation :a2, after a1, 20d
     section Phase 3
     Testing & Launch :a3, after a2, 10d
-```
-```
+\`\`\`
+\`\`\`
 
 ### Daily Notes with Diagrams
 
 Add quick process diagrams to your daily notes:
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     participant Me
     participant PM
@@ -5185,13 +5185,13 @@ sequenceDiagram
     PM->>Design: Request UI review
     Design-->>PM: Approved with changes
     PM-->>Me: Go ahead with modifications
-```
+\`\`\`
 
 ### Knowledge Base Entries
 
 Document systems with ER diagrams:
 
-```mermaid
+\`\`\`mermaid
 erDiagram
     NOTE ||--o{ TAG : has
     NOTE ||--o{ LINK : links_to
@@ -5208,7 +5208,7 @@ erDiagram
         string source_id
         string target_id
     }
-```
+\`\`\`
 
 ## Tips for Mermaid in Obsidian
 
@@ -5230,17 +5230,17 @@ Obsidian applies its own CSS theme to Mermaid diagrams. If you're using a dark t
 
 You can also use Mermaid's built-in theming:
 
-```mermaid
+\`\`\`mermaid
 %%{init: {'theme': 'dark'}}%%
 graph TD
     A --> B --> C
-```
+\`\`\`
 
 ### 5. CSS Snippets for Custom Styling
 
 Obsidian allows CSS snippets that can style Mermaid diagrams. Create a CSS file in your vault's \`.obsidian/snippets/\` folder:
 
-```css
+\`\`\`css
 .mermaid svg {
     max-width: 100%;
     font-family: var(--font-text);
@@ -5249,23 +5249,23 @@ Obsidian allows CSS snippets that can style Mermaid diagrams. Create a CSS file 
     rx: 8px;
     ry: 8px;
 }
-```
+\`\`\`
 
 ### 6. Templates
 
 Create Obsidian templates with pre-built Mermaid diagrams. For example, a "Meeting Notes" template could include:
 
-```markdown
+\`\`\`markdown
 # Meeting: {{title}}
 Date: {{date}}
 
 ## Action Items
-```mermaid
+\`\`\`mermaid
 graph LR
     A[Action 1] --> B[Owner: TBD]
     C[Action 2] --> D[Owner: TBD]
-```
-```
+\`\`\`
+\`\`\`
 
 ## Obsidian Publish Compatibility
 
@@ -5325,7 +5325,7 @@ Obsidian's native Mermaid support makes it one of the best environments for comb
 
 In Obsidian, you can create a diagram in one note and reference it from others using wiki links. For example, keep a \`System Architecture.md\` note with your main architecture diagram, then link to it from every component-specific note:
 
-```markdown
+\`\`\`markdown
 ## Payment Service
 
 See [[System Architecture]] for the full system context.
@@ -5334,7 +5334,7 @@ This service handles:
 - Stripe payment processing
 - Refund workflows
 - Subscription billing
-```
+\`\`\`
 
 ### Dataview + Mermaid Combination
 
@@ -5344,7 +5344,7 @@ Obsidian's Dataview plugin can query your vault. Combine Dataview's data extract
 
 With the Templater plugin, create templates that pre-populate common diagram skeletons:
 
-```
+\`\`\`
 ---
 tags: architecture
 created: <% tp.date.now() %>
@@ -5354,20 +5354,20 @@ created: <% tp.date.now() %>
 
 ## Architecture Overview
 
-```mermaid
+\`\`\`mermaid
 graph TD
     %% Add components here
-```
+\`\`\`
 
 ## Sequence Flow
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     participant A
     participant B
     A->>B: 
-```
-```
+\`\`\`
+\`\`\`
 
 This gives you a consistent starting point for every new architecture note.
 
@@ -5423,7 +5423,7 @@ Here's how to add a Mermaid diagram in Notion:
 
 Paste this into a Mermaid code block in Notion:
 
-```mermaid
+\`\`\`mermaid
 graph TD
     A[Task Created] --> B{Assigned?}
     B -->|Yes| C[In Progress]
@@ -5431,7 +5431,7 @@ graph TD
     C --> E{Done?}
     E -->|Yes| F[Complete]
     E -->|No| C
-```
+\`\`\`
 
 You should see a rendered flowchart directly in your Notion page.
 
@@ -5455,7 +5455,7 @@ Mind maps, git graphs, and some newer diagram types may have limited support dep
 
 Create a page in your team wiki with architecture diagrams:
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph "Client Layer"
         Web[Web App]
@@ -5473,13 +5473,13 @@ graph TB
     Gateway --> Auth
     Gateway --> DB
     Gateway --> Cache
-```
+\`\`\`
 
 ### Sprint Planning
 
 Add a Gantt chart to your sprint page:
 
-```mermaid
+\`\`\`mermaid
 gantt
     title Sprint 16 — March 3-14
     dateFormat YYYY-MM-DD
@@ -5496,13 +5496,13 @@ gantt
     section QA
     Testing            :q1, after f2 b2, 2d
     Release            :milestone, m1, after q1, 0d
-```
+\`\`\`
 
 ### Meeting Notes
 
 Document decisions with sequence diagrams:
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     participant PM as Product Manager
     participant Dev as Dev Lead
@@ -5513,13 +5513,13 @@ sequenceDiagram
     PM->>Design: Request mockups
     Design-->>PM: Mockups ready
     PM->>Dev: Approved — start Sprint 17
-```
+\`\`\`
 
 ### Database Documentation
 
 Use ER diagrams to document your data model:
 
-```mermaid
+\`\`\`mermaid
 erDiagram
     WORKSPACE ||--o{ PROJECT : contains
     PROJECT ||--o{ PAGE : has
@@ -5537,7 +5537,7 @@ erDiagram
         string content
         datetime updated
     }
-```
+\`\`\`
 
 ## Limitations of Mermaid in Notion
 
@@ -5557,11 +5557,11 @@ Mermaid diagrams in Notion are static images — you can't click on nodes or add
 
 If you or your team uses Notion in dark mode, some Mermaid color schemes may not look great. Test your diagrams in both modes if your team uses both. Using Mermaid's built-in theme configuration can help:
 
-```mermaid
+\`\`\`mermaid
 %%{init: {'theme': 'neutral'}}%%
 graph TD
     A --> B --> C
-```
+\`\`\`
 
 The \`neutral\` theme tends to work well in both light and dark modes.
 
@@ -5638,14 +5638,14 @@ Mermaid diagrams in Notion are a practical way to add visual documentation to yo
 
 Create a Notion page structure like this for each major project:
 
-```
+\`\`\`
 📁 Project: Payment Gateway Integration
   📄 Overview (with system architecture diagram)
   📄 API Flow (with sequence diagram)
   📄 Database Schema (with ER diagram)
   📄 Timeline (with Gantt chart)
   📄 State Machine (payment states diagram)
-```
+\`\`\`
 
 Each page has a focused Mermaid diagram plus surrounding context, making it easy to navigate and update.
 
@@ -5664,7 +5664,7 @@ Consistency matters more than perfection — a slightly outdated diagram is stil
 
 For teams with programmatically generated diagrams, the Notion API can update page blocks automatically:
 
-```javascript
+\`\`\`javascript
 const { Client } = require('@notionhq/client');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
@@ -5677,7 +5677,7 @@ async function updateMermaidDiagram(pageId, blockId, mermaidCode) {
     },
   });
 }
-```
+\`\`\`
 
 This lets you generate fresh architecture diagrams from your actual infrastructure and push them to Notion automatically.
 
@@ -5720,21 +5720,21 @@ Docusaurus has an official Mermaid theme package that integrates seamlessly with
 
 ### Step 1: Install the Package
 
-```bash
+\`\`\`bash
 npm install @docusaurus/theme-mermaid
-```
+\`\`\`
 
 Or if you're using yarn:
 
-```bash
+\`\`\`bash
 yarn add @docusaurus/theme-mermaid
-```
+\`\`\`
 
 ### Step 2: Configure docusaurus.config.js
 
 Add the Mermaid theme to your configuration:
 
-```javascript
+\`\`\`javascript
 // docusaurus.config.js
 module.exports = {
   // Enable Mermaid markdown support
@@ -5756,13 +5756,13 @@ module.exports = {
     },
   },
 };
-```
+\`\`\`
 
 ### Step 3: Restart Your Dev Server
 
-```bash
+\`\`\`bash
 npm run start
-```
+\`\`\`
 
 That's it! Mermaid diagrams will now render in your documentation.
 
@@ -5770,16 +5770,16 @@ That's it! Mermaid diagrams will now render in your documentation.
 
 Once configured, use Mermaid in any \`.md\` or \`.mdx\` file with standard code fences:
 
-```markdown
+\`\`\`markdown
 ## System Architecture
 
-```mermaid
+\`\`\`mermaid
 graph TB
     Client --> API
     API --> Database
     API --> Cache
-```
-```
+\`\`\`
+\`\`\`
 
 The diagram renders automatically in both development and production builds.
 
@@ -5787,7 +5787,7 @@ The diagram renders automatically in both development and production builds.
 
 You can also use Mermaid inside MDX components:
 
-```jsx
+\`\`\`jsx
 import Mermaid from '@theme/Mermaid';
 
 export const ArchitectureDiagram = () => (
@@ -5800,7 +5800,7 @@ export const ArchitectureDiagram = () => (
     \`}
   />
 );
-```
+\`\`\`
 
 ## Practical Examples for Documentation
 
@@ -5808,7 +5808,7 @@ export const ArchitectureDiagram = () => (
 
 In your API documentation, show request flows:
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     participant Client
     participant Gateway as API Gateway
@@ -5824,13 +5824,13 @@ sequenceDiagram
     DB-->>API: Created
     API-->>Gateway: 201 Created
     Gateway-->>Client: 201 + User object
-```
+\`\`\`
 
 ### Architecture Overview
 
 For your project's landing documentation page:
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph "Client Applications"
         Web[Web Dashboard]
@@ -5858,13 +5858,13 @@ graph TB
     UserSvc --> PG
     DataSvc --> PG & S3
     NotifSvc --> Redis
-```
+\`\`\`
 
 ### Database Schema Documentation
 
 Document your data model in the schema reference section:
 
-```mermaid
+\`\`\`mermaid
 erDiagram
     ORGANIZATION ||--o{ TEAM : has
     TEAM ||--o{ USER : contains
@@ -5891,13 +5891,13 @@ erDiagram
         datetime expires_at
         uuid user_id FK
     }
-```
+\`\`\`
 
 ### Plugin Architecture
 
 Document your plugin or extension system:
 
-```mermaid
+\`\`\`mermaid
 classDiagram
     class PluginManager {
         +register(plugin) void
@@ -5926,7 +5926,7 @@ classDiagram
     PluginManager "1" --> "*" Plugin : manages
     Plugin <|.. AuthPlugin
     Plugin <|.. LoggingPlugin
-```
+\`\`\`
 
 ## Theming Mermaid Diagrams
 
@@ -5934,7 +5934,7 @@ classDiagram
 
 Docusaurus supports light and dark modes, and the Mermaid plugin can automatically switch themes:
 
-```javascript
+\`\`\`javascript
 themeConfig: {
   mermaid: {
     theme: {
@@ -5943,7 +5943,7 @@ themeConfig: {
     },
   },
 },
-```
+\`\`\`
 
 Available Mermaid themes:
 - **default** — Blue and gray palette
@@ -5956,7 +5956,7 @@ Available Mermaid themes:
 
 For brand-aligned diagrams:
 
-```javascript
+\`\`\`javascript
 themeConfig: {
   mermaid: {
     theme: {
@@ -5975,18 +5975,18 @@ themeConfig: {
     },
   },
 },
-```
+\`\`\`
 
 ### Per-Diagram Themes
 
 Override the global theme for specific diagrams:
 
-```mermaid
+\`\`\`mermaid
 %%{init: {'theme': 'forest'}}%%
 graph TD
     A[This diagram] --> B[uses forest theme]
     B --> C[regardless of global config]
-```
+\`\`\`
 
 ## Advanced Configuration
 
@@ -5994,27 +5994,27 @@ graph TD
 
 Match your documentation's font:
 
-```javascript
+\`\`\`javascript
 mermaid: {
   options: {
     fontFamily: 'Inter, system-ui, sans-serif',
     fontSize: 14,
   },
 },
-```
+\`\`\`
 
 ### Security Configuration
 
 For documentation sites that accept user-contributed content:
 
-```javascript
+\`\`\`javascript
 mermaid: {
   options: {
     securityLevel: 'strict',
     maxTextSize: 10000,
   },
 },
-```
+\`\`\`
 
 Security levels:
 - **strict** — HTML tags are encoded (recommended for public docs)
@@ -6026,7 +6026,7 @@ Security levels:
 
 For documentation with complex architecture diagrams:
 
-```javascript
+\`\`\`javascript
 mermaid: {
   options: {
     maxTextSize: 100000,
@@ -6041,7 +6041,7 @@ mermaid: {
     },
   },
 },
-```
+\`\`\`
 
 ## Versioned Documentation
 
@@ -6067,7 +6067,7 @@ Mermaid diagrams are rendered client-side (in the browser), not during the build
 
 For pages with many diagrams, consider using Docusaurus's tab components to lazy-load diagram sections:
 
-```jsx
+\`\`\`jsx
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -6079,7 +6079,7 @@ import TabItem from '@theme/TabItem';
     Detailed diagram here
   </TabItem>
 </Tabs>
-```
+\`\`\`
 
 ## Common Issues
 
@@ -6124,7 +6124,7 @@ Mermaid diagrams in Docusaurus transform technical documentation from walls of t
 
 Create a dedicated \`docs/architecture.md\` with your system overview:
 
-```markdown
+\`\`\`markdown
 ---
 title: System Architecture
 sidebar_position: 1
@@ -6134,7 +6134,7 @@ sidebar_position: 1
 
 Our platform consists of three main layers:
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph Client Layer
         Web[React Web App]
@@ -6153,8 +6153,8 @@ graph TB
     Web & Mobile --> GW
     GW --> Auth --> Core
     Core --> PG & Redis & S3
-```
-```
+\`\`\`
+\`\`\`
 
 ### Versioned Diagram Support
 
@@ -6166,7 +6166,7 @@ This is a huge advantage over image-based diagrams, which require you to maintai
 
 In \`.mdx\` files, you can use the Mermaid component programmatically:
 
-```jsx
+\`\`\`jsx
 import Mermaid from '@theme/Mermaid';
 
 export const statuses = ['pending', 'processing', 'complete', 'failed'];
@@ -6177,7 +6177,7 @@ export const OrderStateDiagram = () => {
 };
 
 <OrderStateDiagram />
-```
+\`\`\`
 
 This generates diagrams dynamically from your application's data — useful for keeping docs in sync with enums or configuration.
 
@@ -6211,12 +6211,12 @@ Whether you're documenting your team's workflow, teaching Git concepts, or plann
 
 ## Basic Syntax
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit
     commit
     commit
-```
+\`\`\`
 
 This creates a simple linear history with three commits on the default \`main\` branch. Each \`commit\` command adds a new commit node to the graph.
 
@@ -6224,12 +6224,12 @@ This creates a simple linear history with three commits on the default \`main\` 
 
 You can customize each commit:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "init"
     commit id: "feat-1" type: HIGHLIGHT
     commit id: "fix-1" tag: "v1.0"
-```
+\`\`\`
 
 Commit properties:
 - **\`id\`** — Custom label (displayed on the commit node)
@@ -6240,7 +6240,7 @@ Commit properties:
 
 The core of any git graph is branching:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "initial"
     commit id: "add readme"
@@ -6252,7 +6252,7 @@ gitGraph
     commit id: "hotfix"
     merge feature id: "merge feature"
     commit id: "release" tag: "v1.0"
-```
+\`\`\`
 
 Key commands:
 - **\`branch <name>\`** — Create a new branch
@@ -6264,7 +6264,7 @@ Key commands:
 
 Demonstrate cherry-picking:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "A"
     commit id: "B"
@@ -6277,7 +6277,7 @@ gitGraph
     commit id: "F"
     cherry-pick id: "D"
     commit id: "G"
-```
+\`\`\`
 
 This shows commit \`D\` being cherry-picked from the \`feature\` branch to \`main\`.
 
@@ -6285,7 +6285,7 @@ This shows commit \`D\` being cherry-picked from the \`feature\` branch to \`mai
 
 GitFlow is one of the most popular branching models. Here's how to visualize it:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "init" tag: "v0.1"
     branch develop
@@ -6323,7 +6323,7 @@ gitGraph
     merge hotfix/security id: "hotfix" tag: "v1.0.1"
     checkout develop
     merge hotfix/security id: "hotfix to dev"
-```
+\`\`\`
 
 ### GitFlow Branch Purposes
 
@@ -6337,7 +6337,7 @@ gitGraph
 
 A simpler strategy where everyone works on short-lived branches off main:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "init"
     commit id: "CI setup"
@@ -6364,7 +6364,7 @@ gitGraph
     merge feat-3
 
     commit id: "deploy" tag: "v1.1"
-```
+\`\`\`
 
 ### Key Principles of Trunk-Based
 
@@ -6377,7 +6377,7 @@ gitGraph
 
 A simplified model used by many teams:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "v1.0" tag: "v1.0"
     branch feature/search
@@ -6395,7 +6395,7 @@ gitGraph
     checkout main
     merge fix/bug-123 id: "PR #43 merged"
     commit id: "deploy" tag: "v1.1.1"
-```
+\`\`\`
 
 GitHub Flow rules:
 1. \`main\` is always deployable
@@ -6408,7 +6408,7 @@ GitHub Flow rules:
 
 For teams that maintain multiple release versions:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit id: "init"
     commit id: "feature A"
@@ -6428,7 +6428,7 @@ gitGraph
     checkout main
     commit id: "feature E"
     commit id: "feature F"
-```
+\`\`\`
 
 This shows how teams can maintain v1.x patches while continuing v2.x development.
 
@@ -6459,7 +6459,7 @@ Here's when to use each strategy:
 
 You can customize how branches appear using Mermaid themes:
 
-```mermaid
+\`\`\`mermaid
 %%{init: { 'theme': 'base', 'themeVariables': {
     'git0': '#4f46e5',
     'git1': '#10b981',
@@ -6481,7 +6481,7 @@ gitGraph
     merge feature
     checkout main
     merge develop tag: "v1.0"
-```
+\`\`\`
 
 ### Branch Ordering
 
@@ -6495,12 +6495,12 @@ Mermaid renders branches in the order they're created. Plan your branch creation
 
 Use git graphs in your team's CONTRIBUTING.md or development guide:
 
-```markdown
+\`\`\`markdown
 ## Our Branching Strategy
 
 We use a simplified GitFlow model:
 
-```mermaid
+\`\`\`mermaid
 gitGraph
     commit tag: "latest release"
     branch develop
@@ -6512,7 +6512,7 @@ gitGraph
     merge feature/your-feature id: "PR merged"
     checkout main
     merge develop tag: "next release"
-```
+\`\`\`
 
 ### Steps to Contribute:
 1. Branch from \`develop\`
@@ -6520,7 +6520,7 @@ gitGraph
 3. Open a PR to \`develop\`
 4. After review, it'll be merged
 5. Releases are cut from \`develop\` to \`main\`
-```
+\`\`\`
 
 ## Best Practices
 
@@ -6554,7 +6554,7 @@ Mermaid git graphs are invaluable for documenting branching strategies, teaching
 
 For monorepos with multiple teams, a more complex branching strategy is common:
 
-```
+\`\`\`
 gitGraph
     commit id: "Initial monorepo setup"
     branch team-a
@@ -6576,13 +6576,13 @@ gitGraph
     checkout main
     merge team-b id: "Merge Team B"
     commit id: "v1.2.0 release" tag: "v1.2.0"
-```
+\`\`\`
 
 ## Git Graphs for Onboarding Documentation
 
 New developers often struggle with a project's branching conventions. A git graph in the onboarding guide makes it concrete:
 
-```
+\`\`\`
 gitGraph
     commit id: "main is always deployable"
     branch feature/my-feature
@@ -6592,7 +6592,7 @@ gitGraph
     checkout main
     merge feature/my-feature id: "PR merged after review"
     commit id: "deploy happens automatically"
-```
+\`\`\`
 
 Showing the expected workflow visually is far more effective than describing it in paragraphs.
 
@@ -6636,7 +6636,7 @@ Mermaid.js provides a \`journey\` diagram type that lets you create these maps a
 
 ## Basic Syntax
 
-```mermaid
+\`\`\`mermaid
 journey
     title My Working Day
     section Morning
@@ -6649,7 +6649,7 @@ journey
     section Evening
         Leave office: 5: Me
         Dinner: 5: Me, Family
-```
+\`\`\`
 
 ### Key Elements
 
@@ -6673,7 +6673,7 @@ Mermaid visualizes these scores with color coding — higher scores appear in gr
 
 ## Practical Example: E-Commerce Purchase Journey
 
-```mermaid
+\`\`\`mermaid
 journey
     title Online Shopping Experience
     section Discovery
@@ -6695,7 +6695,7 @@ journey
         Track shipment: 4: Customer
         Receive package: 5: Customer
         Unbox product: 5: Customer
-```
+\`\`\`
 
 ### Insights from This Journey
 
@@ -6706,7 +6706,7 @@ Looking at the scores, we can immediately identify:
 
 ## Practical Example: SaaS Onboarding Journey
 
-```mermaid
+\`\`\`mermaid
 journey
     title New User Onboarding
     section Sign Up
@@ -6731,7 +6731,7 @@ journey
         Discover advanced feature: 5: User
         Hit usage limit: 1: User
         Upgrade decision: 3: User
-```
+\`\`\`
 
 ### Analysis
 
@@ -6741,7 +6741,7 @@ journey
 
 ## Practical Example: Developer API Integration
 
-```mermaid
+\`\`\`mermaid
 journey
     title API Integration Journey
     section Research
@@ -6764,13 +6764,13 @@ journey
         Deploy to production: 4: Developer, DevOps
         Monitor performance: 3: Developer, DevOps
         Handle rate limits: 2: Developer
-```
+\`\`\`
 
 ## Multiple Actors
 
 Journey maps can track multiple actors to show different perspectives:
 
-```mermaid
+\`\`\`mermaid
 journey
     title Restaurant Dining Experience
     section Arrival
@@ -6791,7 +6791,7 @@ journey
         Process payment: 3: Customer, Waiter
         Leave tip: 4: Customer
         Say goodbye: 5: Customer, Host
-```
+\`\`\`
 
 This multi-actor view helps identify where interactions between roles create friction or delight.
 
@@ -6810,7 +6810,7 @@ Before creating a journey map, collect data through:
 
 Create a journey map reflecting the actual user experience:
 
-```mermaid
+\`\`\`mermaid
 journey
     title Current Checkout Experience
     section Cart Review
@@ -6828,7 +6828,7 @@ journey
     section Confirmation
         See confirmation: 5: User
         Get email receipt: 5: User
-```
+\`\`\`
 
 ### Step 3: Identify Opportunities
 
@@ -6840,7 +6840,7 @@ Look for steps with scores of 1-2 — these are your improvement opportunities:
 
 Create a target journey map showing the ideal experience:
 
-```mermaid
+\`\`\`mermaid
 journey
     title Improved Checkout Experience
     section Cart Review
@@ -6858,7 +6858,7 @@ journey
     section Confirmation
         Instant confirmation: 5: User
         Rich email receipt: 5: User
-```
+\`\`\`
 
 Compare the current vs. desired maps to build your product roadmap.
 
@@ -6868,10 +6868,10 @@ Add journey maps to your product documentation:
 
 ### In README Files
 
-```markdown
+\`\`\`markdown
 ## User Experience
 
-```mermaid
+\`\`\`mermaid
 journey
     title Getting Started with OurTool
     section Setup
@@ -6882,8 +6882,8 @@ journey
         Create first item: 5: Developer
         See preview: 5: Developer
         Deploy: 4: Developer
-```
-```
+\`\`\`
+\`\`\`
 
 ### In Design Documents
 
@@ -6896,7 +6896,7 @@ Include journey maps in your product design docs to:
 
 Map the team's development experience:
 
-```mermaid
+\`\`\`mermaid
 journey
     title Sprint 14 Developer Experience
     section Planning
@@ -6911,7 +6911,7 @@ journey
         CI pipeline: 3: Dev, DevOps
         Staging deploy: 4: Dev, DevOps
         Production deploy: 5: Dev, DevOps
-```
+\`\`\`
 
 ## Tips for Effective Journey Maps
 
@@ -6965,7 +6965,7 @@ If you've already explored the [basics of Mermaid mindmaps](/blog/mermaid-mindma
 
 Mermaid mindmaps use **indentation** to define hierarchy. Each level of indentation creates a child node:
 
-```
+\`\`\`
 mindmap
   root((Central Topic))
     Branch A
@@ -6973,7 +6973,7 @@ mindmap
       Sub-topic 2
     Branch B
       Sub-topic 3
-```
+\`\`\`
 
 Node shapes add meaning:
 - \`((text))\` — Cloud shape (great for root nodes)
@@ -6990,7 +6990,7 @@ Mindmaps shine brightest during brainstorming. Instead of messy whiteboard photo
 
 ### Example: Product Feature Brainstorming
 
-```
+\`\`\`
 mindmap
   root((Mobile App v2.0))
     User Experience
@@ -7019,7 +7019,7 @@ mindmap
       In-App Purchases
         Cosmetic Items
         Power-Ups
-```
+\`\`\`
 
 This mindmap captures the output of an entire brainstorming session in a format that can live in your project repo. Anyone joining the team later can instantly understand the thinking behind your feature decisions.
 
@@ -7036,7 +7036,7 @@ Work breakdown structures (WBS) map naturally to mindmaps. Use them to decompose
 
 ### Example: Website Redesign Project Plan
 
-```
+\`\`\`
 mindmap
   root((Website Redesign))
     Discovery
@@ -7074,7 +7074,7 @@ mindmap
       Content Migration
       SEO Redirects
       Monitoring Setup
-```
+\`\`\`
 
 Each branch becomes a workstream. Each leaf becomes a task. This single diagram replaces a lengthy project plan document and gives everyone an at-a-glance view of the full scope.
 
@@ -7084,7 +7084,7 @@ Mermaid mindmaps are exceptional for organizing notes from meetings, courses, or
 
 ### Example: Meeting Notes — Quarterly Planning
 
-```
+\`\`\`
 mindmap
   root((Q2 Planning))
     Goals
@@ -7103,7 +7103,7 @@ mindmap
       )Draft Hiring JDs(
       )Update Roadmap(
       )Schedule Partner Call(
-```
+\`\`\`
 
 Notice the use of \`)text(\` (bang shape) for action items — this visually distinguishes them from informational nodes. Small formatting choices like this make mindmaps scannable.
 
@@ -7113,7 +7113,7 @@ Mindmaps offer a lighter alternative to formal architecture diagrams when you ne
 
 ### Example: Microservices Architecture
 
-```
+\`\`\`
 mindmap
   root((E-Commerce Platform))
     API Gateway
@@ -7146,7 +7146,7 @@ mindmap
       Kubernetes
       Datadog Monitoring
       AWS S3 Storage
-```
+\`\`\`
 
 This isn't a replacement for detailed system design documents, but it's perfect for onboarding new team members or presenting to non-technical stakeholders.
 
@@ -7156,7 +7156,7 @@ Structure your thinking around complex decisions using mindmaps.
 
 ### Example: Technology Stack Decision
 
-```
+\`\`\`
 mindmap
   root((Frontend Framework))
     React
@@ -7184,7 +7184,7 @@ mindmap
         Smaller Community
         Fewer Libraries
         Less Battle Tested
-```
+\`\`\`
 
 Laying out pros and cons visually helps teams move past analysis paralysis and make informed decisions.
 
@@ -7220,7 +7220,7 @@ The key is matching the use case to the tool: use mindmaps for **hierarchical ex
 
 Teams use technology radars to categorise tools and frameworks by adoption status. A mind map works beautifully for this:
 
-```
+\`\`\`
 mindmap
     root((Tech Radar 2025))
         Adopt
@@ -7244,7 +7244,7 @@ mindmap
             AngularJS
             REST (for new services)
                 Prefer GraphQL or gRPC
-```
+\`\`\`
 
 This is far more readable than a table or bulleted list — the visual hierarchy immediately communicates confidence levels.
 
@@ -7252,7 +7252,7 @@ This is far more readable than a table or bulleted list — the visual hierarchy
 
 Use mind maps to document incident response procedures:
 
-```
+\`\`\`
 mindmap
     root((P1 Incident Response))
         Immediate Actions
@@ -7280,7 +7280,7 @@ mindmap
             RCA document
             Action items
             Update runbook
-```
+\`\`\`
 
 Mind maps for runbooks work because they're scannable under pressure — an engineer can quickly navigate to the relevant branch without reading the whole document.
 
@@ -7288,7 +7288,7 @@ Mind maps for runbooks work because they're scannable under pressure — an engi
 
 For teams with structured data, you can generate Mermaid mind map syntax programmatically. For example, generating a feature map from your product backlog:
 
-```javascript
+\`\`\`javascript
 function generateFeatureMindmap(features) {
   let output = 'mindmap\n    root((Product Features))\n';
   const categories = {};
@@ -7307,7 +7307,7 @@ function generateFeatureMindmap(features) {
   
   return output;
 }
-```
+\`\`\`
 
 ## Conclusion
 
@@ -7371,12 +7371,12 @@ Mermaid ships with five built-in themes. Switching between them requires just on
 
 Add a \`%%{init: ...}%%\` comment at the very top of your diagram:
 
-```
+\`\`\`
 %%{init: {'theme': 'dark'}}%%
 graph TD
     A[Start] --> B[Process]
     B --> C[End]
-```
+\`\`\`
 
 This overrides the global theme for just this one diagram. Great for mixing themes on the same page.
 
@@ -7384,18 +7384,18 @@ This overrides the global theme for just this one diagram. Great for mixing them
 
 When embedding Mermaid in a webpage or configuring it via your documentation framework:
 
-```javascript
+\`\`\`javascript
 mermaid.initialize({
   startOnLoad: true,
   theme: 'dark',
 });
-```
+\`\`\`
 
 **Method 3: Docusaurus / MkDocs config**
 
 In Docusaurus (\`docusaurus.config.js\`):
 
-```javascript
+\`\`\`javascript
 themeConfig: {
   mermaid: {
     theme: {
@@ -7404,7 +7404,7 @@ themeConfig: {
     },
   },
 },
-```
+\`\`\`
 
 This automatically switches between light and dark Mermaid themes based on the user's Docusaurus theme preference.
 
@@ -7414,7 +7414,7 @@ Dark mode is often requested for diagrams embedded in dark documentation themes 
 
 ### Standalone Dark Diagram
 
-```
+\`\`\`
 %%{init: {'theme': 'dark'}}%%
 flowchart LR
     Client([Client]) --> Gateway[API Gateway]
@@ -7422,13 +7422,13 @@ flowchart LR
     Gateway --> API[Core API]
     API --> DB[(PostgreSQL)]
     API --> Cache[(Redis)]
-```
+\`\`\`
 
 ### Auto-Switch with CSS Media Query
 
 For a webpage that supports both light and dark OS preferences, use CSS to select the right diagram:
 
-```html
+\`\`\`html
 <div class="diagram-light">
   <div class="mermaid">
     %%{init: {'theme': 'default'}}%%
@@ -7454,7 +7454,7 @@ For a webpage that supports both light and dark OS preferences, use CSS to selec
     .diagram-dark { display: none; }
   }
 </style>
-```
+\`\`\`
 
 ### Dark Mode in GitHub
 
@@ -7466,7 +7466,7 @@ Theme variables let you customize specific aspects of any theme without writing 
 
 ### Core Theme Variables
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {
   'primaryColor': '#4f46e5',
   'primaryTextColor': '#ffffff',
@@ -7489,7 +7489,7 @@ graph TD
     C -->|Yes| D[Complete]
     C -->|No| E[Retry]
     E --> B
-```
+\`\`\`
 
 ### Variable Reference
 
@@ -7510,7 +7510,7 @@ graph TD
 
 ### Sequence Diagram Variables
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {
   'actorBkg': '#4f46e5',
   'actorTextColor': '#ffffff',
@@ -7533,11 +7533,11 @@ sequenceDiagram
     Server->>+DB: SELECT user
     DB-->>-Server: User found
     Server-->>-Client: 200 OK + JWT
-```
+\`\`\`
 
 ### Class Diagram Variables
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {
   'classText': '#1e1b4b',
   'lineColor': '#6366f1',
@@ -7554,7 +7554,7 @@ classDiagram
         +deleteUser(id) void
     }
     User <|-- Admin
-```
+\`\`\`
 
 ## CSS Overrides — Surgical Precision
 
@@ -7562,7 +7562,7 @@ For full control, you can target Mermaid's SVG elements with CSS. This works bes
 
 ### Basic Node Styling
 
-```css
+\`\`\`css
 /* Style all nodes in a specific diagram */
 #my-diagram .node rect {
   fill: #4f46e5;
@@ -7583,13 +7583,13 @@ For full control, you can target Mermaid's SVG elements with CSS. This works bes
   stroke: #6366f1;
   stroke-width: 2px;
 }
-```
+\`\`\`
 
 ### Dark Mode CSS Override
 
 Apply a dark look to any Mermaid diagram without using the built-in dark theme:
 
-```css
+\`\`\`css
 .dark-diagram .mermaid svg {
   background: #1f2937;
   border-radius: 8px;
@@ -7607,13 +7607,13 @@ Apply a dark look to any Mermaid diagram without using the built-in dark theme:
 .dark-diagram .mermaid .edgePath path {
   stroke: #9ca3af;
 }
-```
+\`\`\`
 
 ## Practical Brand Customization Example
 
 Here's a complete example customizing Mermaid to match a purple brand palette:
 
-```
+\`\`\`
 %%{init: {
   'theme': 'base',
   'themeVariables': {
@@ -7638,48 +7638,48 @@ flowchart LR
         D --> F[Onboard]
         F --> G([Active User])
     end
-```
+\`\`\`
 
 ## Quick Reference: All 5 Themes Side by Side
 
 ### Default Theme
-```
+\`\`\`
 %%{init: {'theme': 'default'}}%%
 graph LR
     A[Node A] --> B[Node B] --> C[Node C]
-```
+\`\`\`
 **Best for:** Standard technical documentation, GitHub READMEs
 
 ### Neutral Theme
-```
+\`\`\`
 %%{init: {'theme': 'neutral'}}%%
 graph LR
     A[Node A] --> B[Node B] --> C[Node C]
-```
+\`\`\`
 **Best for:** Professional docs, minimal aesthetic, mixed content pages
 
 ### Dark Theme
-```
+\`\`\`
 %%{init: {'theme': 'dark'}}%%
 graph LR
     A[Node A] --> B[Node B] --> C[Node C]
-```
+\`\`\`
 **Best for:** Dark mode sites, terminal/CLI documentation, developer portals
 
 ### Forest Theme
-```
+\`\`\`
 %%{init: {'theme': 'forest'}}%%
 graph LR
     A[Node A] --> B[Node B] --> C[Node C]
-```
+\`\`\`
 **Best for:** Environmental projects, healthcare, non-tech audiences
 
 ### Base Theme
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#e11d48'}}}%%
 graph LR
     A[Node A] --> B[Node B] --> C[Node C]
-```
+\`\`\`
 **Best for:** Brand-aligned diagrams, full custom control
 
 ## Tips and Common Pitfalls
@@ -7706,7 +7706,7 @@ The init directive syntax means your theme configuration lives inside the diagra
 
 When using \`theme: 'base'\`, you can override these key variables:
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {
     'primaryColor': '#4f46e5',
     'primaryTextColor': '#ffffff',
@@ -7724,7 +7724,7 @@ When using \`theme: 'base'\`, you can override these key variables:
 }}}%%
 graph TD
     A[Styled with custom brand colors] --> B[Consistent with design system]
-```
+\`\`\`
 
 ## Theming for Different Documentation Contexts
 
@@ -7732,7 +7732,7 @@ graph TD
 
 For documentation sites with theme toggle (like Docusaurus), configure Mermaid to respond to the system theme:
 
-```javascript
+\`\`\`javascript
 // In docusaurus.config.js
 themeConfig: {
   mermaid: {
@@ -7742,7 +7742,7 @@ themeConfig: {
     },
   },
 },
-```
+\`\`\`
 
 Users who prefer dark mode will automatically see dark diagrams.
 
@@ -7756,17 +7756,17 @@ If you want specific control over how your diagram looks on GitHub, use \`%%{ini
 
 For slides or presentations, the \`forest\` theme often looks best on a white background, while \`dark\` works well on dark slide backgrounds:
 
-```
+\`\`\`
 %%{init: {'theme': 'forest', 'themeVariables': {'fontSize': '20px'}}}%%
 flowchart LR
     A[Slide-ready] --> B[Larger font] --> C[Clean colors]
-```
+\`\`\`
 
 ## Exporting Themed Diagrams
 
 Once you're happy with your theme, export diagrams as SVG or PNG using the Mermaid CLI:
 
-```bash
+\`\`\`bash
 npm install -g @mermaid-js/mermaid-cli
 
 # Export with default theme
@@ -7777,7 +7777,7 @@ mmdc -i diagram.mmd -o diagram.svg --theme dark
 
 # Export at higher resolution
 mmdc -i diagram.mmd -o diagram.png --width 2000
-```
+\`\`\`
 
 The exported SVG preserves all theme colours and can be included in slide decks, PDFs, or documentation sites that don't natively support Mermaid.
 
@@ -7807,22 +7807,22 @@ Both tools let you describe diagrams in plain text and render them as images. Bo
 
 Mermaid is a **JavaScript-based** diagramming library that renders diagrams client-side in the browser. It uses a clean, human-readable syntax inspired by Markdown, and it integrates natively with GitHub, GitLab, Notion, Obsidian, Docusaurus, and MkDocs.
 
-```
+\`\`\`
 graph TD
     A[Client] --> B[API]
     B --> C[(Database)]
-```
+\`\`\`
 
 ### PlantUML
 
 PlantUML is a **Java-based** tool that generates diagrams on the server side, producing PNG, SVG, or ASCII art. It's been around since 2009, has a massive feature set, and is the dominant tool in enterprise and Java-heavy teams. It requires a Java runtime (or a remote server) to render diagrams.
 
-```
+\`\`\`
 @startuml
 [Client] --> [API]
 [API] --> [Database]
 @enduml
-```
+\`\`\`
 
 ## Syntax Comparison
 
@@ -7832,7 +7832,7 @@ This is where the tools feel most different.
 
 **Mermaid:**
 
-```
+\`\`\`
 flowchart TD
     Start([Begin]) --> Input[Read data]
     Input --> Validate{Valid?}
@@ -7840,11 +7840,11 @@ flowchart TD
     Validate -->|No| Error[Show error]
     Process --> End([Done])
     Error --> Input
-```
+\`\`\`
 
 **PlantUML:**
 
-```
+\`\`\`
 @startuml
 start
 :Read data;
@@ -7856,7 +7856,7 @@ else (No)
 endif
 stop
 @enduml
-```
+\`\`\`
 
 **Verdict:** PlantUML's activity diagram syntax is more expressive for complex flows with explicit control structures (\`if/else\`, \`while\`). Mermaid's flowchart syntax is more visual and readable at a glance, but achieves conditional logic through diamond nodes rather than language constructs.
 
@@ -7864,7 +7864,7 @@ stop
 
 **Mermaid:**
 
-```
+\`\`\`
 sequenceDiagram
     participant C as Client
     participant A as API
@@ -7874,11 +7874,11 @@ sequenceDiagram
     A->>+D: SELECT user
     D-->>-A: User found
     A-->>-C: JWT token
-```
+\`\`\`
 
 **PlantUML:**
 
-```
+\`\`\`
 @startuml
 participant Client as C
 participant API as A
@@ -7893,7 +7893,7 @@ deactivate D
 A --> C: JWT token
 deactivate A
 @enduml
-```
+\`\`\`
 
 **Verdict:** Mermaid wins here for conciseness. The \`+/-\` activation syntax is far cleaner than PlantUML's explicit \`activate/deactivate\` blocks. Both tools produce comparable output for sequence diagrams.
 
@@ -7901,7 +7901,7 @@ deactivate A
 
 **Mermaid:**
 
-```
+\`\`\`
 classDiagram
     class Animal {
         +String name
@@ -7911,11 +7911,11 @@ classDiagram
         +fetch() void
     }
     Animal <|-- Dog
-```
+\`\`\`
 
 **PlantUML:**
 
-```
+\`\`\`
 @startuml
 class Animal {
   +String name
@@ -7926,7 +7926,7 @@ class Dog {
 }
 Animal <|-- Dog
 @enduml
-```
+\`\`\`
 
 **Verdict:** Very similar — both follow UML class diagram conventions closely. PlantUML has more UML-specific features (namespaces, packages, notes on relationships), while Mermaid's output is cleaner by default.
 
@@ -7934,7 +7934,7 @@ Animal <|-- Dog
 
 **Mermaid:**
 
-```
+\`\`\`
 erDiagram
     CUSTOMER ||--o{ ORDER : places
     CUSTOMER {
@@ -7947,11 +7947,11 @@ erDiagram
         int customer_id FK
         date created_at
     }
-```
+\`\`\`
 
 **PlantUML:**
 
-```
+\`\`\`
 @startuml
 entity CUSTOMER {
   * id : int <<PK>>
@@ -7967,7 +7967,7 @@ entity ORDER {
 }
 CUSTOMER ||--o{ ORDER : places
 @enduml
-```
+\`\`\`
 
 **Verdict:** Both are capable. Mermaid's cardinality notation for ER diagrams is identical to PlantUML's. PlantUML's entity notation (\`* required\` vs optional) offers a bit more expressiveness for data modeling.
 
@@ -8071,7 +8071,7 @@ PlantUML uses **Graphviz** (for most diagram types) or its own rendering engine.
 
 ### Mermaid Styling
 
-```
+\`\`\`
 %%{init: {'theme': 'dark', 'themeVariables': {
   'primaryColor': '#4f46e5',
   'primaryTextColor': '#fff',
@@ -8079,13 +8079,13 @@ PlantUML uses **Graphviz** (for most diagram types) or its own rendering engine.
 }}}%%
 graph TD
     A --> B --> C
-```
+\`\`\`
 
 Mermaid has 5 built-in themes (\`default\`, \`dark\`, \`neutral\`, \`forest\`, \`base\`) and supports theme variables and CSS overrides. The \`base\` theme is fully customizable. Per-diagram theme overrides work via init directives.
 
 ### PlantUML Styling
 
-```
+\`\`\`
 @startuml
 skinparam backgroundColor #FEFEFE
 skinparam component {
@@ -8096,7 +8096,7 @@ skinparam component {
 }
 [Component A] --> [Component B]
 @enduml
-```
+\`\`\`
 
 PlantUML's \`skinparam\` system is extremely granular — you can control colors, fonts, borders, shadows, arrows, and more for every element type. It supports custom styles, themes (via \`!theme\`), and preprocessor includes.
 
@@ -8108,11 +8108,11 @@ PlantUML's \`skinparam\` system is extremely granular — you can control colors
 
 Mermaid's syntax is designed to be approachable. A developer with no prior knowledge can write a working flowchart in 5 minutes. The syntax reads almost like plain English:
 
-```
+\`\`\`
 flowchart LR
     Browser -->|HTTP| Server
     Server -->|SQL| Database
-```
+\`\`\`
 
 PlantUML's syntax is more verbose and requires learning PlantUML-specific conventions. The upside is more power; the downside is a steeper initial learning curve.
 
@@ -8235,7 +8235,7 @@ If you've been writing flat flowcharts and wondering why they look cluttered, su
 
 A subgraph is declared with the \`subgraph\` keyword, followed by an optional ID and title, and closed with \`end\`:
 
-```
+\`\`\`
 flowchart TD
     subgraph Frontend
         A[React App] --> B[API Client]
@@ -8244,7 +8244,7 @@ flowchart TD
         C[Express Server] --> D[(PostgreSQL)]
     end
     B --> C
-```
+\`\`\`
 
 The key rules:
 - **\`subgraph [id] ["title"]\`** — Opens a subgraph. ID is used for linking; title is displayed.
@@ -8256,7 +8256,7 @@ The key rules:
 
 If you want a subgraph title with spaces, use quotes:
 
-```
+\`\`\`
 flowchart LR
     subgraph fe["Frontend Layer"]
         A[React]
@@ -8265,24 +8265,24 @@ flowchart LR
         B[Node.js]
     end
     A --> B
-```
+\`\`\`
 
 Here \`fe\` and \`be\` are the IDs (used in edges), and \`"Frontend Layer"\` / \`"Backend Layer"\` are the displayed titles.
 
 You can also omit the ID and just provide a title — Mermaid generates one internally:
 
-```
+\`\`\`
 flowchart TD
     subgraph "API Services"
         A[Auth] --> B[Users]
     end
-```
+\`\`\`
 
 ## Connecting Subgraphs to Nodes and Other Subgraphs
 
 You can draw edges from a **node to a subgraph** or from a **subgraph to another subgraph**. Mermaid treats the subgraph as a unit when used in an edge:
 
-```
+\`\`\`
 flowchart LR
     Client([Browser]) --> fe
 
@@ -8295,7 +8295,7 @@ flowchart LR
     end
 
     fe --> be
-```
+\`\`\`
 
 Here, the edge \`fe --> be\` connects the two containers directly. Mermaid draws the arrow from the outer boundary of the first subgraph to the second.
 
@@ -8303,7 +8303,7 @@ Here, the edge \`fe --> be\` connects the two containers directly. Mermaid draws
 
 You can also connect a subgraph to a specific node inside another subgraph:
 
-```
+\`\`\`
 flowchart TD
     subgraph Client
         Browser[Web Browser]
@@ -8313,7 +8313,7 @@ flowchart TD
         App --> DB[(PostgreSQL)]
     end
     Browser --> Gateway
-```
+\`\`\`
 
 Mixing subgraph-to-subgraph and node-to-node edges in the same diagram is perfectly valid.
 
@@ -8321,7 +8321,7 @@ Mixing subgraph-to-subgraph and node-to-node edges in the same diagram is perfec
 
 Subgraphs can be nested inside other subgraphs to reflect hierarchical architectures:
 
-```
+\`\`\`
 flowchart TB
     subgraph Cloud["AWS Cloud"]
         subgraph VPC["VPC (172.16.0.0/16)"]
@@ -8346,7 +8346,7 @@ flowchart TB
     ECS --> Redis
     ECS --> S3
     NAT --> Internet
-```
+\`\`\`
 
 Nesting depth is technically unlimited, but **two to three levels** is the practical maximum before diagrams become hard to read. Use nesting to show **genuine hierarchy** — cloud region → VPC → subnet → service — not just for visual grouping.
 
@@ -8354,7 +8354,7 @@ Nesting depth is technically unlimited, but **two to three levels** is the pract
 
 One of the most underused Mermaid features: each subgraph can have its **own layout direction**, independent of the root flowchart:
 
-```
+\`\`\`
 flowchart TB
     subgraph RequestPath["Request Path (left-to-right)"]
         direction LR
@@ -8368,13 +8368,13 @@ flowchart TB
     end
 
     API --> API2
-```
+\`\`\`
 
 This is powerful for diagrams where **different sections have different natural flow directions**. A request pipeline flows left-to-right, but a data hierarchy flows top-to-bottom. Combining both in one diagram — each section with its own direction — produces a far more readable result than forcing everything into a single direction.
 
 ## Practical Example: Three-Tier Web Architecture
 
-```
+\`\`\`
 flowchart TB
     subgraph "Presentation Tier"
         Browser[Web Browser]
@@ -8403,13 +8403,13 @@ flowchart TB
     Users --> Cache
     Orders --> OrdersDB
     Orders --> Queue
-```
+\`\`\`
 
 This is a clean, scannable architecture diagram. A developer joining the team instantly understands the three tiers and which services connect to which data stores.
 
 ## Practical Example: Microservices System
 
-```
+\`\`\`
 flowchart LR
     Client([External Client])
 
@@ -8454,7 +8454,7 @@ flowchart LR
     OrderSvc --> OrderDB
     OrderSvc --> Kafka
     Kafka --> NotifSvc
-```
+\`\`\`
 
 ## Styling Subgraphs
 
@@ -8462,7 +8462,7 @@ flowchart LR
 
 Apply classes to subgraph container backgrounds and borders:
 
-```
+\`\`\`
 flowchart TB
     subgraph frontend["Frontend"]:::feStyle
         A[React]
@@ -8479,7 +8479,7 @@ flowchart TB
 
     classDef feStyle fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
     classDef beStyle fill:#dcfce7,stroke:#22c55e,stroke-width:2px,color:#14532d
-```
+\`\`\`
 
 The \`:::className\` syntax attaches a class to the subgraph container itself, letting you visually distinguish groups by color.
 
@@ -8487,7 +8487,7 @@ The \`:::className\` syntax attaches a class to the subgraph container itself, l
 
 Nodes inside subgraphs are styled just like any other node:
 
-```
+\`\`\`
 flowchart TD
     subgraph prod["Production"]
         A[Web Server]:::critical
@@ -8501,13 +8501,13 @@ flowchart TD
     B -->|replicates| D
 
     classDef critical fill:#fef2f2,stroke:#ef4444,stroke-width:2px
-```
+\`\`\`
 
 ### Theme-Aware Subgraph Colors
 
 If your diagrams are embedded on a site with light/dark mode, use Mermaid's theme variables instead of hard-coded colors so they adapt automatically:
 
-```
+\`\`\`
 %%{init: {'theme': 'base', 'themeVariables': {
     'clusterBkg': '#f0f9ff',
     'clusterBorder': '#0ea5e9',
@@ -8522,7 +8522,7 @@ flowchart TB
         Node3[Service 3]
     end
     A --> B
-```
+\`\`\`
 
 The \`clusterBkg\` and \`clusterBorder\` variables control all subgraph containers globally.
 
@@ -8532,7 +8532,7 @@ The \`clusterBkg\` and \`clusterBorder\` variables control all subgraph containe
 
 Every \`subgraph\` must have a matching \`end\`. Forgetting it causes a parse error:
 
-```
+\`\`\`
 %% WRONG — missing end
 flowchart TD
     subgraph A
@@ -8541,9 +8541,9 @@ flowchart TD
 subgraph B
     Node3
 end
-```
+\`\`\`
 
-```
+\`\`\`
 %% CORRECT
 flowchart TD
     subgraph A
@@ -8552,13 +8552,13 @@ flowchart TD
     subgraph B
         Node3
     end
-```
+\`\`\`
 
 ### 2. Node IDs Must Be Globally Unique
 
 Even if two nodes are in different subgraphs, they share the same namespace. \`A\` inside "Frontend" and \`A\` inside "Backend" is the **same node**:
 
-```
+\`\`\`
 %% WRONG — both subgraphs share node "A"
 flowchart TD
     subgraph Frontend
@@ -8567,9 +8567,9 @@ flowchart TD
     subgraph Backend
         A[Express] --> C[(DB)]
     end
-```
+\`\`\`
 
-```
+\`\`\`
 %% CORRECT — unique IDs
 flowchart TD
     subgraph Frontend
@@ -8578,11 +8578,11 @@ flowchart TD
     subgraph Backend
         beExpress[Express] --> beDB[(DB)]
     end
-```
+\`\`\`
 
 ### 3. Connecting to a Subgraph ID vs. a Node ID
 
-```
+\`\`\`
 flowchart LR
     X[External] --> myGroup   %% Edge to the subgraph container
     X[External] --> A         %% Edge to node A (which may be inside a subgraph)
@@ -8590,7 +8590,7 @@ flowchart LR
     subgraph myGroup
         A[Node A] --> B[Node B]
     end
-```
+\`\`\`
 
 Both are valid but produce different visual results. Arrow-to-container edges touch the container boundary; arrow-to-node edges touch the specific node.
 
@@ -8598,7 +8598,7 @@ Both are valid but produce different visual results. Arrow-to-container edges to
 
 Per-subgraph direction only works with the \`flowchart\` keyword, not the older \`graph\` keyword:
 
-```
+\`\`\`
 %% WORKS
 flowchart TB
     subgraph A
@@ -8612,7 +8612,7 @@ graph TB
         direction LR
         X --> Y
     end
-```
+\`\`\`
 
 ## When to Use Subgraphs
 
@@ -8638,7 +8638,7 @@ A common question: should you group with a subgraph, or create a separate diagra
 
 ## Complete Reference: Subgraph Syntax
 
-```
+\`\`\`
 flowchart [direction]
     %% Basic subgraph
     subgraph id["Title"]
@@ -8670,7 +8670,7 @@ flowchart [direction]
     id --> id2
 
     classDef myClass fill:#fef3c7,stroke:#d97706
-```
+\`\`\`
 
 ## Conclusion
 
@@ -8723,7 +8723,7 @@ That's it. Now any Mermaid code block inside a Markdown file will render automat
 
 Create a new file called \`docs/architecture.md\` and add:
 
-```
+\`\`\`
 graph TD
     A[User Request] --> B[API Gateway]
     B --> C[Auth Service]
@@ -8731,7 +8731,7 @@ graph TD
     D --> E[(Database)]
     D --> F[Cache Layer]
     F --> E
-```
+\`\`\`
 
 Open the Markdown preview (\`Ctrl+Shift+V\` / \`Cmd+Shift+V\`) and you'll see your flowchart rendered live.
 
@@ -8761,7 +8761,7 @@ The real power of Mermaid in VS Code is treating diagrams like code. Here's a wo
 
 ### 1. Create a \`docs/\` Folder
 
-```
+\`\`\`
 my-project/
 ├── src/
 ├── docs/
@@ -8770,13 +8770,13 @@ my-project/
 │   └── database-schema.md
 ├── README.md
 └── package.json
-```
+\`\`\`
 
 ### 2. Document Key Flows with Mermaid
 
 In \`docs/api-flow.md\`:
 
-```
+\`\`\`
 sequenceDiagram
     participant Client
     participant Gateway
@@ -8792,18 +8792,18 @@ sequenceDiagram
     DB-->>UserAPI: Success
     UserAPI-->>Gateway: 201 Created
     Gateway-->>Client: 201 Created
-```
+\`\`\`
 
 ### 3. Reference Diagrams in Your README
 
 In your \`README.md\`, link to the detailed docs:
 
-```markdown
+\`\`\`markdown
 ## Architecture
 
 See [Architecture Overview](docs/architecture.md) for system diagrams.
 See [API Flow](docs/api-flow.md) for request lifecycle.
-```
+\`\`\`
 
 If you host your repo on **GitHub**, Mermaid blocks in Markdown files render automatically — no extra setup needed.
 
@@ -8817,31 +8817,31 @@ When someone updates a diagram, reviewers can see the text diff in the pull requ
 
 Create custom VS Code snippets for diagram types you use often. Go to **File → Preferences → Configure User Snippets → markdown.json** and add:
 
-```json
+\`\`\`json
 {
   "Mermaid Flowchart": {
     "prefix": "mermaid-flow",
     "body": [
-      "```mermaid",
+      "\`\`\`mermaid",
       "graph TD",
       "    A[$1] --> B[$2]",
       "    B --> C[$3]",
-      "```"
+      "\`\`\`"
     ]
   },
   "Mermaid Sequence": {
     "prefix": "mermaid-seq",
     "body": [
-      "```mermaid",
+      "\`\`\`mermaid",
       "sequenceDiagram",
       "    participant $1",
       "    participant $2",
       "    $1->>$2: $3",
-      "```"
+      "\`\`\`"
     ]
   }
 }
-```
+\`\`\`
 
 Now typing \`mermaid-flow\` and pressing Tab scaffolds a flowchart instantly.
 
@@ -8849,12 +8849,12 @@ Now typing \`mermaid-flow\` and pressing Tab scaffolds a flowchart instantly.
 
 If you use a dark VS Code theme, Mermaid diagrams might look off. You can configure the preview theme in your \`settings.json\`:
 
-```json
+\`\`\`json
 {
   "markdown-mermaid.darkModeTheme": "dark",
   "markdown-mermaid.lightModeTheme": "default"
 }
-```
+\`\`\`
 
 This ensures diagrams match your editor's appearance.
 
@@ -8923,37 +8923,37 @@ Diagram-first development catches design flaws before they're built in. It takes
 
 Create a comprehensive \`ARCHITECTURE.md\` at the root of your repo:
 
-```markdown
+\`\`\`markdown
 # System Architecture
 
 ## System Overview
 
-```mermaid
+\`\`\`mermaid
 graph TB
     [high-level system diagram]
-```
+\`\`\`
 
 ## Data Flow
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     [critical path flow]
-```
+\`\`\`
 
 ## Database Schema
 
-```mermaid
+\`\`\`mermaid
 erDiagram
     [core tables]
-```
+\`\`\`
 
 ## Deployment Pipeline
 
-```mermaid
+\`\`\`mermaid
 flowchart LR
     [CI/CD stages]
-```
-```
+\`\`\`
+\`\`\`
 
 This single file gives any developer a complete system overview before they read a line of code.
 
@@ -8961,32 +8961,32 @@ This single file gives any developer a complete system overview before they read
 
 Create VS Code user snippets for your most-used diagram templates (\`Ctrl+Shift+P\` → "Snippets: Configure Snippets" → \`markdown.json\`):
 
-```json
+\`\`\`json
 {
   "Mermaid Flowchart": {
     "prefix": "mflow",
     "body": [
-      "```mermaid",
+      "\`\`\`mermaid",
       "flowchart TD",
       "    $1",
-      "```"
+      "\`\`\`"
     ],
     "description": "Insert Mermaid flowchart block"
   },
   "Mermaid Sequence": {
     "prefix": "mseq",
     "body": [
-      "```mermaid",
+      "\`\`\`mermaid",
       "sequenceDiagram",
       "    participant $1",
       "    participant $2",
       "    $1->>$2: $3",
-      "```"
+      "\`\`\`"
     ],
     "description": "Insert Mermaid sequence diagram block"
   }
 }
-```
+\`\`\`
 
 Type \`mflow\` and hit Tab to get a ready-to-fill flowchart skeleton.
 
@@ -9035,7 +9035,7 @@ GitLab provides built-in Mermaid.js support in its Markdown renderer. No plugins
 
 Wrap your Mermaid syntax in a fenced code block with \`mermaid\` as the language identifier:
 
-```mermaid
+\`\`\`mermaid
 graph TD
     A[Code Push] --> B(Run Tests)
     B --> C{Pass?}
@@ -9043,7 +9043,7 @@ graph TD
     C -- No --> E[Notify Developer]
     D --> F[Manual Review]
     F --> G(Deploy to Production)
-```
+\`\`\`
 
 GitLab renders this inline on save — no external tools needed.
 
@@ -9051,7 +9051,7 @@ GitLab renders this inline on save — no external tools needed.
 
 ### CI/CD Pipeline Flowchart
 
-```mermaid
+\`\`\`mermaid
 graph TD
     A[Code Push] --> B(Unit Tests)
     B --> C{Tests Pass?}
@@ -9063,11 +9063,11 @@ graph TD
     H -- Yes --> I[Manual Approval]
     H -- No --> E
     I --> J(Deploy to Production)
-```
+\`\`\`
 
 ### API Sequence Diagram
 
-```mermaid
+\`\`\`mermaid
 sequenceDiagram
     autonumber
     actor User
@@ -9081,11 +9081,11 @@ sequenceDiagram
     DB-->>API: User ID
     API-->>Frontend: 201 Created
     Frontend-->>User: Success
-```
+\`\`\`
 
 ### Database ER Diagram
 
-```mermaid
+\`\`\`mermaid
 erDiagram
     USER ||--o{ POST : writes
     POST ||--o{ COMMENT : has
@@ -9106,11 +9106,11 @@ erDiagram
         int post_id FK
         int author_id FK
     }
-```
+\`\`\`
 
 ### Project Timeline (Gantt)
 
-```mermaid
+\`\`\`mermaid
 gantt
     title Feature Development Schedule
     dateFormat YYYY-MM-DD
@@ -9122,7 +9122,7 @@ gantt
     section Testing
     QA             :crit, 2026-04-14, 5d
     Release        :milestone, 2026-04-20, 0d
-```
+\`\`\`
 
 ## Best Practices
 
@@ -9149,7 +9149,7 @@ GitLab wikis are Markdown-based — which means Mermaid works there too. This is
 
 Create a wiki page called "Architecture" and embed your system overview:
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph Frontend
         WebApp[React SPA]
@@ -9168,7 +9168,7 @@ graph TB
     API --> DB & Search
     API --> Queue --> Workers
     Workers --> DB
-```
+\`\`\`
 
 Wiki pages with Mermaid diagrams are great for onboarding documentation, runbooks, and system maps that new team members can reference on day one.
 
@@ -9178,7 +9178,7 @@ Wiki pages with Mermaid diagrams are great for onboarding documentation, runbook
 
 Create issue templates in \`.gitlab/issue_templates/\` that include pre-built Mermaid diagrams. For example, a bug report template with a state diagram showing expected vs. actual behavior:
 
-```mermaid
+\`\`\`mermaid
 stateDiagram-v2
     [*] --> Expected
     Expected --> Actual : Bug occurs here
@@ -9193,13 +9193,13 @@ stateDiagram-v2
         [*] --> Step1a : User clicks submit
         Step1a --> Error : 500 Server Error
     }
-```
+\`\`\`
 
 ### Merge Request Documentation
 
 When proposing architectural changes, add a "before and after" diagram in your MR description. Reviewers immediately see what's changing:
 
-```mermaid
+\`\`\`mermaid
 graph LR
     subgraph Before
         A1[Monolith] --> B1[(Single DB)]
@@ -9209,7 +9209,7 @@ graph LR
         A3[User Service] --> B3[(User DB)]
         A4[API Gateway] --> A2 & A3
     end
-```
+\`\`\`
 
 This pattern dramatically improves MR review quality — reviewers understand the intent, not just the code diff.
 
@@ -9217,7 +9217,7 @@ This pattern dramatically improves MR review quality — reviewers understand th
 
 When designing new features, include UML class diagrams:
 
-```mermaid
+\`\`\`mermaid
 classDiagram
     class BaseService {
         <<abstract>>
@@ -9237,13 +9237,13 @@ classDiagram
     }
     BaseService <|-- UserService
     BaseService <|-- OrderService
-```
+\`\`\`
 
 ## Mermaid in GitLab CI/CD Configuration Docs
 
 Document your \`.gitlab-ci.yml\` pipeline visually. Keep a \`docs/ci-pipeline.md\` file that mirrors the actual CI config:
 
-```mermaid
+\`\`\`mermaid
 graph LR
     subgraph Build Stage
         Lint[Lint Code] --> UnitTest[Unit Tests]
@@ -9260,7 +9260,7 @@ graph LR
     BuildImg --> IntTest & E2E
     IntTest & E2E --> Staging
     Staging -->|Manual| Prod
-```
+\`\`\`
 
 When someone modifies the CI pipeline, they update this diagram in the same MR. Reviewers can verify the visual flow matches the YAML.
 
@@ -9268,7 +9268,7 @@ When someone modifies the CI pipeline, they update this diagram in the same MR. 
 
 Product managers using GitLab can include journey maps in epics and issues:
 
-```mermaid
+\`\`\`mermaid
 journey
     title New User Signup Flow
     section Landing Page
@@ -9280,7 +9280,7 @@ journey
     section Onboarding
         Setup profile: 3: User
         First action: 4: User
-```
+\`\`\`
 
 This makes it easy to discuss UX improvements directly in the issue tracker where development work happens.
 
@@ -9302,7 +9302,7 @@ GitLab's Mermaid support is comprehensive — covering more surfaces (wikis, iss
 
 For complex projects, create a \`docs/diagrams/\` directory with individual Markdown files per diagram topic. This keeps your README clean while providing deep documentation:
 
-```
+\`\`\`
 project/
 ├── docs/
 │   ├── diagrams/
@@ -9313,7 +9313,7 @@ project/
 │   └── README.md
 ├── src/
 └── .gitlab-ci.yml
-```
+\`\`\`
 
 ### Use GitLab Snippets for Reusable Diagrams
 
@@ -9323,7 +9323,7 @@ Create GitLab snippets with common diagram templates that your team can copy-pas
 
 Add a CI job that validates Mermaid syntax using \`@mermaid-js/mermaid-cli\`:
 
-```yaml
+\`\`\`yaml
 validate-diagrams:
   image: node:20
   script:
@@ -9332,7 +9332,7 @@ validate-diagrams:
   only:
     changes:
       - docs/**/*.md
-```
+\`\`\`
 
 This catches syntax errors before they're merged.
 
@@ -9397,7 +9397,7 @@ For **Confluence Cloud**, the fastest path is a marketplace app. Search for "Mer
 
 For **Confluence Data Center or Server**, use the **HTML Macro** (if your admin has enabled it). This loads Mermaid.js via CDN client-side.
 
-```html
+\`\`\`html
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <div class="mermaid">
 graph TD
@@ -9408,7 +9408,7 @@ graph TD
     E --> B
 </div>
 <script>mermaid.initialize({ startOnLoad: true });</script>
-```
+\`\`\`
 
 > The HTML macro must be enabled by a Confluence administrator.
 
@@ -9427,7 +9427,7 @@ This gives you a visual diagram now, with the source preserved for later.
 
 ### System Architecture
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph Cloud
         LB[Load Balancer]
@@ -9443,11 +9443,11 @@ graph TB
     USERS[Users] --> LB
     LB --> A1 & A2
     A1 & A2 --> DB & CACHE
-```
+\`\`\`
 
 ### Incident Response Flow
 
-```mermaid
+\`\`\`mermaid
 graph TD
     ALERT[Alert Triggered] --> SEV{Severity?}
     SEV -- P1/P2 --> PAGE[Page On-Call]
@@ -9459,11 +9459,11 @@ graph TD
     RES -- No --> ESC[Escalate to Lead]
     ESC --> INV
     PIR --> RUNBOOK[Update Runbook]
-```
+\`\`\`
 
 ### Agile Sprint States
 
-```mermaid
+\`\`\`mermaid
 stateDiagram-v2
     [*] --> Backlog
     Backlog --> InProgress : Sprint Start
@@ -9471,7 +9471,7 @@ stateDiagram-v2
     InReview --> Done : Approved
     InReview --> InProgress : Changes Requested
     Done --> [*]
-```
+\`\`\`
 
 ## Practical Examples for Enterprise Teams
 
@@ -9479,7 +9479,7 @@ stateDiagram-v2
 
 Product managers love journey maps — embed them directly in your Confluence product spec pages:
 
-```mermaid
+\`\`\`mermaid
 journey
     title Customer Onboarding Experience
     section Discovery
@@ -9494,13 +9494,13 @@ journey
         Complete first task: 4: Customer
         Invite team: 3: Customer
         Upgrade to paid: 5: Customer
-```
+\`\`\`
 
 ### Microservice Communication Map
 
 Enterprise architectures get complex fast. Use flowcharts with subgraphs to make them scannable:
 
-```mermaid
+\`\`\`mermaid
 graph LR
     subgraph Gateway Layer
         APIGW[API Gateway]
@@ -9521,13 +9521,13 @@ graph LR
     Users --> UserDB & Cache
     Orders --> OrderDB & Queue
     Queue --> Notify
-```
+\`\`\`
 
 ### Sprint Gantt Chart
 
 Embed sprint timelines directly in your planning pages:
 
-```mermaid
+\`\`\`mermaid
 gantt
     title Sprint 23 — March 10-21
     dateFormat YYYY-MM-DD
@@ -9541,11 +9541,11 @@ gantt
     section QA
     Integration test :q1, after b2 f2, 2d
     Release          :milestone, after q1, 0d
-```
+\`\`\`
 
 ### Database Schema Documentation
 
-```mermaid
+\`\`\`mermaid
 erDiagram
     TENANT ||--o{ WORKSPACE : has
     WORKSPACE ||--o{ PROJECT : contains
@@ -9577,7 +9577,7 @@ erDiagram
         string email UK
         string role
     }
-```
+\`\`\`
 
 ## Confluence Templates with Mermaid
 
