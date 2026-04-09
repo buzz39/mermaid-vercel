@@ -244,13 +244,13 @@ Start with a simple 4-5 period timeline, add sections when it grows, and you'll 
 Timeline diagrams were added in Mermaid v9.4. GitHub, GitLab, and most modern platforms already ship this version. If you're self-hosting a docs site, check your Mermaid version.
 
 **Can I style individual sections with custom colours?**
-Not directly via the timeline syntax. Sections automatically get colours from the active theme. Use the `%%{init}%%` directive to switch themes (e.g., `forest` gives greens, `base` with custom variables gives full control).
+Not directly via the timeline syntax. Sections automatically get colours from the active theme. Use the \`%%{init}%%\` directive to switch themes (e.g., \`forest\` gives greens, \`base\` with custom variables gives full control).
 
 **Can I add links to events?**
 Not natively in timeline diagrams. If clickable events are critical, consider a flowchart with click event handlers instead.
 
 **How do I show overlapping events at the same time?**
-Add multiple `: event` lines under the same period. They all display as chips inside that period's column.
+Add multiple \`: event\` lines under the same period. They all display as chips inside that period's column.
 
 **Can I show duration, not just milestones?**
 Timeline diagrams show point-in-time events. For showing task duration, use a Gantt chart instead.
@@ -889,8 +889,8 @@ Mermaid flowcharts are powerful enough for real-world documentation yet simple e
 The best flowcharts are the ones that stay current. Here's a practical workflow to make that happen:
 
 1. **Add diagrams to the same PR as the code change.** When you change a process, update the diagram in the same commit.
-2. **Store diagrams in `docs/`** alongside related documentation files.
-3. **Reference diagrams from code comments.** Add a comment in complex functions pointing to the flowchart: `// See docs/auth-flow.md for the full decision tree`
+2. **Store diagrams in \`docs/\`** alongside related documentation files.
+3. **Reference diagrams from code comments.** Add a comment in complex functions pointing to the flowchart: \`// See docs/auth-flow.md for the full decision tree\`
 4. **Review diagrams in code review.** Treat diagram changes the same as code changes — verify they accurately reflect the implementation.
 5. **Build incrementally.** Start with the happy path, then add error branches and edge cases as they're discovered.
 
@@ -1319,13 +1319,13 @@ The text-based format means updates take seconds. When an API endpoint changes, 
 
 ## Troubleshooting Common Sequence Diagram Issues
 
-**Diagram not rendering?** Check that every `loop`, `alt`, `opt`, and `par` block has a matching `end`.
+**Diagram not rendering?** Check that every \`loop\`, \`alt\`, \`opt\`, and \`par\` block has a matching \`end\`.
 
-**Participants in wrong order?** Declare them explicitly with `participant A` lines at the top — Mermaid renders them left-to-right in declaration order.
+**Participants in wrong order?** Declare them explicitly with \`participant A\` lines at the top — Mermaid renders them left-to-right in declaration order.
 
 **Diagram too wide?** You have too many participants. Group related services behind a single participant label, or split the diagram into multiple focused diagrams.
 
-**Arrows going in wrong direction?** Remember: `A->>B` means A sends to B. Double-check your arrow directions.
+**Arrows going in wrong direction?** Remember: \`A->>B\` means A sends to B. Double-check your arrow directions.
 
 ## Conclusion
 
@@ -1662,6 +1662,47 @@ The key is using Gantt charts at the right level of abstraction. Don't track ind
 ## Conclusion
 
 Mermaid Gantt charts turn project timelines into maintainable code. They're perfect for technical documentation, sprint planning overviews, and release plans that live alongside your source code. Start simple with sections and tasks, then add dependencies, milestones, and critical path markers as your planning matures.
+
+## Gantt Charts vs Project Management Tools
+
+Mermaid Gantt charts complement your project management tools — they don't replace them. Here's how to think about when to use each:
+
+**Use Mermaid Gantt when:**
+- Embedding a timeline in a README, design doc, or proposal
+- Communicating a plan to stakeholders who don't have access to your PM tool
+- Documenting a completed project's timeline for retrospective
+- Creating a high-level roadmap that lives in your repository
+
+**Use your PM tool (Jira, Linear, Asana) when:**
+- Tracking day-to-day task completion
+- Managing sprint backlogs and assignments
+- Generating reports for management
+- Real-time collaboration on task status
+
+The sweet spot: use your PM tool for execution, and export a simplified Mermaid Gantt for documentation.
+
+## Automated Gantt Chart Generation
+
+For teams that want to keep Gantt diagrams in sync with actual project data, consider generating Mermaid syntax programmatically:
+
+```javascript
+function generateGantt(sprints) {
+  let output = 'gantt\n    title Sprint Roadmap\n    dateFormat YYYY-MM-DD\n';
+  for (const sprint of sprints) {
+    output += \`    section ${sprint.name}\n\`;
+    for (const task of sprint.tasks) {
+      output += \`    ${task.name} :${task.id}, ${task.start}, ${task.days}d\n\`;
+    }
+  }
+  return output;
+}
+```
+
+This pattern lets you pull data from your project management API and generate a fresh Mermaid Gantt chart automatically.
+
+## Conclusion
+
+Mermaid Gantt charts are the developer's answer to project timeline documentation. They're fast to write, live in your repo, and render cleanly on GitHub and most documentation platforms. Use them for release plans, migration timelines, sprint overviews, and project proposals — any situation where a visual timeline adds clarity to your documentation. Start simple with sections and tasks, then add dependencies, milestones, and critical path markers as your planning matures.
 
 [Try it now in our free Mermaid Live Editor →](/)
 `
@@ -2099,6 +2140,87 @@ This is especially valuable for:
 
 Mermaid class diagrams bring UML into your codebase. They're ideal for documenting domain models, communicating design decisions in pull requests, and maintaining architecture docs that stay current. The text-based format means they're diffable, reviewable, and version-controlled — everything a developer needs.
 
+## Real-World Example: E-Commerce Domain Model
+
+Here's a complete class diagram for an e-commerce system showing real-world complexity:
+
+```
+classDiagram
+    class Product {
+        +String sku
+        +String name
+        +Money price
+        +int stockLevel
+        +bool isAvailable()
+        +void adjustStock(delta)
+    }
+    class Order {
+        +String orderNumber
+        +OrderStatus status
+        +Money total()
+        +void place()
+        +void cancel()
+        +void fulfill()
+    }
+    class OrderItem {
+        +int quantity
+        +Money unitPrice
+        +Money subtotal()
+    }
+    class Customer {
+        +String email
+        +String name
+        +List~Address~ addresses
+    }
+    class Address {
+        +String street
+        +String city
+        +String country
+        +String postalCode
+    }
+    class Payment {
+        <<abstract>>
+        +Money amount
+        +PaymentStatus status
+        +void process()*
+        +void refund()*
+    }
+    class CreditCardPayment {
+        +String last4
+        +String brand
+        +void process()
+        +void refund()
+    }
+    class PayPalPayment {
+        +String paypalEmail
+        +void process()
+        +void refund()
+    }
+
+    Customer "1" --> "0..*" Order : places
+    Order "1" --> "1..*" OrderItem : contains
+    OrderItem "*" --> "1" Product : references
+    Order "1" --> "1" Payment : paid_via
+    Customer "1" --> "1..*" Address : has
+    Payment <|-- CreditCardPayment
+    Payment <|-- PayPalPayment
+```
+
+This diagram communicates the entire order domain at a glance — entities, relationships, and the payment abstraction pattern.
+
+## Using Class Diagrams in Architecture Reviews
+
+Class diagrams are most impactful when used proactively in design reviews:
+
+1. **Before implementation:** Create the class diagram as part of the design document. Get feedback on the structure before writing a line of code.
+2. **During code review:** Include a diagram in the PR description showing how new classes relate to existing ones.
+3. **After implementation:** Update the diagram to reflect what was actually built, and commit it to \`docs/\`.
+4. **During refactoring:** Create a "before" and "after" diagram to communicate the intent of the refactor to reviewers.
+
+## Conclusion
+
+Mermaid class diagrams bring UML-style modeling to your plain text documentation workflow. They're perfect for documenting domain models, illustrating design patterns, communicating class hierarchies in pull requests, and maintaining architecture docs that stay current. The text-based format means they're diffable, reviewable, and version-controlled — everything a developer needs.
+
 [Try it now in our free Mermaid Live Editor →](/)
 `
   },
@@ -2299,6 +2421,40 @@ Identify the diagrams that are updated most frequently — these benefit most fr
 ### Phase 4: Evaluate and Adjust
 
 After a few months, evaluate what's working. Some teams find they still want a GUI tool for specific use cases (presentation decks, customer-facing docs), and that's fine. The hybrid approach works well.
+
+## Real Cost Comparison
+
+Let's put numbers to the tool comparison:
+
+| Tool | Monthly Cost | Per Seat |
+|---|---|---|
+| Mermaid.js | Free | Free |
+| Draw.io (desktop) | Free | Free |
+| Draw.io (Confluence plugin) | $5-10 | Yes |
+| Lucidchart | $9-27 | Yes |
+| Miro | $10-20 | Yes |
+| Visio | ~$13 | Yes |
+| Figma (with FigJam) | $12-45 | Yes |
+
+For a 20-person engineering team, Lucidchart alone costs $180-540/month. Mermaid is free forever and produces text files that live in your repository.
+
+The total cost of ownership argument for Mermaid is compelling, especially when you factor in that diagrams-as-code eliminates the "I can't find the source file" problem that plagues GUI-created diagrams.
+
+## When Teams Should Stick with GUI Tools
+
+To be fair, there are valid reasons to keep GUI diagramming tools:
+
+1. **Non-technical stakeholders** who need to create or edit diagrams without learning syntax
+2. **Client deliverables** that require polished, branded visuals
+3. **Whiteboarding sessions** where real-time collaborative freehand drawing helps
+4. **Complex custom layouts** where you need pixel-level control over positioning
+5. **Existing investment** — if your team has years of Lucidchart diagrams and established workflows, migration cost matters
+
+The realistic answer for most teams: use Mermaid for internal technical documentation, and keep a GUI tool for external-facing materials.
+
+## Conclusion
+
+Mermaid wins for developer documentation: it's free, version-controlled, and faster to create once you know the syntax. Draw.io is the best free GUI option for teams that need visual editing. Lucidchart and Miro shine when real-time collaboration and presentation quality matter. The best approach is to evaluate your actual use cases and choose accordingly — or use a combination. The hybrid approach works well.
 
 [Try creating diagrams as code in our free Mermaid Live Editor →](/)
 `
@@ -2652,6 +2808,54 @@ sequenceDiagram
 ## Conclusion
 
 Mermaid in GitHub READMEs is one of the most impactful documentation improvements you can make. Diagrams that live as code stay current, are version-controlled, and render beautifully without any extra tooling. Start with an architecture diagram in your main README, then expand to contribution guides, API docs, and database schemas.
+
+## Mermaid in GitHub Actions
+
+You can automate diagram validation in your CI pipeline using \`@mermaid-js/mermaid-cli\`:
+
+```yaml
+# .github/workflows/validate-diagrams.yml
+name: Validate Mermaid Diagrams
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g @mermaid-js/mermaid-cli
+      - name: Validate all Mermaid diagrams in docs
+        run: |
+          find docs -name '*.md' | while read f; do
+            grep -A100 '```mermaid' "$f" | grep -B100 '```' | \
+            grep -v '```' | mmdc -i /dev/stdin -o /dev/null && \
+            echo "OK: $f" || echo "FAIL: $f"
+          done
+```
+
+This catches broken Mermaid syntax before it's merged — especially useful when multiple contributors are adding or editing diagrams.
+
+## Using Mermaid in GitHub Discussions and GitHub Pages
+
+**GitHub Discussions** supports Mermaid in the same way as Issues and PRs — any mermaid code fence renders inline. Great for architecture discussions before opening a formal PR.
+
+**GitHub Pages** with Jekyll supports Mermaid via the \`jekyll-mermaid\` gem, or you can inject the Mermaid.js script manually in your layout template.
+
+```html
+<!-- In _layouts/default.html -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
+```
+
+With this in place, any \`pre.mermaid\` block or mermaid code fence in your pages will render automatically.
+
+## Conclusion
+
+Mermaid in GitHub README files is one of the highest-leverage improvements you can make to your project's documentation. The diagrams render natively, stay version-controlled, and render beautifully without any extra tooling. Start with an architecture diagram in your main README, then expand to contribution guides, API docs, and database schemas.
 
 [Try it now in our free Mermaid Live Editor →](/)
 `
@@ -3021,6 +3225,55 @@ Rule of thumb: if you find yourself writing "if the order is in state X, then...
 ## Conclusion
 
 State diagrams are invaluable for documenting system behavior — especially for anything with a lifecycle (orders, sessions, UI states, workflows). Mermaid's text syntax makes them easy to create and maintain in your documentation. Start with the basic states and transitions, then add composite states and parallel execution as complexity grows.
+
+## State Diagrams for UI Component Documentation
+
+Frontend developers can use state diagrams to document interactive component behaviour:
+
+```
+stateDiagram-v2
+    [*] --> Idle
+
+    Idle --> Loading : submit()
+    Loading --> Success : response OK
+    Loading --> Error : response fail
+    Loading --> Idle : cancel()
+
+    Success --> Idle : reset()
+    Error --> Loading : retry()
+    Error --> Idle : dismiss()
+
+    state Success {
+        [*] --> Showing
+        Showing --> Hidden : after 3s
+    }
+```
+
+This documents a form component's full lifecycle — loading, success, error, retry — in a way that's useful for both developers implementing the component and designers reviewing its behaviour.
+
+## State Diagrams for Infrastructure
+
+Infrastructure engineers can use state diagrams for circuit breakers, health checks, and deployment states:
+
+```
+stateDiagram-v2
+    [*] --> Closed
+
+    Closed --> Open : failure threshold exceeded
+    Open --> HalfOpen : timeout elapsed
+    HalfOpen --> Closed : probe request succeeds
+    HalfOpen --> Open : probe request fails
+
+    note right of Closed : Normal operation\nAll requests pass through
+    note right of Open : Circuit broken\nAll requests fail fast
+    note right of HalfOpen : Testing recovery\nOne probe request allowed
+```
+
+A circuit breaker state diagram like this is essential documentation for on-call engineers who need to understand service behaviour during incidents.
+
+## Conclusion
+
+Mermaid state diagrams are a powerful tool for documenting lifecycle states, transitions, and conditional behaviour. The simple syntax makes them easy to create and maintain in your documentation. Start with the basic states and transitions, then add composite states and parallel execution as complexity grows.
 
 [Try it now in our free Mermaid Live Editor →](/)
 `
@@ -3450,6 +3703,34 @@ For database documentation, ER diagrams are the right choice. For application ar
 
 Mermaid ER diagrams are perfect for documenting database schemas in your project repository. They render on GitHub, stay version-controlled, and are easy to update when your schema evolves. Start with the core entities and relationships, then progressively add attributes and constraints as your model matures.
 
+## Generating Mermaid ER Diagrams from Existing Schemas
+
+If you already have a database, you don't need to write ER diagrams from scratch. Several tools can generate Mermaid ER syntax from your schema:
+
+**PostgreSQL:** Use \`pg_mermaid\` or write a query against \`information_schema\` to extract tables and foreign keys, then format as Mermaid syntax.
+
+**Prisma ORM:** The Prisma schema language maps closely to Mermaid ER syntax. Tools exist to convert \`.prisma\` files to Mermaid diagrams automatically.
+
+**MySQL / MariaDB:** Export the schema and use scripts to convert \`CREATE TABLE\` statements to Mermaid ER format.
+
+**SQLAlchemy (Python):** Generate ER diagrams from your SQLAlchemy models using the \`eralchemy\` library (which can output Mermaid format).
+
+Automated generation ensures diagrams stay in sync with the actual database schema, not just the intended design.
+
+## ER Diagrams in Database Migration Reviews
+
+When proposing schema changes, include ER diagrams in your migration PR:
+
+1. **Before diagram:** Show the current schema
+2. **After diagram:** Show the proposed schema with changes highlighted in comments
+3. **Migration notes:** Explain the data migration strategy for existing records
+
+This makes database schema reviews much more productive. Reviewers can spot normalization issues, missing indexes, and incorrect cardinality before the migration runs.
+
+## Conclusion
+
+Mermaid ER diagrams transform database schema documentation from an afterthought into a living, version-controlled asset. They're easy to write, readable by anyone on the team, version-controlled, and easy to update when your schema evolves. Start with the core entities and relationships, then progressively add attributes and constraints as your model matures.
+
 [Try it now in our free Mermaid Live Editor →](/)
 `
   },
@@ -3749,6 +4030,61 @@ Pie charts are inherently visual, which creates accessibility challenges. To mak
 ## Conclusion
 
 Mermaid pie charts are the simplest way to add data visualization to your text-based documentation. They're perfect for quick overviews and composition breakdowns — just a keyword, some labels, and values. Keep them simple, limit slices to 5-7, and use them where proportional comparison adds value to your docs.
+
+## Pie Charts in Engineering Documentation
+
+Some of the most impactful uses of pie charts in engineering docs:
+
+### Test Coverage Distribution
+
+```
+pie showData title Test Coverage by Module
+    "Core business logic" : 94
+    "API handlers" : 87
+    "Data access layer" : 72
+    "Utilities" : 65
+    "UI components" : 41
+```
+
+This immediately shows which areas need more test coverage investment.
+
+### Error Rate by Category
+
+```
+pie showData title Production Errors (Last 30 Days)
+    "Client errors (4xx)" : 1240
+    "Server errors (5xx)" : 89
+    "Timeout errors" : 34
+    "Rate limit errors" : 28
+```
+
+### Bundle Size Distribution
+
+```
+pie showData title JavaScript Bundle Composition
+    "React + ReactDOM" : 42
+    "UI component library" : 28
+    "Charting library" : 15
+    "Form validation" : 8
+    "App code" : 7
+```
+
+Seeing that third-party dependencies make up 93% of your bundle makes the case for code splitting or lighter alternatives much more visceral.
+
+## Embedding Pie Charts Effectively
+
+A standalone pie chart communicates very little without context. Always include:
+
+- **A clear title** with the time period or data source
+- **The total N** so readers know the sample size (e.g., "Based on 1,247 support tickets")
+- **A one-line insight** below the chart explaining what action to take
+- **A comparison** to the previous period if the trend matters
+
+With context, a simple pie chart becomes a powerful communication tool that makes data-driven decisions easier.
+
+## Conclusion
+
+Mermaid pie charts are the fastest way to add proportional data visualisation to your documentation. They're ideal for sprint retrospectives, incident analysis, resource allocation reviews, and composition overviews — just a keyword, some labels, and values. Keep them simple, limit slices to 5-7, and use them where proportional comparison adds value to your docs.
 
 [Try it now in our free Mermaid Live Editor →](/)
 `
@@ -4247,6 +4583,40 @@ Mermaid.js is actively developed, with new features added regularly:
 
 When targeting platforms like GitHub or Obsidian, stick to well-established diagram types for maximum compatibility. Test newer types in your target platform before committing to them in documentation.
 
+## Platform Support Quick Reference
+
+Not all Mermaid diagram types render everywhere. Here's a quick reference:
+
+| Diagram Type | GitHub | GitLab | Notion | Obsidian | Docusaurus |
+|---|---|---|---|---|---|
+| Flowchart | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Sequence | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Gantt | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Class | ✅ | ✅ | ✅ | ✅ | ✅ |
+| State | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ER Diagram | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Pie Chart | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Mind Map | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| Timeline | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| Git Graph | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| Quadrant | ⚠️ | ⚠️ | ❌ | ✅ | ✅ |
+
+✅ = Supported | ⚠️ = May require newer version | ❌ = Not supported
+
+## Pro Tips for Power Users
+
+**Combine multiple diagrams in one doc.** A comprehensive architecture document might include a flowchart for the system overview, a sequence diagram for the critical API flow, and an ER diagram for the data model — all in one Markdown file.
+
+**Use the \`%%{init}%%\` directive for consistent theming.** Add it to every diagram in a document to ensure they all use the same visual style.
+
+**Create diagram templates.** Keep a \`diagrams/templates/\` folder with skeleton diagrams for common patterns: microservice architecture, authentication flow, database schema, etc. Duplicate and customise rather than starting from scratch.
+
+**Reference diagrams from code.** Add comments in your code like \`// See docs/diagrams/payment-flow.md\` to link implementation to documentation.
+
+## Conclusion
+
+This cheat sheet covers the core Mermaid syntax you'll reach for day to day. Bookmark it, combine it with a live editor for fast iteration, and refer back whenever you need a quick syntax reminder. Stick to well-established diagram types for maximum platform compatibility, and test newer types in your target platform before committing them to documentation.
+
 [Try all these diagrams in our free Mermaid Live Editor →](/)
 `
   },
@@ -4640,6 +5010,45 @@ This works especially well for:
 
 Mermaid mind maps let you create visual hierarchies with nothing but indented text. They're perfect for brainstorming, planning, and documentation where you need a quick overview of how topics relate. Start with the central concept, branch out 3-4 levels, and keep labels concise.
 
+## Keyboard-Friendly Mind Map Workflow
+
+The best way to build a Mermaid mind map is iteratively:
+
+1. **Start with the root** — just \`mindmap\n    root((Topic))\`
+2. **Add first-level branches** — four or five main categories
+3. **Fill in leaf nodes** — specific items, technologies, or concepts
+4. **Add icons and styles** — enhance the most important branches
+5. **Review and trim** — remove anything that doesn't add value
+
+This bottom-up approach produces cleaner mind maps than trying to plan the full hierarchy upfront.
+
+## Mind Maps vs Outlines vs Flowcharts
+
+Knowing which format to choose is half the battle:
+
+| Format | Best for | Weakness |
+|---|---|---|
+| Mind Map | Hierarchical topics, brainstorming | No process flow |
+| Numbered list | Sequential steps | No visual hierarchy |
+| Flowchart | Processes with decisions | Not great for categorization |
+| Table | Comparisons | No nesting |
+
+Mind maps shine when you have a central concept with naturally branching sub-topics. If you find yourself adding arrows between branches to show flow, switch to a flowchart.
+
+## Using Mind Maps in Documentation
+
+The highest-value uses of mind maps in developer documentation:
+
+- **Project README overview** — Show all the major features/modules at a glance
+- **Architecture decision summary** — Map the factors considered in a key decision
+- **Learning roadmap** — Show what skills or concepts to learn, in what order
+- **API surface map** — Group endpoints by resource type visually
+- **Release notes overview** — Categorise changes (features, fixes, breaking changes) in a mind map at the top of the changelog
+
+## Conclusion
+
+Mermaid mind maps are a lightweight but powerful tool for visualising hierarchical information. They're perfect for brainstorming, planning, and documentation where you need a quick overview of how topics relate. Start with the central concept, branch out 3-4 levels, and keep labels concise.
+
 [Try it now in our free Mermaid Live Editor →](/)
 `
   },
@@ -4881,6 +5290,80 @@ Search for these in Obsidian's community plugin browser (Settings → Community 
 
 Obsidian's native Mermaid support makes it one of the best environments for combining structured notes with visual diagrams. Whether you're documenting architectures, planning projects, or building a knowledge base, Mermaid diagrams add a powerful visual dimension to your notes — all without leaving your text editor.
 
+## Advanced Obsidian + Mermaid Workflows
+
+### Linking Diagrams to Notes
+
+In Obsidian, you can create a diagram in one note and reference it from others using wiki links. For example, keep a \`System Architecture.md\` note with your main architecture diagram, then link to it from every component-specific note:
+
+```markdown
+## Payment Service
+
+See [[System Architecture]] for the full system context.
+
+This service handles:
+- Stripe payment processing
+- Refund workflows
+- Subscription billing
+```
+
+### Dataview + Mermaid Combination
+
+Obsidian's Dataview plugin can query your vault. Combine Dataview's data extraction with Mermaid visualisation by using Dataview to collect information and then manually (or via Templater) generating Mermaid diagrams from that data.
+
+### Templater for Diagram Templates
+
+With the Templater plugin, create templates that pre-populate common diagram skeletons:
+
+```
+---
+tags: architecture
+created: <% tp.date.now() %>
+---
+
+# <% tp.file.title %>
+
+## Architecture Overview
+
+\`\`\`mermaid
+graph TD
+    %% Add components here
+\`\`\`
+
+## Sequence Flow
+
+\`\`\`mermaid
+sequenceDiagram
+    participant A
+    participant B
+    A->>B: 
+\`\`\`
+```
+
+This gives you a consistent starting point for every new architecture note.
+
+## Mermaid for Personal Knowledge Management
+
+Beyond technical documentation, Mermaid in Obsidian is useful for:
+
+- **Decision trees** for personal choices (career decisions, technology evaluations)
+- **Learning maps** showing how concepts in a subject area connect
+- **Project planning** with Gantt charts embedded in project notes
+- **Reading notes** with mind maps summarising a book's key arguments
+- **Weekly reviews** with state diagrams showing project progress
+
+## Performance Tips for Large Vaults
+
+If you have many Mermaid diagrams in a large vault:
+
+- Use **Reading View** rather than Live Preview for faster rendering
+- Keep complex diagrams in dedicated notes rather than embedding in MOCs (Maps of Content)
+- Consider the **Lazy Loading** setting if available in your Mermaid plugin version
+
+## Conclusion
+
+Mermaid.js transforms Obsidian from a text-only knowledge base into a rich visual thinking environment. Whether you're documenting architectures, planning projects, or building a knowledge base, Mermaid diagrams add a powerful visual dimension to your notes — all without leaving your text editor.
+
 [Try creating Mermaid diagrams in our free online editor →](/)
 `
   },
@@ -5119,6 +5602,72 @@ Notion strikes a good balance between diagram support and collaboration features
 ## Conclusion
 
 Mermaid diagrams in Notion are a practical way to add visual documentation to your workspace. While there are some limitations compared to dedicated diagramming tools, the convenience of having diagrams alongside your team's notes, wikis, and project management makes it worthwhile. Start with simple flowcharts and sequence diagrams, and use the workarounds for more complex visualization needs.
+
+## Practical Notion + Mermaid Workflows
+
+### Project Documentation Pages
+
+Create a Notion page structure like this for each major project:
+
+```
+📁 Project: Payment Gateway Integration
+  📄 Overview (with system architecture diagram)
+  📄 API Flow (with sequence diagram)
+  📄 Database Schema (with ER diagram)
+  📄 Timeline (with Gantt chart)
+  📄 State Machine (payment states diagram)
+```
+
+Each page has a focused Mermaid diagram plus surrounding context, making it easy to navigate and update.
+
+### Engineering Wiki with Diagrams
+
+For engineering teams using Notion as their wiki, establish conventions:
+
+1. Every architecture page must have a system diagram in the first section
+2. Every API guide must have a sequence diagram for the main flow
+3. Every database table doc must reference the ER diagram
+4. Diagrams are updated in the same session as the system changes they describe
+
+Consistency matters more than perfection — a slightly outdated diagram is still better than no diagram.
+
+### Automating Notion Diagram Updates
+
+For teams with programmatically generated diagrams, the Notion API can update page blocks automatically:
+
+```javascript
+const { Client } = require('@notionhq/client');
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+
+async function updateMermaidDiagram(pageId, blockId, mermaidCode) {
+  await notion.blocks.update({
+    block_id: blockId,
+    code: {
+      rich_text: [{ text: { content: mermaidCode } }],
+      language: 'mermaid',
+    },
+  });
+}
+```
+
+This lets you generate fresh architecture diagrams from your actual infrastructure and push them to Notion automatically.
+
+## Notion Mermaid vs Whimsical vs FigJam
+
+| Feature | Notion Mermaid | Whimsical | FigJam |
+|---|---|---|---|
+| Text-based | ✅ | ❌ | ❌ |
+| Real-time collab | ⚠️ | ✅ | ✅ |
+| Freehand drawing | ❌ | ✅ | ✅ |
+| Version control | Via Notion history | No | No |
+| Cost | Included in Notion | Separate subscription | Separate subscription |
+| Learning curve | Low (for devs) | Very low | Very low |
+
+Notion Mermaid is the best choice when: the audience lives in Notion, diagrams need to stay close to documentation, and the team includes developers comfortable with text syntax.
+
+## Conclusion
+
+Mermaid in Notion brings the power of diagrams-as-code to the most popular team documentation platform. While Notion's native Mermaid support handles most use cases elegantly, the workarounds for complex visualisation are straightforward. Start with simple flowcharts and sequence diagrams, and expand as your team's Mermaid fluency grows.
 
 [Create and test your Mermaid diagrams in our free online editor →](/)
 `
@@ -5540,6 +6089,81 @@ Mermaid will show an error message if the syntax is invalid. Test your diagrams 
 
 Mermaid diagrams in Docusaurus transform technical documentation from walls of text into visual, scannable references. The setup is straightforward, theming is flexible, and because diagrams are code, they version and review just like any other documentation change. Start with an architecture overview diagram and expand to API flows, data models, and state machines as your documentation grows.
 
+## Practical Docusaurus Mermaid Examples
+
+### Architecture Overview Page
+
+Create a dedicated \`docs/architecture.md\` with your system overview:
+
+```markdown
+---
+title: System Architecture
+sidebar_position: 1
+---
+
+# System Architecture
+
+Our platform consists of three main layers:
+
+\`\`\`mermaid
+graph TB
+    subgraph Client Layer
+        Web[React Web App]
+        Mobile[React Native]
+    end
+    subgraph API Layer
+        GW[API Gateway]
+        Auth[Auth Service]
+        Core[Core API]
+    end
+    subgraph Data Layer
+        PG[(PostgreSQL)]
+        Redis[(Redis Cache)]
+        S3[S3 Storage]
+    end
+    Web & Mobile --> GW
+    GW --> Auth --> Core
+    Core --> PG & Redis & S3
+\`\`\`
+```
+
+### Versioned Diagram Support
+
+Docusaurus's versioning system works seamlessly with Mermaid diagrams. When you run \`npm run docusaurus docs:version 2.0\`, the current docs (including all Mermaid diagram source) are snapshotted. Readers on v1.x see the old diagrams; v2.0 readers see the updated ones.
+
+This is a huge advantage over image-based diagrams, which require you to maintain separate image files per version.
+
+### Using MDX for Dynamic Diagrams
+
+In \`.mdx\` files, you can use the Mermaid component programmatically:
+
+```jsx
+import Mermaid from '@theme/Mermaid';
+
+export const statuses = ['pending', 'processing', 'complete', 'failed'];
+
+export const OrderStateDiagram = () => {
+  const nodes = statuses.map((s, i) => \`${i}[${s}]\`).join('\n    ');
+  return <Mermaid value={\`graph LR\n    ${nodes}\`} />;
+};
+
+<OrderStateDiagram />
+```
+
+This generates diagrams dynamically from your application's data — useful for keeping docs in sync with enums or configuration.
+
+## Performance Considerations
+
+Mermaid diagrams in Docusaurus are rendered client-side by default. For sites with many diagrams:
+
+- Use the \`@docusaurus/theme-mermaid\` SSR option if available to pre-render diagrams
+- Lazy-load diagrams below the fold using the \`<BrowserOnly>\` wrapper
+- Consider splitting very large documentation pages into focused sub-pages
+
+## Conclusion
+
+Docusaurus with the official Mermaid theme is one of the best environments for diagrams-as-code documentation. Setup takes under 5 minutes, diagrams version alongside content, and updates flow just like any other documentation change. Start with an architecture overview diagram and expand to API flows, data models, and state machines as your documentation grows.
+
 [Test your Mermaid diagrams in our free online editor →](/)
 `
   },
@@ -5896,6 +6520,67 @@ For these advanced scenarios, consider using a whiteboard or specialized Git vis
 ## Conclusion
 
 Mermaid git graphs are invaluable for documenting branching strategies, teaching Git workflows, and communicating development processes. Whether your team uses GitFlow, trunk-based development, or GitHub Flow, visualizing the strategy makes it accessible to everyone — from junior developers to stakeholders who need to understand the release process.
+
+## Real-World Example: Monorepo Branch Strategy
+
+For monorepos with multiple teams, a more complex branching strategy is common:
+
+```
+gitGraph
+    commit id: "Initial monorepo setup"
+    branch team-a
+    branch team-b
+
+    checkout team-a
+    commit id: "Team A: Feature 1"
+    commit id: "Team A: Feature 2"
+
+    checkout team-b
+    commit id: "Team B: Feature 3"
+
+    checkout main
+    merge team-a id: "Merge Team A"
+
+    checkout team-b
+    commit id: "Team B: Feature 4"
+
+    checkout main
+    merge team-b id: "Merge Team B"
+    commit id: "v1.2.0 release" tag: "v1.2.0"
+```
+
+## Git Graphs for Onboarding Documentation
+
+New developers often struggle with a project's branching conventions. A git graph in the onboarding guide makes it concrete:
+
+```
+gitGraph
+    commit id: "main is always deployable"
+    branch feature/my-feature
+    checkout feature/my-feature
+    commit id: "work in feature branch"
+    commit id: "small, focused commits"
+    checkout main
+    merge feature/my-feature id: "PR merged after review"
+    commit id: "deploy happens automatically"
+```
+
+Showing the expected workflow visually is far more effective than describing it in paragraphs.
+
+## Git Graph Limitations and Workarounds
+
+Mermaid git graphs have some limitations to be aware of:
+
+- **No date display** — commits appear in sequence order, not by date
+- **No author info** — git graphs show structure, not who made changes
+- **Limited styling** — you can't customise individual commit colors beyond the branch theme
+- **No interactive features** — unlike tools like GitKraken or Sourcetree, these are static diagrams
+
+For these reasons, Mermaid git graphs are best used for **illustrating concepts** rather than visualising the actual state of your repository.
+
+## Conclusion
+
+Mermaid git graphs are a unique and underused diagram type. They're perfect for documenting branching strategies, explaining Git workflows, and creating clear onboarding material. Whatever your workflow — trunk-based development, Gitflow, or GitHub Flow — visualising it makes it accessible to everyone on the team.
 
 [Create git graph diagrams in our free Mermaid Live Editor →](/)
 `
@@ -6502,6 +7187,103 @@ Mermaid.js mindmaps bring the power of visual thinking into your text-based work
 
 The key is matching the use case to the tool: use mindmaps for **hierarchical exploration** and switch to flowcharts, sequence diagrams, or Gantt charts when you need **process flows or timelines**.
 
+## Advanced Example: Technology Radar
+
+Teams use technology radars to categorise tools and frameworks by adoption status. A mind map works beautifully for this:
+
+```
+mindmap
+    root((Tech Radar 2025))
+        Adopt
+            TypeScript
+            React
+            PostgreSQL
+            Docker
+            Terraform
+        Trial
+            Bun
+                Faster than Node.js
+                Still maturing
+            Deno
+            Htmx
+        Assess
+            WASM
+            AI-assisted coding
+            Edge functions
+        Hold
+            jQuery
+            AngularJS
+            REST (for new services)
+                Prefer GraphQL or gRPC
+```
+
+This is far more readable than a table or bulleted list — the visual hierarchy immediately communicates confidence levels.
+
+## Advanced Example: Incident Response Playbook
+
+Use mind maps to document incident response procedures:
+
+```
+mindmap
+    root((P1 Incident Response))
+        Immediate Actions
+            Page on-call lead
+            Open incident channel
+            Start timeline doc
+        Assess
+            Impact scope
+                How many users affected?
+                Revenue impact estimate
+            Root cause candidates
+                Recent deployments
+                Infrastructure changes
+                Third-party service status
+        Mitigate
+            Roll back last deploy
+            Enable maintenance mode
+            Scale up affected services
+            Activate DR if needed
+        Communicate
+            Status page update
+            Stakeholder notification
+            Customer support briefed
+        Post-incident
+            RCA document
+            Action items
+            Update runbook
+```
+
+Mind maps for runbooks work because they're scannable under pressure — an engineer can quickly navigate to the relevant branch without reading the whole document.
+
+## Programmatic Mind Map Generation
+
+For teams with structured data, you can generate Mermaid mind map syntax programmatically. For example, generating a feature map from your product backlog:
+
+```javascript
+function generateFeatureMindmap(features) {
+  let output = 'mindmap\n    root((Product Features))\n';
+  const categories = {};
+  
+  for (const feature of features) {
+    if (!categories[feature.category]) categories[feature.category] = [];
+    categories[feature.category].push(feature.name);
+  }
+  
+  for (const [cat, items] of Object.entries(categories)) {
+    output += \`        ${cat}\n\`;
+    for (const item of items) {
+      output += \`            ${item}\n\`;
+    }
+  }
+  
+  return output;
+}
+```
+
+## Conclusion
+
+Advanced Mermaid mind maps are powerful tools for documenting complex knowledge hierarchies, technology decisions, and operational procedures. The key insight is knowing when to use them: use mindmaps for **hierarchical exploration** and switch to flowcharts, sequence diagrams, or Gantt charts when you need **process flows or timelines**.
+
 [Try building your own mindmap in our free Mermaid editor →](/)
 `
   },
@@ -6875,6 +7657,89 @@ graph LR
 Mermaid's theming system gives you everything from one-line theme switches to surgical CSS overrides. For most projects, picking the right built-in theme (likely \`neutral\` or \`dark\`) is all you need. When brand alignment matters, the \`base\` theme plus \`themeVariables\` lets you match any design system without writing CSS.
 
 The init directive syntax means your theme configuration lives inside the diagram definition itself — keeping everything self-contained and portable across platforms.
+
+## Custom Theme Variables Reference
+
+When using \`theme: 'base'\`, you can override these key variables:
+
+```
+%%{init: {'theme': 'base', 'themeVariables': {
+    'primaryColor': '#4f46e5',
+    'primaryTextColor': '#ffffff',
+    'primaryBorderColor': '#3730a3',
+    'lineColor': '#6b7280',
+    'secondaryColor': '#f3f4f6',
+    'tertiaryColor': '#e0e7ff',
+    'background': '#ffffff',
+    'mainBkg': '#4f46e5',
+    'nodeBorder': '#3730a3',
+    'clusterBkg': '#ede9fe',
+    'titleColor': '#1f2937',
+    'edgeLabelBackground': '#f9fafb',
+    'fontSize': '16px'
+}}}%%
+graph TD
+    A[Styled with custom brand colors] --> B[Consistent with design system]
+```
+
+## Theming for Different Documentation Contexts
+
+### Light and Dark Mode Auto-Switching
+
+For documentation sites with theme toggle (like Docusaurus), configure Mermaid to respond to the system theme:
+
+```javascript
+// In docusaurus.config.js
+themeConfig: {
+  mermaid: {
+    theme: {
+      light: 'neutral',
+      dark: 'dark',
+    },
+  },
+},
+```
+
+Users who prefer dark mode will automatically see dark diagrams.
+
+### GitHub README Theming
+
+GitHub automatically applies light/dark themes to Mermaid diagrams based on the user's GitHub settings. You don't need to configure anything — GitHub handles it automatically using the \`default\` and \`dark\` themes.
+
+If you want specific control over how your diagram looks on GitHub, use \`%%{init: {'theme': 'neutral'}}%%\` — it looks clean in both light and dark contexts.
+
+### Presentation Diagrams
+
+For slides or presentations, the \`forest\` theme often looks best on a white background, while \`dark\` works well on dark slide backgrounds:
+
+```
+%%{init: {'theme': 'forest', 'themeVariables': {'fontSize': '20px'}}}%%
+flowchart LR
+    A[Slide-ready] --> B[Larger font] --> C[Clean colors]
+```
+
+## Exporting Themed Diagrams
+
+Once you're happy with your theme, export diagrams as SVG or PNG using the Mermaid CLI:
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+
+# Export with default theme
+mmdc -i diagram.mmd -o diagram.svg
+
+# Export with specific theme
+mmdc -i diagram.mmd -o diagram.svg --theme dark
+
+# Export at higher resolution
+mmdc -i diagram.mmd -o diagram.png --width 2000
+```
+
+The exported SVG preserves all theme colours and can be included in slide decks, PDFs, or documentation sites that don't natively support Mermaid.
+
+## Conclusion
+
+Mermaid themes give you control over how your diagrams look without sacrificing the simplicity of text-based syntax. Use built-in themes for quick consistency, and reach for custom \`themeVariables\` when you need to match a specific brand or design system. The init directive syntax means your theme configuration lives inside the diagram definition itself — keeping everything self-contained and portable.
 
 [Try all these themes in our free Mermaid Live Editor →](/)
 `
@@ -7299,7 +8164,7 @@ If you're in an enterprise environment, working heavily in Confluence or JetBrai
 When in doubt, try Mermaid first. It gets out of your way and lets you focus on what actually matters: communicating ideas visually.
 
 [Try Mermaid.js in our free online editor →](/)
-`,
+\`,
   },
   {
     slug: "mermaid-subgraph-guide",
@@ -7770,7 +8635,7 @@ Subgraphs transform flat, cluttered flowcharts into structured architecture diag
 Start with a single subgraph in your next diagram to group related services, and build from there.
 
 [Try subgraphs in our free Mermaid Live Editor →](/)
-`,
+\`,
   },
   {
     slug: "mermaid-in-vscode",
