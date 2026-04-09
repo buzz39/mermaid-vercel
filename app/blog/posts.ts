@@ -2221,6 +2221,22 @@ Class diagrams are most impactful when used proactively in design reviews:
 
 Mermaid class diagrams bring UML-style modeling to your plain text documentation workflow. They're perfect for documenting domain models, illustrating design patterns, communicating class hierarchies in pull requests, and maintaining architecture docs that stay current. The text-based format means they're diffable, reviewable, and version-controlled — everything a developer needs.
 
+## When to Use Mermaid Class Diagrams
+
+Class diagrams shine in specific scenarios:
+
+**Design phase:** Before writing code, sketch the class structure. This forces you to think about responsibilities and relationships early, when changes are cheap.
+
+**Code review:** Include a before/after class diagram in your PR description. Reviewers understand the impact of structural changes immediately, rather than piecing it together from diffs.
+
+**Onboarding documentation:** New team members can understand the codebase's structure from a class diagram in 5 minutes, vs. hours of reading code.
+
+**Architecture documentation:** Keep a `docs/class-diagrams/` directory with diagrams for each major subsystem. Update them in the same PR as code changes.
+
+## Conclusion
+
+Mermaid class diagrams make UML-style modeling accessible to every developer without requiring specialized tools. They're perfect for documenting domain models, illustrating design patterns, and communicating class hierarchies in pull requests. The text-based format means they're diffable, reviewable, and version-controlled — everything a developer needs.
+
 [Try it now in our free Mermaid Live Editor →](/)
 `
   },
@@ -5049,6 +5065,19 @@ The highest-value uses of mind maps in developer documentation:
 
 Mermaid mind maps are a lightweight but powerful tool for visualising hierarchical information. They're perfect for brainstorming, planning, and documentation where you need a quick overview of how topics relate. Start with the central concept, branch out 3-4 levels, and keep labels concise.
 
+## Mind Maps as Living Documentation
+
+The best mind maps are ones that evolve with your project. A few practices that keep them useful:
+
+- **Update the mind map when the system changes.** If a new module is added, add it to the feature map mind map in the same PR.
+- **Date-stamp major revisions.** Add a note to the page title: "Feature Map (updated March 2025)" so readers know how current it is.
+- **Link to detailed docs.** Mind maps are overviews. Add notes pointing to deeper documentation: `For details → See API Reference`.
+- **Use in team meetings.** Share the mind map on screen during sprint planning or architecture reviews to keep discussion focused.
+
+## Conclusion
+
+Mermaid mind maps bring hierarchy and visual structure to documentation without requiring a separate tool or file format. They're perfect for brainstorming, planning, and getting a quick overview of how topics relate to each other. Start with the central concept, branch out 3-4 levels, and keep node labels concise for the cleanest results.
+
 [Try it now in our free Mermaid Live Editor →](/)
 `
   },
@@ -7284,6 +7313,21 @@ function generateFeatureMindmap(features) {
 
 Advanced Mermaid mind maps are powerful tools for documenting complex knowledge hierarchies, technology decisions, and operational procedures. The key insight is knowing when to use them: use mindmaps for **hierarchical exploration** and switch to flowcharts, sequence diagrams, or Gantt charts when you need **process flows or timelines**.
 
+## Combining Mind Maps with Other Diagram Types
+
+For comprehensive documentation, mind maps work best as the entry point — an overview that links to more detailed diagrams:
+
+- **Mind map** shows the big picture (all features, all services, all concepts)
+- **Flowcharts** show how a specific process works
+- **Sequence diagrams** show how specific services communicate
+- **ER diagrams** show the database structure for a specific domain
+
+A great pattern: include a mind map at the top of your main architecture document, then link each branch to its detailed section or page.
+
+## Conclusion
+
+Advanced Mermaid mind maps are powerful tools for documenting complex hierarchies, making technology decisions visible, and creating scannable runbooks. Know when to use them: reach for mind maps for **hierarchical exploration** and switch to flowcharts, sequence diagrams, or Gantt charts when you need **process flows or timelines**.
+
 [Try building your own mindmap in our free Mermaid editor →](/)
 `
   },
@@ -8861,6 +8905,104 @@ The key advantages over standalone diagramming tools: **version control, code re
 
 Start with a \`docs/\` folder in your next project, add a few Mermaid diagrams, and you'll never want to go back to dragging boxes in a browser.
 
+## Advanced VS Code Mermaid Workflows
+
+### Diagram-First Development
+
+Try this workflow for designing new features:
+
+1. Open a new `.md` file in VS Code
+2. Sketch the component architecture in a class diagram
+3. Sketch the API flow in a sequence diagram
+4. Get feedback from teammates (share the Markdown file, GitHub renders it)
+5. Only then start writing code
+
+Diagram-first development catches design flaws before they're built in. It takes 20 minutes upfront and saves hours of refactoring.
+
+### Multi-Diagram Architecture Documents
+
+Create a comprehensive `ARCHITECTURE.md` at the root of your repo:
+
+```markdown
+# System Architecture
+
+## System Overview
+
+\`\`\`mermaid
+graph TB
+    [high-level system diagram]
+\`\`\`
+
+## Data Flow
+
+\`\`\`mermaid
+sequenceDiagram
+    [critical path flow]
+\`\`\`
+
+## Database Schema
+
+\`\`\`mermaid
+erDiagram
+    [core tables]
+\`\`\`
+
+## Deployment Pipeline
+
+\`\`\`mermaid
+flowchart LR
+    [CI/CD stages]
+\`\`\`
+```
+
+This single file gives any developer a complete system overview before they read a line of code.
+
+### Snippet Library for Mermaid
+
+Create VS Code user snippets for your most-used diagram templates (`Ctrl+Shift+P` → "Snippets: Configure Snippets" → `markdown.json`):
+
+```json
+{
+  "Mermaid Flowchart": {
+    "prefix": "mflow",
+    "body": [
+      "\`\`\`mermaid",
+      "flowchart TD",
+      "    $1",
+      "\`\`\`"
+    ],
+    "description": "Insert Mermaid flowchart block"
+  },
+  "Mermaid Sequence": {
+    "prefix": "mseq",
+    "body": [
+      "\`\`\`mermaid",
+      "sequenceDiagram",
+      "    participant $1",
+      "    participant $2",
+      "    $1->>$2: $3",
+      "\`\`\`"
+    ],
+    "description": "Insert Mermaid sequence diagram block"
+  }
+}
+```
+
+Type `mflow` and hit Tab to get a ready-to-fill flowchart skeleton.
+
+## Recommended VS Code Extensions for Mermaid
+
+1. **Markdown Preview Mermaid Support** — Renders Mermaid in the built-in Markdown preview
+2. **Mermaid Preview** — Dedicated preview pane for `.mmd` files
+3. **Mermaid Markdown Syntax Highlighting** — Syntax colouring inside mermaid code fences
+4. **Foam** or **Dendron** — Knowledge base tools that integrate well with Mermaid-enhanced Markdown
+
+## Conclusion
+
+VS Code is an excellent environment for Mermaid diagram authoring. With the right extensions, you get live preview, syntax highlighting, and a writing experience that keeps you in your text editor. Since every diagram is plain text, every change is tracked in Git — giving you a complete audit trail of how your documentation evolved.
+
+Start with a `docs/` folder in your next project, add a few Mermaid diagrams, and you'll never want to go back to dragging boxes in a browser.
+
 [Try Mermaid diagrams in our free online editor →](/)
 `
   },
@@ -9198,6 +9340,29 @@ This catches syntax errors before they're merged.
 
 Mermaid.js is a first-class citizen in GitLab Flavored Markdown. Every diagram you write is version-controlled, reviewable in MRs, and renders beautifully without external tools. Start documenting your CI/CD pipelines, API flows, and database schemas as code — your team will thank you.
 
+## GitLab Mermaid Diagram Checklist
+
+Before merging an MR with Mermaid diagrams, run through this quick checklist:
+
+- [ ] Diagram renders correctly in the GitLab preview
+- [ ] Diagram is accurate (reflects the actual system, not the intended design)
+- [ ] Source is readable — meaningful node IDs, not just `A`, `B`, `C`
+- [ ] Diagram is focused — not trying to show everything in one chart
+- [ ] For architecture diagrams: subgraphs group related components
+- [ ] For CI/CD diagrams: matches the actual `.gitlab-ci.yml` stages
+- [ ] If the diagram replaces a previous one: old diagram is removed
+
+Following this checklist ensures your Mermaid diagrams add genuine value rather than becoming another form of documentation debt.
+
+## Key Takeaways
+
+- GitLab natively renders Mermaid in all Markdown contexts: READMEs, wikis, issues, MRs, and snippets
+- No plugins or configuration required — just wrap your diagram in a mermaid code fence
+- Diagrams in MR descriptions dramatically improve review quality for architectural changes
+- Use subgraphs to show infrastructure boundaries, service groups, and deployment environments
+- CI/CD pipeline diagrams in `docs/` are especially valuable — they help every developer understand the deployment process
+- Include the raw Mermaid source when sharing diagrams as screenshots or exports
+
 [Practice your Mermaid syntax in our free online editor →](/)
 `
   },
@@ -9485,6 +9650,29 @@ Many teams use both: Mermaid for technical docs, GUI tools for executive present
 Mermaid.js brings diagrams-as-code to Confluence. Whether you use a marketplace macro, the HTML macro, or the screenshot workflow, your team can have clean, maintainable technical diagrams in the knowledge base.
 
 The real win: diagrams become living documentation that evolves with your codebase. Start with one architecture page, add a few Mermaid diagrams, and watch your team’s documentation quality improve.
+
+## Confluence Mermaid Quick-Start Checklist
+
+For teams setting up Mermaid in Confluence for the first time:
+
+- [ ] Choose your method: marketplace app, HTML macro, or image + source
+- [ ] Test rendering with a simple flowchart before rolling out to the team
+- [ ] Create a template page showing example diagrams for each type
+- [ ] Document the chosen method in your team's engineering handbook
+- [ ] Establish a convention for where diagram source is stored (always include raw Mermaid in a collapsible block)
+- [ ] Schedule a 15-minute team session to walk through creating a Mermaid diagram
+- [ ] Add a diagram to at least one high-traffic architecture page as proof-of-concept
+
+Getting the first few diagrams live is the hardest part. Once the team sees how quickly they update and how much clarity they add, adoption tends to spread organically.
+
+## Key Takeaways
+
+- Mermaid in Confluence brings diagrams-as-code to the most widely used enterprise documentation platform
+- Cloud users: search the marketplace for a Mermaid macro app — setup takes minutes
+- Server/Data Center users: the HTML macro or screenshot workflow are reliable fallbacks
+- Always store the Mermaid source alongside any diagram, even if it's only visible in a collapsed section
+- Mermaid diagrams are text, so they benefit from Confluence's version history in a meaningful way
+- Start with one high-traffic architecture page and demonstrate value before rolling out to the whole team
 
 [Create and export Mermaid diagrams for free →](/)
 `
