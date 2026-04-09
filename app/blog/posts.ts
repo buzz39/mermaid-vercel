@@ -260,7 +260,7 @@ Timeline diagrams show point-in-time events. For showing task duration, use a Ga
 Mermaid timeline diagrams are the fastest way to get a chronological overview into your documentation. They take seconds to write, render cleanly on GitHub and most doc platforms, and stay accurate because they live right next to the things they document.
 
 [Try building your timeline diagram for free at mermaideditor.lol →](/)
-\`
+`
   },
   {
     slug: "what-is-mermaid-js",
@@ -528,7 +528,7 @@ Mermaid.js is one of the most developer-friendly tools to emerge in the document
 If you've never used Mermaid before, the best way to start is to pick one diagram type (flowcharts are the most intuitive), spend 10 minutes with the syntax, and add a diagram to a project you're already working on. Once you see how quickly it renders and how easily you can update it, the rest follows naturally.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "how-to-create-flowchart-mermaid",
@@ -910,7 +910,7 @@ The flowchart is the workhorse of Mermaid diagrams, but knowing when to reach fo
 Mermaid flowcharts give you a full-featured diagramming system in plain text. Start with basic nodes and arrows, use shapes and labels to add meaning, and reach for subgraphs and styling when complexity demands it. The key advantage is maintainability — when your process changes, updating a few lines of text is infinitely easier than rearranging boxes in a drawing tool.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-sequence-diagram-tutorial",
@@ -1332,7 +1332,7 @@ The text-based format means updates take seconds. When an API endpoint changes, 
 Sequence diagrams are one of the most valuable diagram types for developer documentation. They make abstract service interactions concrete and help teams communicate precisely about system behaviour. The Mermaid text-based approach means your diagrams stay in sync with your code, live in your repo, and are easy to update. Start with the basic arrow syntax, then add loops, alt blocks, and activation as needed.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-gantt-chart-examples",
@@ -1705,7 +1705,7 @@ This pattern lets you pull data from your project management API and generate a 
 Mermaid Gantt charts are the developer's answer to project timeline documentation. They're fast to write, live in your repo, and render cleanly on GitHub and most documentation platforms. Use them for release plans, migration timelines, sprint overviews, and project proposals — any situation where a visual timeline adds clarity to your documentation. Start simple with sections and tasks, then add dependencies, milestones, and critical path markers as your planning matures.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-class-diagram-uml",
@@ -2238,7 +2238,7 @@ Class diagrams shine in specific scenarios:
 Mermaid class diagrams make UML-style modeling accessible to every developer without requiring specialized tools. They're perfect for documenting domain models, illustrating design patterns, and communicating class hierarchies in pull requests. The text-based format means they're diffable, reviewable, and version-controlled — everything a developer needs.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-vs-drawio-vs-lucidchart",
@@ -2473,7 +2473,7 @@ The realistic answer for most teams: use Mermaid for internal technical document
 Mermaid wins for developer documentation: it's free, version-controlled, and faster to create once you know the syntax. Draw.io is the best free GUI option for teams that need visual editing. Lucidchart and Miro shine when real-time collaboration and presentation quality matter. The best approach is to evaluate your actual use cases and choose accordingly — or use a combination. The hybrid approach works well.
 
 [Try creating diagrams as code in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-in-github-readme",
@@ -2874,7 +2874,7 @@ With this in place, any \`pre.mermaid\` block or mermaid code fence in your page
 Mermaid in GitHub README files is one of the highest-leverage improvements you can make to your project's documentation. The diagrams render natively, stay version-controlled, and render beautifully without any extra tooling. Start with an architecture diagram in your main README, then expand to contribution guides, API docs, and database schemas.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-state-diagram-guide",
@@ -3292,7 +3292,7 @@ A circuit breaker state diagram like this is essential documentation for on-call
 Mermaid state diagrams are a powerful tool for documenting lifecycle states, transitions, and conditional behaviour. The simple syntax makes them easy to create and maintain in your documentation. Start with the basic states and transitions, then add composite states and parallel execution as complexity grows.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-er-diagram-database",
@@ -3748,7 +3748,7 @@ This makes database schema reviews much more productive. Reviewers can spot norm
 Mermaid ER diagrams transform database schema documentation from an afterthought into a living, version-controlled asset. They're easy to write, readable by anyone on the team, version-controlled, and easy to update when your schema evolves. Start with the core entities and relationships, then progressively add attributes and constraints as your model matures.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-pie-chart-tutorial",
@@ -4103,7 +4103,7 @@ With context, a simple pie chart becomes a powerful communication tool that make
 Mermaid pie charts are the fastest way to add proportional data visualisation to your documentation. They're ideal for sprint retrospectives, incident analysis, resource allocation reviews, and composition overviews — just a keyword, some labels, and values. Keep them simple, limit slices to 5-7, and use them where proportional comparison adds value to your docs.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-syntax-cheat-sheet",
@@ -4634,7 +4634,7 @@ Not all Mermaid diagram types render everywhere. Here's a quick reference:
 This cheat sheet covers the core Mermaid syntax you'll reach for day to day. Bookmark it, combine it with a live editor for fast iteration, and refer back whenever you need a quick syntax reminder. Stick to well-established diagram types for maximum platform compatibility, and test newer types in your target platform before committing them to documentation.
 
 [Try all these diagrams in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-mindmap-tutorial",
@@ -5079,7 +5079,7 @@ The best mind maps are ones that evolve with your project. A few practices that 
 Mermaid mind maps bring hierarchy and visual structure to documentation without requiring a separate tool or file format. They're perfect for brainstorming, planning, and getting a quick overview of how topics relate to each other. Start with the central concept, branch out 3-4 levels, and keep node labels concise for the cleanest results.
 
 [Try it now in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-in-obsidian",
@@ -5394,7 +5394,7 @@ If you have many Mermaid diagrams in a large vault:
 Mermaid.js transforms Obsidian from a text-only knowledge base into a rich visual thinking environment. Whether you're documenting architectures, planning projects, or building a knowledge base, Mermaid diagrams add a powerful visual dimension to your notes — all without leaving your text editor.
 
 [Try creating Mermaid diagrams in our free online editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-in-notion",
@@ -5699,7 +5699,7 @@ Notion Mermaid is the best choice when: the audience lives in Notion, diagrams n
 Mermaid in Notion brings the power of diagrams-as-code to the most popular team documentation platform. While Notion's native Mermaid support handles most use cases elegantly, the workarounds for complex visualisation are straightforward. Start with simple flowcharts and sequence diagrams, and expand as your team's Mermaid fluency grows.
 
 [Create and test your Mermaid diagrams in our free online editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-in-docusaurus",
@@ -5797,7 +5797,7 @@ export const ArchitectureDiagram = () => (
         A[Frontend] --> B[API Gateway]
         B --> C[Service A]
         B --> D[Service B]
-    \`}
+    `}
   />
 );
 \`\`\`
@@ -6194,7 +6194,7 @@ Mermaid diagrams in Docusaurus are rendered client-side by default. For sites wi
 Docusaurus with the official Mermaid theme is one of the best environments for diagrams-as-code documentation. Setup takes under 5 minutes, diagrams version alongside content, and updates flow just like any other documentation change. Start with an architecture overview diagram and expand to API flows, data models, and state machines as your documentation grows.
 
 [Test your Mermaid diagrams in our free online editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-git-graph-tutorial",
@@ -6612,7 +6612,7 @@ For these reasons, Mermaid git graphs are best used for **illustrating concepts*
 Mermaid git graphs are a unique and underused diagram type. They're perfect for documenting branching strategies, explaining Git workflows, and creating clear onboarding material. Whatever your workflow — trunk-based development, Gitflow, or GitHub Flow — visualising it makes it accessible to everyone on the team.
 
 [Create git graph diagrams in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-user-journey-map",
@@ -6946,7 +6946,7 @@ For more sophisticated journey mapping with detailed annotations, emotional curv
 Mermaid journey maps bring user experience visualization into your development workflow. They're quick to create, easy to update, and version-controllable — making them perfect for documenting user journeys in README files, design documents, and sprint retrospectives. Start by mapping your most important user journey, identify the low-scoring steps, and use that data to drive product improvements.
 
 [Create journey maps in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-mindmap-advanced-examples",
@@ -7329,7 +7329,7 @@ A great pattern: include a mind map at the top of your main architecture documen
 Advanced Mermaid mind maps are powerful tools for documenting complex hierarchies, making technology decisions visible, and creating scannable runbooks. Know when to use them: reach for mind maps for **hierarchical exploration** and switch to flowcharts, sequence diagrams, or Gantt charts when you need **process flows or timelines**.
 
 [Try building your own mindmap in our free Mermaid editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-themes-dark-mode",
@@ -7786,7 +7786,7 @@ The exported SVG preserves all theme colours and can be included in slide decks,
 Mermaid themes give you control over how your diagrams look without sacrificing the simplicity of text-based syntax. Use built-in themes for quick consistency, and reach for custom \`themeVariables\` when you need to match a specific brand or design system. The init directive syntax means your theme configuration lives inside the diagram definition itself — keeping everything self-contained and portable.
 
 [Try all these themes in our free Mermaid Live Editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-vs-plantuml",
@@ -8208,7 +8208,7 @@ If you're in an enterprise environment, working heavily in Confluence or JetBrai
 When in doubt, try Mermaid first. It gets out of your way and lets you focus on what actually matters: communicating ideas visually.
 
 [Try Mermaid.js in our free online editor →](/)
-\`,
+`,
   },
   {
     slug: "mermaid-subgraph-guide",
@@ -8679,7 +8679,7 @@ Subgraphs transform flat, cluttered flowcharts into structured architecture diag
 Start with a single subgraph in your next diagram to group related services, and build from there.
 
 [Try subgraphs in our free Mermaid Live Editor →](/)
-\`,
+`,
   },
   {
     slug: "mermaid-in-vscode",
@@ -9004,7 +9004,7 @@ VS Code is an excellent environment for Mermaid diagram authoring. With the righ
 Start with a \`docs/\` folder in your next project, add a few Mermaid diagrams, and you'll never want to go back to dragging boxes in a browser.
 
 [Try Mermaid diagrams in our free online editor →](/)
-\`
+`
   },
   },
   {
@@ -9364,7 +9364,7 @@ Following this checklist ensures your Mermaid diagrams add genuine value rather 
 - Include the raw Mermaid source when sharing diagrams as screenshots or exports
 
 [Practice your Mermaid syntax in our free online editor →](/)
-\`
+`
   },
   {
     slug: "mermaid-js-in-confluence",
@@ -9675,6 +9675,6 @@ Getting the first few diagrams live is the hardest part. Once the team sees how 
 - Start with one high-traffic architecture page and demonstrate value before rolling out to the whole team
 
 [Create and export Mermaid diagrams for free →](/)
-\`
+`
   },
 ];
