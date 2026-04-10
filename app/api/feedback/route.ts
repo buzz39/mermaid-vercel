@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       `\nSubmitted: ${new Date().toISOString()}`,
     ].filter(Boolean).join('\n');
 
-    const response = await fetch('https://api.agentmail.to/v0/inboxes/oggy@agentmail.to/messages', {
+    const response = await fetch('https://api.agentmail.to/v0/inboxes/oggy%40agentmail.to/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
