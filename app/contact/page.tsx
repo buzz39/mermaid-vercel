@@ -25,10 +25,10 @@ export default function ContactPage() {
               <h3 className="font-semibold text-gray-900 mb-1">📧 Email</h3>
               <p className="text-gray-600 mb-2">For general enquiries, bug reports, or feature requests:</p>
               <a
-                href="mailto:hello@gaganthakur.com"
+                href="mailto:hello@g-compilations.com"
                 className="text-blue-600 hover:underline font-medium"
               >
-                hello@gaganthakur.com
+                hello@g-compilations.com
               </a>
             </div>
 
@@ -66,7 +66,7 @@ export default function ContactPage() {
             <div>
               <h3 className="font-semibold text-gray-900">How do I report a bug?</h3>
               <p className="text-gray-600">
-                Please email us at <a href="mailto:hello@gaganthakur.com" className="text-blue-600 hover:underline">hello@gaganthakur.com</a> with a description of the issue and steps to reproduce it, or open a GitHub issue.
+                Please email us at <a href="mailto:hello@g-compilations.com" className="text-blue-600 hover:underline">hello@g-compilations.com</a> with a description of the issue and steps to reproduce it, or open a GitHub issue.
               </p>
             </div>
             <div>

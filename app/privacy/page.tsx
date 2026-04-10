@@ -120,7 +120,7 @@ export default function PrivacyPolicy() {
           </p>
           <p className="mb-2">
             <strong>Email:</strong>{' '}
-            <a href="mailto:hello@gaganthakur.com" className="text-blue-600 hover:underline">hello@gaganthakur.com</a>
+            <a href="mailto:hello@g-compilations.com" className="text-blue-600 hover:underline">hello@g-compilations.com</a>
           </p>
         </section>
 
