@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { text, features } = await req.json();
+    const { text, features, email, name } = await req.json();
 
     const body = [
+      (name || email) ? `From: ${name || 'Anonymous'}${email ? ` <${email}>` : ''}` : '',
       features?.length ? `Features requested: ${features.join(', ')}` : '',
       text ? `\nAdditional feedback:\n${text}` : '',
       `\nSubmitted: ${new Date().toISOString()}`,

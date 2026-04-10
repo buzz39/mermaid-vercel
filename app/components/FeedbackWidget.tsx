@@ -14,6 +14,8 @@ export default function FeedbackWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [text, setText] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
   const handleSubmit = async () => {
@@ -23,6 +25,8 @@ export default function FeedbackWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text,
+          email,
+          name,
           features: Object.keys(checked).filter(k => checked[k]),
         }),
       });
@@ -32,6 +36,8 @@ export default function FeedbackWidget() {
       setIsOpen(false);
       setSubmitted(false);
       setText("");
+      setEmail("");
+      setName("");
       setChecked({});
     }, 2000);
   };
@@ -58,6 +64,23 @@ export default function FeedbackWidget() {
               <>
                 <h3 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Suggest a Feature</h3>
                 <p className="text-sm text-gray-500 mb-4">What would make Mermaid Editor better for you?</p>
+
+                <div className="flex gap-2 mb-3">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder="Your name (optional)"
+                    className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="Your email (optional)"
+                    className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
 
                 <div className="space-y-2 mb-4">
                   {FEATURE_OPTIONS.map(opt => (
