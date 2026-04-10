@@ -10,21 +10,28 @@ export async function POST(req: NextRequest) {
       `\nSubmitted: ${new Date().toISOString()}`,
     ].filter(Boolean).join('\n');
 
-    await fetch('https://api.agentmail.to/v0/inboxes/oggy@agentmail.to/messages', {
+    const response = await fetch('https://api.agentmail.to/v0/inboxes/oggy@agentmail.to/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.AGENTMAIL_API_KEY}`,
       },
       body: JSON.stringify({
-        to: [{ email: 'thakurg39@gmail.com', name: 'Gagan Thakur' }],
+        to: ['thakurg39@gmail.com'],
         subject: `🔔 Mermaid Editor Feature Request: ${features?.join(', ') || 'Custom'}`,
         text: body,
       }),
     });
 
+    if (!response.ok) {
+      const err = await response.text();
+      console.error('AgentMail error:', response.status, err);
+      return NextResponse.json({ ok: false, error: err }, { status: 500 });
+    }
+
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (e) {
+    console.error('Feedback route error:', e);
     return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
