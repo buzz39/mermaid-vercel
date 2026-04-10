@@ -155,6 +155,79 @@ export default function MermaidReaderApp() {
             </div>
           </section>
 
+          {/* Editorial Content */}
+          <section className="mt-16 pt-12 border-t border-gray-200">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">What is Mermaid.js?</h2>
+            <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
+              <p>
+                <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Mermaid.js</a> is an open-source JavaScript library that generates diagrams and charts from simple text definitions. Instead of dragging shapes around in a design tool, you write human-readable code — and Mermaid turns it into professional diagrams instantly.
+              </p>
+              <p>
+                It was created to make documentation easier for developers and teams who already work in text-based environments like Markdown, Git, and code editors. Whether you need a quick flowchart for a README or a detailed sequence diagram for an architecture review, Mermaid handles it all.
+              </p>
+            </div>
+
+            <h3 className="text-2xl font-bold text-gray-800 mt-10 mb-4">Why Use an Online Mermaid Editor?</h3>
+            <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
+              <p>
+                While Mermaid.js can be used in many environments — GitHub Markdown, Notion, VS Code extensions — having a dedicated live editor offers key advantages:
+              </p>
+              <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                <li><strong>Instant preview:</strong> See your diagram update as you type, catching syntax errors immediately.</li>
+                <li><strong>Export options:</strong> Download diagrams as high-quality SVG or PNG files for presentations, documentation, or design tools.</li>
+                <li><strong>Share with a link:</strong> Your diagram code is encoded in the URL — share it with teammates without any accounts or sign-ups.</li>
+                <li><strong>No installation needed:</strong> Works entirely in your browser. No dependencies, no setup, no accounts.</li>
+                <li><strong>Theme support:</strong> Switch between default, dark, forest, and neutral themes to match your project's style.</li>
+              </ul>
+            </div>
+
+            <h3 className="text-2xl font-bold text-gray-800 mt-10 mb-4">Diagram Types You Can Create</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {[
+                { title: 'Flowcharts', desc: 'Visualize processes, decision trees, and workflows with nodes and edges.' },
+                { title: 'Sequence Diagrams', desc: 'Show interactions between systems, APIs, or users over time.' },
+                { title: 'Gantt Charts', desc: 'Plan project timelines, milestones, and task dependencies.' },
+                { title: 'Class Diagrams', desc: 'Document object-oriented designs with classes, methods, and relationships.' },
+                { title: 'State Diagrams', desc: 'Model state machines and lifecycle transitions for your applications.' },
+                { title: 'Entity Relationship', desc: 'Design database schemas with entities, attributes, and relationships.' },
+                { title: 'Pie Charts', desc: 'Create simple pie charts to visualize proportional data.' },
+                { title: 'Git Graphs', desc: 'Illustrate branching strategies and Git workflows visually.' },
+                { title: 'User Journey Maps', desc: 'Map out user experiences and touchpoints across your product.' },
+              ].map((item) => (
+                <div key={item.title} className="p-5 bg-gray-50 rounded-xl border border-gray-100">
+                  <h4 className="font-semibold text-gray-800 mb-2">{item.title}</h4>
+                  <p className="text-sm text-gray-600">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <h3 className="text-2xl font-bold text-gray-800 mt-10 mb-4">Who Uses Mermaid Diagrams?</h3>
+            <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
+              <p>
+                Mermaid.js has been adopted across the tech industry and beyond. Here's who benefits most from a live Mermaid editor:
+              </p>
+              <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                <li><strong>Software developers</strong> who need to document architectures, APIs, and system designs directly alongside their code.</li>
+                <li><strong>Technical writers</strong> creating documentation that stays in sync with codebases.</li>
+                <li><strong>Project managers</strong> building Gantt charts and workflow diagrams for sprint planning.</li>
+                <li><strong>Students and educators</strong> learning data structures, algorithms, and software design patterns.</li>
+                <li><strong>DevOps engineers</strong> mapping CI/CD pipelines, infrastructure, and deployment flows.</li>
+              </ul>
+            </div>
+
+            <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
+              <h3 className="text-xl font-bold text-blue-800 mb-3">📚 Learn More</h3>
+              <p className="text-blue-700 mb-4">
+                Check out our blog for tutorials, tips, and examples to help you master Mermaid.js diagrams.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href="/blog" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-semibold">Read the Blog</a>
+                <a href="/cheat-sheet" className="px-4 py-2 bg-white text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50 transition text-sm font-semibold">Cheat Sheet</a>
+                <a href="/templates" className="px-4 py-2 bg-white text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50 transition text-sm font-semibold">Templates</a>
+              </div>
+            </div>
+          </section>
+
           {/* Footer */}
           <Footer />
         </div>
