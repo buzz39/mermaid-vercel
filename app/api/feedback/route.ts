@@ -11,14 +11,15 @@ export async function POST(req: NextRequest) {
       `\nSubmitted: ${new Date().toISOString()}`,
     ].filter(Boolean).join('\n');
 
-    const response = await fetch('https://api.agentmail.to/v0/inboxes/oggy%40agentmail.to/messages', {
+    const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.AGENTMAIL_API_KEY}`,
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        to: ['thakurg39@gmail.com'],
+        from: 'onboarding@resend.dev',
+        to: ['workshopemail2@gmail.com'],
         subject: `🔔 Mermaid Editor Feature Request: ${features?.join(', ') || 'Custom'}`,
         text: body,
       }),
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('AgentMail error:', response.status, err);
+      console.error('Resend error:', response.status, err);
       return NextResponse.json({ ok: false, error: err }, { status: 500 });
     }
 
