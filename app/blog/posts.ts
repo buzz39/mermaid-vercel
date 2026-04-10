@@ -7119,7 +7119,6 @@ Start with a \`docs/\` folder in your next project, add a few Mermaid diagrams, 
 [Try Mermaid diagrams in our free online editor →](/)
 `
   },
-  },
   {
     slug: "mermaid-in-gitlab",
     title: "How to Use Mermaid.js Diagrams in GitLab: Complete Guide",
